@@ -24,7 +24,7 @@ return new class extends Migration
             $table->integer('anios_servicio');
             $table->enum('tipo_contrato', ['Plazo indefinido', 'Plazo definido']);
             $table->date('fecha_inicio');
-            $table->date('fecha_finalizacion');
+            $table->date('fecha_fin');
             $table->boolean('evaluacion_pedagogica')->default(false);
             $table->boolean('evaluacion_psicologica')->default(false);
             $table->timestamps();

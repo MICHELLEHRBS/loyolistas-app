@@ -13,13 +13,15 @@ return new class extends Migration
     {
         Schema::create('direcciones', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('docente_id')->nullable();
             $table->string('domicilio', 45);
             $table->string('zona', 45);
             $table->string('municipio', 45);
             $table->string('numero_casa_referencia', 45);
             $table->enum('tipo_vivienda', ['Casa', 'Condominio', 'Departamento', 'Urbanización cerrada', 'Urbanización abierta']);
-            $table->unsignedBigInteger('docente_id')->nullable();
             $table->timestamps();
+
+            $table->foreign('docente_id')->references('id')->on('docentes')->onDelete('cascade');
         });
     }
 

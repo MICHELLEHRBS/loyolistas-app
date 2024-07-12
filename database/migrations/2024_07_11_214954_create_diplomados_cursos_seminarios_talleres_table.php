@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('docente_id');
             $table->enum('rol', ['Participante', 'Expositor']);
             $table->enum('tipo_evento', ['Curso', 'Seminario', 'Taller']);
-            $table->strint('titulo', 75);
+            $table->string('titulo', 75);
             $table->string('institucion', 100);
             $table->string('lugar_pais', 45);
             $table->date('fecha_inicio');

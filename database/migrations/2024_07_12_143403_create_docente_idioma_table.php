@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('afiliaciones_instituciones_asociados', function (Blueprint $table) {
+        Schema::create('docente_idioma', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('docente_id')->nullable();
-            $table->string('institucion', 50);
-            $table->string('condicion', 45);
-            $table->date('fecha');
+            $table->unsignedBigInteger('docente_id');
+            $table->unsignedBigInteger('idioma_id');
             $table->timestamps();
 
             $table->foreign('docente_id')->references('id')->on('docentes')->onDelete('cascade');
+            $table->foreign('idioma_id')->references('id')->on('idiomas')->onDelete('cascade');
         });
     }
 
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('afiliaciones_instituciones_asociados');
+        Schema::dropIfExists('docente_idioma');
     }
 };

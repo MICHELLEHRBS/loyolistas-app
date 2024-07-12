@@ -13,7 +13,17 @@ return new class extends Migration
     {
         Schema::create('diplomados_cursos_seminarios_talleres', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('docente_id');
+            $table->enum('rol', ['Participante', 'Expositor']);
+            $table->enum('tipo_evento', ['Curso', 'Seminario', 'Taller']);
+            $table->strint('titulo', 75);
+            $table->string('institucion', 100);
+            $table->string('lugar_pais', 45);
+            $table->date('fecha_inicio');
+            $table->date('fecha_fin');
             $table->timestamps();
+
+            $table->foreign('docente_id')->references('id')->on('docentes')->onDelete('cascade');
         });
     }
 

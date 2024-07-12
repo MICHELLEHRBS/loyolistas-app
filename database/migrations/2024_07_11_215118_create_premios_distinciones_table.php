@@ -13,7 +13,15 @@ return new class extends Migration
     {
         Schema::create('premios_distinciones', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('docente_id');
+            $table->enum('tipo', ['Premio', 'Distinción']);
+            $table->string('titulo', 50);
+            $table->string('institucion', 100);
+            $table->string('lugar', 45);
+            $table->date('fecha');
             $table->timestamps();
+
+            $table->foreign('docente_id')->references('id')->on('docentes')->onDelete('cascade');
         });
     }
 

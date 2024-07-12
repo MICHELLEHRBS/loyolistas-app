@@ -13,7 +13,14 @@ return new class extends Migration
     {
         Schema::create('experiencias_laborales', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('docente_id')->nullable();
+            $table->string('nombre', 70);
+            $table->string('cargo', 70);
+            $table->date('fecha_inicio');
+            $table->date('fecha_fin');
             $table->timestamps();
+
+            $table->foreign('docente_id')->references('id')->on('docentes')->onDelete('cascade');
         });
     }
 

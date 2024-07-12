@@ -13,7 +13,14 @@ return new class extends Migration
     {
         Schema::create('publicaciones', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('docente_id')->nullable();
+            $table->string('tipo_publicacion', 255);
+            $table->string('titulo', 75);
+            $table->string('lugar_publicacion', 75);
+            $table->date('fecha');
             $table->timestamps();
+
+            $table->foreign('docente_id')->references('docente_id')->on('docentes')->onDelete('cascade');
         });
     }
 

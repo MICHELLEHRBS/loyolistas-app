@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DocenteController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -24,4 +25,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+Route::middleware('auth')->group(function () {
+    Route::controller(DocenteController::class)->group(function () {
+        Route::get('/docentes', 'index')->name('docentes.index');
+    });
+});
+
+require __DIR__ . '/auth.php';

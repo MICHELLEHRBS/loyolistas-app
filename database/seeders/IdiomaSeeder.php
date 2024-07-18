@@ -12,34 +12,34 @@ class IdiomaSeeder extends Seeder
      */
     public function run(): void
     {
-        $Idioma1 = new Idioma();
-        $Idioma1 ->nombre_idioma = "Ingles";
-        $Idioma1 ->tipo = "Habla";
-        $Idioma1 ->nivel = "Básico";
-        $Idioma1->save();
+        $idioma1 = new Idioma();
+        $idioma1 ->nombre_idioma = "Ingles";
+        $idioma1 ->tipo = "Habla";
+        $idioma1 ->nivel = "Básico";
+        $idioma1->save();
 
-        $Idioma2 = new Idioma();
-        $Idioma2 ->nombre_idioma = "Ingles";
-        $Idioma2 ->tipo = ["Lee", "Escribe"];
-        $Idioma2 ->nivel = "Medio";
-        $Idioma2 ->save();
+        $idioma2 = new Idioma();
+        $idioma2 ->nombre_idioma = "Ingles";
+        $idioma2 ->tipo = ["Lee", "Escribe"];
+        $idioma2 ->nivel = "Medio";
+        $idioma2 ->save();
 
-        $Idioma3 = new Idioma();
-        $Idioma2 ->nombre_idioma = "Ingles";
-        $Idioma2 ->tipo = ["Lee", "Escribe"];
-        $Idioma2 ->nivel = "Medio";
-        $Idioma3->save();
+        $idioma3 = new Idioma();
+        $idioma2 ->nombre_idioma = "Ingles";
+        $idioma2 ->tipo = ["Lee", "Escribe"];
+        $idioma2 ->nivel = "Medio";
+        $idioma3->save();
 
-        $Idioma4 = new Idioma();
-        $Idioma4 ->nombre_idioma = "";
-        $Idioma4 ->tipo = "";
-        $Idioma4 ->nivel = "";
-        $Idioma4->save();
+        $idioma4 = new Idioma();
+        $idioma4 ->nombre_idioma = "";
+        $idioma4 ->tipo = "";
+        $idioma4 ->nivel = "";
+        $idioma4->save();
 
-        $Idioma5 = new Idioma();
-        $Idioma5 ->nombre_idioma = "";
-        $Idioma5 ->tipo = "";
-        $Idioma5 ->nivel = "";
-        $Idioma5->save();
+        $idioma5 = new Idioma();
+        $idioma5 ->nombre_idioma = "";
+        $idioma5 ->tipo = "";
+        $idioma5 ->nivel = "";
+        $idioma5->save();
     }
 }

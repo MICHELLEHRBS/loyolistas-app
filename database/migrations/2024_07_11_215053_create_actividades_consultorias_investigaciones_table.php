@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('actividades_consultorias_investigaciones', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('docente_id')->nullable();
-            $table->string('titulo', 50);
-            $table->string('organismo', 45);
-            $table->date('fecha');
+            $table->string('titulo', 50)->nullable();
+            $table->string('organismo', 45)->nullable();
+            $table->date('fecha')->nullable();
             $table->timestamps();
 
             $table->foreign('docente_id')->references('id')->on('docentes')->onDelete('cascade');

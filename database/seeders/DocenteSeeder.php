@@ -13,23 +13,23 @@ class DocenteSeeder extends Seeder
      */
     public function run(): void
     {
-        $docente1 = new Docente();
-        $docente1->nombre = "Sara";
-        $docente1->apellido_paterno = "Zurita";
-        $docente1->apellido_materno = "Herbas";
-        $docente1->genero = "Femenino";
-        $docente1->estado_civil = "Soltera/o";
-        $docente1->ci = "1234567";
-        $docente1->expedido_ci = "CB";
-        $docente1->nacimiento = "2002-01-01";
-        $docente1->celular = "76758475";
-        $docente1->telefono = "454738";
-        $docente1->correo = "sara@gmail.com";
-        $docente1->cua = "1111sara";
-        $docente1->seguro = "Caja Nacional de Salud (CNS)";
-        $docente1->save();
+        $docente = new Docente();
+        $docente->nombre = "Sara";
+        $docente->apellido_paterno = "Zurita";
+        $docente->apellido_materno = "Herbas";
+        $docente->genero = "Femenino";
+        $docente->estado_civil = "Soltera/o";
+        $docente->ci = "1234567";
+        $docente->expedido_ci = "CB";
+        $docente->nacimiento = "2002-01-01";
+        $docente->celular = "76758475";
+        $docente->telefono = "454738";
+        $docente->correo = "sara@gmail.com";
+        $docente->cua = "1111sara";
+        $docente->seguro = "Caja Nacional de Salud (CNS)";
+        $docente->save();
 
-        $docente1 = new Docente();
+        $docente2 = new Docente();
         $docente2->nombre = "RafAel";
         $docente2->apellido_paterno = "Medina";
         $docente2->apellido_materno = "Fabiani";
@@ -82,7 +82,7 @@ class DocenteSeeder extends Seeder
         $docente5->apellido_paterno = "Vasquez";
         $docente5->apellido_materno = "Padilla";
         $docente5->genero = "Masculino";
-        $docente5->estado_civil = "Viudo";
+        $docente5->estado_civil = "Viuda/o";
         $docente5->ci = "3452345";
         $docente5->expedido_ci = "CB";
         $docente5->nacimiento = "2005-07-09";

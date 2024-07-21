@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\ActividadConsultoria;
 
 class ActividadConsultoriaSeeder extends Seeder
 {
@@ -12,11 +13,11 @@ class ActividadConsultoriaSeeder extends Seeder
      */
     public function run(): void
     {
-        $actividadConsultoria1 = new ActividadConsultoria();
-        $actividadConsultoria1->titulo = "";
-        $actividadConsultoria1->organismo = "";
-        $actividadConsultoria1->fecha = "";
-        $actividadConsultoria1->save();
+        $actividadConsultoria = new ActividadConsultoria();
+        $actividadConsultoria->titulo = "";
+        $actividadConsultoria->organismo = "";
+        $actividadConsultoria->fecha = null;
+        $actividadConsultoria->save();
 
         $actividadConsultoria2 = new ActividadConsultoria();
         $actividadConsultoria2->titulo = "Consultoría en Innovación Educativa";

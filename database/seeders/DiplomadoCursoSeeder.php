@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\DiplomadoCurso;
 
 class DiplomadoCursoSeeder extends Seeder
 {
@@ -44,7 +45,7 @@ class DiplomadoCursoSeeder extends Seeder
 
         $diplomadoCurso4 = new DiplomadoCurso();
         $diplomadoCurso4->rol = "Expositor";
-        $diplomadoCurso4->tipo_evento = "Congreso";
+        $diplomadoCurso4->tipo_evento = "Taller";
         $diplomadoCurso4->titulo = "Congreso Nacional de Ingeniería";
         $diplomadoCurso4->institucion = "Colegio de Ingenieros de Bolivia";
         $diplomadoCurso4->lugar_pais = "Sucre, Bolivia";

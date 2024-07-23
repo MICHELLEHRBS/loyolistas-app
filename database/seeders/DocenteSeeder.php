@@ -29,8 +29,8 @@ class DocenteSeeder extends Seeder
         $docente1->seguro = "Caja Nacional de Salud (CNS)";
         $docente1->save();
 
-        $docente1 = new Docente();
-        $docente2->nombre = "RafAel";
+        $docente2 = new Docente();
+        $docente2->nombre = "Rafael";
         $docente2->apellido_paterno = "Medina";
         $docente2->apellido_materno = "Fabiani";
         $docente2->genero = "Masculino";

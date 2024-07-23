@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('idiomas', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre_idioma', 10)-> nullable();
-            $table->set('tipo', ['Lee', 'Habla', 'Escribe'])-> nullable();
-            $table->enum('nivel', ['Básico', 'Medio', 'Avanzado'])-> nullable();
+            $table->string('nombre_idioma', 10)->nullable();
+            $table->enum('tipo', ['Lee', 'Habla', 'Escribe'])->nullable();
+            $table->enum('nivel', ['Básico', 'Medio', 'Avanzado'])->nullable();
             $table->timestamps();
         });
     }

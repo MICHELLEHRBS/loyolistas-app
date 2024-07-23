@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\ExperienciaLaboral;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -48,6 +49,5 @@ class ExperienciaLaboralSeeder extends Seeder
         $experiencia5->fecha_inicio = "2015-02-10";
         $experiencia5->fecha_fin = "2019-04-25";
         $experiencia5->save();
-
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\InformacionLaboral;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -96,5 +97,4 @@ class InformacionLaboralSeeder extends Seeder
         $informacion5->evaluacion_psicologica = false;
         $informacion5->save();
     }
-
 }

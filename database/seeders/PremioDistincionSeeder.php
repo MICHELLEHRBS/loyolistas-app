@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\PremioDistincion;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -50,7 +51,6 @@ class PremioDistincionSeeder extends Seeder
         $premio5->institucion = "Colegio Nacional Bolivar";
         $premio5->lugar = "Cochabamba";
         $premio5->fecha = "2022-04-30";
-        $premio5->save();"";
-        $PremioDistincion5->save();
+        $premio5->save();
     }
 }

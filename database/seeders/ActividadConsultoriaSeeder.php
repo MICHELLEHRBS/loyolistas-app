@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\ActividadConsultoria;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -41,7 +42,5 @@ class ActividadConsultoriaSeeder extends Seeder
         $actividadConsultoria5->organismo = "Centro de Formación Continua";
         $actividadConsultoria5->fecha = "2023-05-12";
         $actividadConsultoria5->save();
-
-
     }
 }

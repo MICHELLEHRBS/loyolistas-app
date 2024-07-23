@@ -14,6 +14,7 @@ class DireccionSeeder extends Seeder
     public function run(): void
     {
         $direccion1 = new Direccion();
+        $direccion1->docente_id = 1;
         $direccion1->domicilio = "Calle Lanza";
         $direccion1->zona = "Centro";
         $direccion1->municipio = "Cochabamba";
@@ -22,6 +23,7 @@ class DireccionSeeder extends Seeder
         $direccion1->save();
 
         $direccion2 = new Direccion();
+        $direccion2->docente_id = 2;
         $direccion2->domicilio = "Avenida Blanco Galindo";
         $direccion2->zona = "Villa Moderna";
         $direccion2->municipio = "Quillacollo";
@@ -30,6 +32,7 @@ class DireccionSeeder extends Seeder
         $direccion2->save();
 
         $direccion3 = new Direccion();
+        $direccion3->docente_id = 3;
         $direccion3->domicilio = "Calle Sucre";
         $direccion3->zona = "Central";
         $direccion3->municipio = "Sacaba";
@@ -38,6 +41,7 @@ class DireccionSeeder extends Seeder
         $direccion3->save();
 
         $direccion4 = new Direccion();
+        $direccion4->docente_id = 4;
         $direccion4->domicilio = "Avenida Uyuni";
         $direccion4->zona = "Zona Norte";
         $direccion4->municipio = "Vinto";
@@ -46,6 +50,7 @@ class DireccionSeeder extends Seeder
         $direccion4->save();
 
         $direccion5 = new Direccion();
+        $direccion5->docente_id = 5;
         $direccion5->domicilio = "Calle Bolívar";
         $direccion5->zona = "Centro";
         $direccion5->municipio = "Tiquipaya";

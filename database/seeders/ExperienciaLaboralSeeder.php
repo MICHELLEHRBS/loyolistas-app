@@ -16,6 +16,7 @@ class ExperienciaLaboralSeeder extends Seeder
 
 
         $experiencia1 = new ExperienciaLaboral();
+        $experiencia1->docente_id = 1;
         $experiencia1->nombre = "Colegio San Agustín";
         $experiencia1->cargo = "Profesor de Matemáticas";
         $experiencia1->fecha_inicio = "2010-03-01";
@@ -23,6 +24,7 @@ class ExperienciaLaboralSeeder extends Seeder
         $experiencia1->save();
 
         $experiencia2 = new ExperienciaLaboral();
+        $experiencia2->docente_id = 2;
         $experiencia2->nombre = "Colegio La Salle";
         $experiencia2->cargo = "Docente de Ciencias Sociales";
         $experiencia2->fecha_inicio = "2016-01-15";
@@ -30,6 +32,7 @@ class ExperienciaLaboralSeeder extends Seeder
         $experiencia2->save();
 
         $experiencia3 = new ExperienciaLaboral();
+        $experiencia3->docente_id = 3;
         $experiencia3->nombre = "Colegio Alemán Santa Cruz";
         $experiencia3->cargo = "Profesor de Inglés";
         $experiencia3->fecha_inicio = "2013-09-01";
@@ -37,6 +40,7 @@ class ExperienciaLaboralSeeder extends Seeder
         $experiencia3->save();
 
         $experiencia4 = new ExperienciaLaboral();
+        $experiencia4->docente_id = 4;
         $experiencia4->nombre = "Colegio Anglo Americano";
         $experiencia4->cargo = "Docente de Ciencias Naturales";
         $experiencia4->fecha_inicio = "2012-08-20";
@@ -44,6 +48,7 @@ class ExperienciaLaboralSeeder extends Seeder
         $experiencia4->save();
 
         $experiencia5 = new ExperienciaLaboral();
+        $experiencia5->docente_id = 5;
         $experiencia5->nombre = "Colegio María Auxiliadora";
         $experiencia5->cargo = "Profesor de Lengua y Literatura";
         $experiencia5->fecha_inicio = "2015-02-10";

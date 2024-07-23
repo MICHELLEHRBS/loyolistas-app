@@ -14,6 +14,7 @@ class FormacionAcademicaSeeder extends Seeder
     public function run(): void
     {
         $formacion1 = new FormacionAcademica();
+        $formacion1->docente_id = 1;
         $formacion1->institucion = "Universidad Mayor de San Simón";
         $formacion1->titulo = "Licenciado en Educación";
         $formacion1->fecha_inicio = "2005-03-01";
@@ -23,6 +24,7 @@ class FormacionAcademicaSeeder extends Seeder
         $formacion1->save();
 
         $formacion2 = new FormacionAcademica();
+        $formacion2->docente_id = 2;
         $formacion2->institucion = "Universidad Privada Domingo Savio";
         $formacion2->titulo = "Licenciado en Ciencias Sociales";
         $formacion2->fecha_inicio = "2010-01-15";
@@ -32,6 +34,7 @@ class FormacionAcademicaSeeder extends Seeder
         $formacion2->save();
 
         $formacion3 = new FormacionAcademica();
+        $formacion3->docente_id = 3;
         $formacion3->institucion = "Universidad Mayor de San Andrés";
         $formacion3->titulo = "Magister en Matemáticas";
         $formacion3->fecha_inicio = "2007-09-01";
@@ -41,6 +44,7 @@ class FormacionAcademicaSeeder extends Seeder
         $formacion3->save();
 
         $formacion4 = new FormacionAcademica();
+        $formacion4->docente_id = 4;
         $formacion4->institucion = "Universidad Católica Boliviana";
         $formacion4->titulo = "Licenciado en Lengua y Literatura";
         $formacion4->fecha_inicio = "2012-08-20";
@@ -50,6 +54,7 @@ class FormacionAcademicaSeeder extends Seeder
         $formacion4->save();
 
         $formacion5 = new FormacionAcademica();
+        $formacion5->docente_id = 5;
         $formacion5->institucion = "Universidad Autónoma Gabriel René Moreno";
         $formacion5->titulo = "Licenciado en Ciencias Naturales";
         $formacion5->fecha_inicio = "2013-02-10";

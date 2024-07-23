@@ -14,8 +14,9 @@ class DiplomadoCursoSeeder extends Seeder
     public function run(): void
     {
         $diplomadoCurso1 = new DiplomadoCurso();
+        $diplomadoCurso1->docente_id = 1;
         $diplomadoCurso1->rol = "Participante";
-        $diplomadoCurso1->tipo_evento = "Diplomado";
+        $diplomadoCurso1->tipo_evento = "Taller";
         $diplomadoCurso1->titulo = "Diplomado en Gestión Educativa";
         $diplomadoCurso1->institucion = "Universidad Mayor de San Andrés";
         $diplomadoCurso1->lugar_pais = "La Paz, Bolivia";
@@ -24,6 +25,7 @@ class DiplomadoCursoSeeder extends Seeder
         $diplomadoCurso1->save();
 
         $diplomadoCurso2 = new DiplomadoCurso();
+        $diplomadoCurso2->docente_id = 2;
         $diplomadoCurso2->rol = "Expositor";
         $diplomadoCurso2->tipo_evento = "Curso";
         $diplomadoCurso2->titulo = "Curso Avanzado de Programación";
@@ -34,6 +36,7 @@ class DiplomadoCursoSeeder extends Seeder
         $diplomadoCurso2->save();
 
         $diplomadoCurso3 = new DiplomadoCurso();
+        $diplomadoCurso3->docente_id = 3;
         $diplomadoCurso3->rol = "Participante";
         $diplomadoCurso3->tipo_evento = "Seminario";
         $diplomadoCurso3->titulo = "Seminario Internacional de Ciencias";
@@ -44,8 +47,9 @@ class DiplomadoCursoSeeder extends Seeder
         $diplomadoCurso3->save();
 
         $diplomadoCurso4 = new DiplomadoCurso();
+        $diplomadoCurso4->docente_id = 4;
         $diplomadoCurso4->rol = "Expositor";
-        $diplomadoCurso4->tipo_evento = "Congreso";
+        $diplomadoCurso4->tipo_evento = "Seminario";
         $diplomadoCurso4->titulo = "Congreso Nacional de Ingeniería";
         $diplomadoCurso4->institucion = "Colegio de Ingenieros de Bolivia";
         $diplomadoCurso4->lugar_pais = "Sucre, Bolivia";
@@ -54,6 +58,7 @@ class DiplomadoCursoSeeder extends Seeder
         $diplomadoCurso4->save();
 
         $diplomadoCurso5 = new DiplomadoCurso();
+        $diplomadoCurso5->docente_id = 5;
         $diplomadoCurso5->rol = "Participante";
         $diplomadoCurso5->tipo_evento = "Taller";
         $diplomadoCurso5->titulo = "Taller de Innovación Tecnológica";

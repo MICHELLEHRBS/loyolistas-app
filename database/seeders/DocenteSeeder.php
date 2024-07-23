@@ -82,7 +82,7 @@ class DocenteSeeder extends Seeder
         $docente5->apellido_paterno = "Vasquez";
         $docente5->apellido_materno = "Padilla";
         $docente5->genero = "Masculino";
-        $docente5->estado_civil = "Viudo";
+        $docente5->estado_civil = "Soltera/o";
         $docente5->ci = "3452345";
         $docente5->expedido_ci = "CB";
         $docente5->nacimiento = "2005-07-09";

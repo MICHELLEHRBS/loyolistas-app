@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\ExperienciaLaboral;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\ExperienciaLaboral;
 
 class ExperienciaLaboralSeeder extends Seeder
 {

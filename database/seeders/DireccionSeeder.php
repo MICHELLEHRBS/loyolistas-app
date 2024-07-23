@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Direccion;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Direccion;
 
 class DireccionSeeder extends Seeder
 {

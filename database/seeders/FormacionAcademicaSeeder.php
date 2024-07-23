@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use App\Models\FormacionAcademica;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\FormacionAcademica;
+use App\Models\Docente;
 
 class FormacionAcademicaSeeder extends Seeder
 {
@@ -13,6 +15,14 @@ class FormacionAcademicaSeeder extends Seeder
      */
     public function run(): void
     {
+        $docente = Docente::first();
+
+        if (!$docente) {
+            // Maneja el caso en que no hay docentes
+            echo "No se encontraron docentes para asignar a la formación académica.\n";
+            return; // Sale del seeder si no hay docentes
+        }
+
         $formacion1 = new FormacionAcademica();
         $formacion1->docente_id = 1;
         $formacion1->institucion = "Universidad Mayor de San Simón";

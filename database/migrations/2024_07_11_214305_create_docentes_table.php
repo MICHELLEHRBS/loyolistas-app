@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('apellido_paterno', 35)->nullable();
             $table->string('apellido_materno', 35)->nullable();
             $table->enum('genero', ['Masculino', 'Femenino']);
-            $table->enum('estado_civil', ['Soltera/o', 'Casada/o', 'Viuda/o, Divorciada/o']);
+            $table->enum('estado_civil', ['Soltera/o', 'Casada/o', 'Viuda/o', 'Divorciada/o']);
             $table->string('apellido_casada', 35)->nullable();
             $table->string('ci', 15)->unique();
             $table->string('expedido_ci', 35);

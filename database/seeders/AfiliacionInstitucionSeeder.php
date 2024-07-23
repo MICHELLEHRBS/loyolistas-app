@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\AfiliacionInstitucion;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\AfiliacionInstitucion;
 
 class AfiliacionInstitucionSeeder extends Seeder
 {

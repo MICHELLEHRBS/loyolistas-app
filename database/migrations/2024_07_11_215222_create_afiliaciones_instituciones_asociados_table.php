@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('afiliaciones_instituciones_asociados', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('docente_id')->nullable();
-            $table->string('institucion', 50);
-            $table->string('condicion', 45);
-            $table->date('fecha');
+            $table->string('institucion', 50)->nullable();
+            $table->string('condicion', 45)->nullable();
+            $table->date('fecha')->nullable();
             $table->timestamps();
 
             $table->foreign('docente_id')->references('id')->on('docentes')->onDelete('cascade');

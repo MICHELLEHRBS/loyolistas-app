@@ -30,6 +30,7 @@ class FormacionAcademicaSeeder extends Seeder
         $formacion1->fecha_egreso = "2009-06-30";
         $formacion1->grado = "Licenciado";
         $formacion1->especialidad = "Educación Primaria";
+        $formacion1->docente_id = 1;
         $formacion1->save();
 
         $formacion2 = new FormacionAcademica();
@@ -40,6 +41,7 @@ class FormacionAcademicaSeeder extends Seeder
         $formacion2->fecha_egreso = "2014-12-31";
         $formacion2->grado = "Licenciado";
         $formacion2->especialidad = "Ciencias Sociales - Historia";
+        $formacion2->docente_id = 2;
         $formacion2->save();
 
         $formacion3 = new FormacionAcademica();
@@ -50,6 +52,7 @@ class FormacionAcademicaSeeder extends Seeder
         $formacion3->fecha_egreso = "2011-07-15";
         $formacion3->grado = "Magister";
         $formacion3->especialidad = "Matemáticas Avanzadas";
+        $formacion3->docente_id = 3;
         $formacion3->save();
 
         $formacion4 = new FormacionAcademica();
@@ -60,6 +63,7 @@ class FormacionAcademicaSeeder extends Seeder
         $formacion4->fecha_egreso = "2016-05-30";
         $formacion4->grado = "Licenciado";
         $formacion4->especialidad = "Literatura Boliviana";
+        $formacion4->docente_id = 4;
         $formacion4->save();
 
         $formacion5 = new FormacionAcademica();
@@ -70,6 +74,7 @@ class FormacionAcademicaSeeder extends Seeder
         $formacion5->fecha_egreso = "2017-04-25";
         $formacion5->grado = "Licenciado";
         $formacion5->especialidad = "Biología";
+        $formacion5->docente_id = 5;
         $formacion5->save();
     }
 }

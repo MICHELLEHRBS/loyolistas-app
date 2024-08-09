@@ -92,5 +92,7 @@ class DocenteSeeder extends Seeder
         $docente5->cua = "6544";
         $docente5->seguro = "Caja Nacional de Salud (CNS)";
         $docente5->save();
+
+
     }
 }

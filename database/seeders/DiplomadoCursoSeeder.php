@@ -21,6 +21,7 @@ class DiplomadoCursoSeeder extends Seeder
         $diplomadoCurso1->lugar_pais = "La Paz, Bolivia";
         $diplomadoCurso1->fecha_inicio = "2021-03-01";
         $diplomadoCurso1->fecha_fin = "2021-06-30";
+        $diplomadoCurso1->docente_id =1;
         $diplomadoCurso1->save();
 
         $diplomadoCurso2 = new DiplomadoCurso();
@@ -31,6 +32,7 @@ class DiplomadoCursoSeeder extends Seeder
         $diplomadoCurso2->lugar_pais = "Santa Cruz, Bolivia";
         $diplomadoCurso2->fecha_inicio = "2022-01-15";
         $diplomadoCurso2->fecha_fin = "2022-04-15";
+        $diplomadoCurso2->docente_id =2;
         $diplomadoCurso2->save();
 
         $diplomadoCurso3 = new DiplomadoCurso();
@@ -41,6 +43,7 @@ class DiplomadoCursoSeeder extends Seeder
         $diplomadoCurso3->lugar_pais = "Cochabamba, Bolivia";
         $diplomadoCurso3->fecha_inicio = "2020-08-10";
         $diplomadoCurso3->fecha_fin = "2020-08-15";
+        $diplomadoCurso3->docente_id =3;
         $diplomadoCurso3->save();
 
         $diplomadoCurso4 = new DiplomadoCurso();
@@ -51,6 +54,7 @@ class DiplomadoCursoSeeder extends Seeder
         $diplomadoCurso4->lugar_pais = "Sucre, Bolivia";
         $diplomadoCurso4->fecha_inicio = "2019-09-20";
         $diplomadoCurso4->fecha_fin = "2019-09-25";
+        $diplomadoCurso4->docente_id =4;
         $diplomadoCurso4->save();
 
         $diplomadoCurso5 = new DiplomadoCurso();
@@ -61,6 +65,7 @@ class DiplomadoCursoSeeder extends Seeder
         $diplomadoCurso5->lugar_pais = "Tarija, Bolivia";
         $diplomadoCurso5->fecha_inicio = "2023-05-10";
         $diplomadoCurso5->fecha_fin = "2023-05-12";
+        $diplomadoCurso5->docente_id =5;
         $diplomadoCurso5->save();
     }
 }

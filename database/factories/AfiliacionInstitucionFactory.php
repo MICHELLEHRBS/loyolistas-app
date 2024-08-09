@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Docente;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,11 @@ class AfiliacionInstitucionFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+
+            'institucion' => $this->faker->company,
+            'condicion' => $this->faker->word,
+            'fecha' => $this->faker->date(),
+            'docente_id' => Docente::factory(),
         ];
     }
 }

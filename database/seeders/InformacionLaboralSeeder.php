@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\InformacionLaboral;
+
 
 class InformacionLaboralSeeder extends Seeder
 {
@@ -27,6 +29,7 @@ class InformacionLaboralSeeder extends Seeder
         $informacion1->fecha_fin = "2020-06-30";
         $informacion1->evaluacion_pedagogica = true;
         $informacion1->evaluacion_psicologica = false;
+        $informacion1->docente_id = 1;
         $informacion1->save();
 
 
@@ -44,6 +47,7 @@ class InformacionLaboralSeeder extends Seeder
         $informacion2->fecha_fin = "2020-12-31";
         $informacion2->evaluacion_pedagogica = true;
         $informacion2->evaluacion_psicologica = true;
+        $informacion2->docente_id = 2;
         $informacion2->save();
 
 
@@ -61,6 +65,7 @@ class InformacionLaboralSeeder extends Seeder
         $informacion3->fecha_fin = "2021-07-15";
         $informacion3->evaluacion_pedagogica = true;
         $informacion3->evaluacion_psicologica = false;
+        $informacion3->docente_id = 3;
         $informacion3->save();
 
         $informacion4 = new InformacionLaboral();
@@ -77,6 +82,7 @@ class InformacionLaboralSeeder extends Seeder
         $informacion4->fecha_fin = "2021-12-31";
         $informacion4->evaluacion_pedagogica = true;
         $informacion4->evaluacion_psicologica = true;
+        $informacion4->docente_id = 4;
         $informacion4->save();
 
 
@@ -94,6 +100,7 @@ class InformacionLaboralSeeder extends Seeder
         $informacion5->fecha_fin = "2022-06-30";
         $informacion5->evaluacion_pedagogica = true;
         $informacion5->evaluacion_psicologica = false;
+        $informacion5->docente_id = 5;
         $informacion5->save();
     }
 

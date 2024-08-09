@@ -19,6 +19,7 @@ class DireccionSeeder extends Seeder
         $direccion1->municipio = "Cochabamba";
         $direccion1->numero_casa_referencia = "123";
         $direccion1->tipo_vivienda = "Casa";
+        $direccion1->docente_id = 1;
         $direccion1->save();
 
         $direccion2 = new Direccion();
@@ -27,6 +28,7 @@ class DireccionSeeder extends Seeder
         $direccion2->municipio = "Quillacollo";
         $direccion2->numero_casa_referencia = "456";
         $direccion2->tipo_vivienda = "Condominio";
+        $direccion2->docente_id = 2;
         $direccion2->save();
 
         $direccion3 = new Direccion();
@@ -35,6 +37,7 @@ class DireccionSeeder extends Seeder
         $direccion3->municipio = "Sacaba";
         $direccion3->numero_casa_referencia = "789";
         $direccion3->tipo_vivienda = "Departamento";
+        $direccion3->docente_id = 3;
         $direccion3->save();
 
         $direccion4 = new Direccion();
@@ -43,6 +46,7 @@ class DireccionSeeder extends Seeder
         $direccion4->municipio = "Vinto";
         $direccion4->numero_casa_referencia = "321";
         $direccion4->tipo_vivienda = "Urbanización cerrada";
+        $direccion4->docente_id = 4;
         $direccion4->save();
 
         $direccion5 = new Direccion();
@@ -51,6 +55,7 @@ class DireccionSeeder extends Seeder
         $direccion5->municipio = "Tiquipaya";
         $direccion5->numero_casa_referencia = "654";
         $direccion5->tipo_vivienda = "Urbanización abierta";
+        $direccion5->docente_id = 5;
         $direccion5->save();
     }
 }

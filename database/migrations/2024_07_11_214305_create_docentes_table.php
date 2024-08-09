@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('ci_extranjero', 15)->unique()->nullable();
             $table->string('pasaporte', 45)->nullable();
             $table->date('nacimiento');
-            $table->string('celular', 15);
+            $table->string('celular', 25);
             $table->string('telefono', 15)->nullable();
             $table->string('correo', 75);
             $table->string('cua', 45);

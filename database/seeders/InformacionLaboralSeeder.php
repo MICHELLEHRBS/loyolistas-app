@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\InformacionLaboral;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\InformacionLaboral;
+
 
 
 class InformacionLaboralSeeder extends Seeder
@@ -16,6 +17,7 @@ class InformacionLaboralSeeder extends Seeder
     {
 
         $informacion1 = new InformacionLaboral();
+        $informacion1->docente_id = 1;
         $informacion1->dia = "Lunes";
         $informacion1->nivel = "Primaria";
         $informacion1->materia = "Mat";
@@ -34,6 +36,7 @@ class InformacionLaboralSeeder extends Seeder
 
 
         $informacion2 = new InformacionLaboral();
+        $informacion2->docente_id = 2;
         $informacion2->dia = "Miércoles";
         $informacion2->nivel = "Secundaria";
         $informacion2->materia = "Cs. Soc.";
@@ -52,6 +55,7 @@ class InformacionLaboralSeeder extends Seeder
 
 
         $informacion3 = new InformacionLaboral();
+        $informacion3->docente_id = 3;
         $informacion3->dia = "Martes";
         $informacion3->nivel = "Primaria";
         $informacion3->materia = "Com y Leng";
@@ -69,6 +73,7 @@ class InformacionLaboralSeeder extends Seeder
         $informacion3->save();
 
         $informacion4 = new InformacionLaboral();
+        $informacion4->docente_id = 4;
         $informacion4->dia = "Jueves";
         $informacion4->nivel = "Secundaria";
         $informacion4->materia = "Inglés";
@@ -87,6 +92,7 @@ class InformacionLaboralSeeder extends Seeder
 
 
         $informacion5 = new InformacionLaboral();
+        $informacion5->docente_id = 5;
         $informacion5->dia = "Viernes";
         $informacion5->nivel = "Primaria";
         $informacion5->materia = "Ed. Fís";
@@ -103,5 +109,4 @@ class InformacionLaboralSeeder extends Seeder
         $informacion5->docente_id = 5;
         $informacion5->save();
     }
-
 }

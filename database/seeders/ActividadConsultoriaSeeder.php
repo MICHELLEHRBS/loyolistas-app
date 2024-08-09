@@ -8,6 +8,7 @@ use App\Models\ActividadConsultoria;
 
 class ActividadConsultoriaSeeder extends Seeder
 {
+
     /**
      * Run the database seeds.
      */
@@ -50,4 +51,5 @@ class ActividadConsultoriaSeeder extends Seeder
 
 
     }
+
 }

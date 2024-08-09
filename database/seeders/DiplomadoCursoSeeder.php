@@ -2,12 +2,13 @@
 
 namespace Database\Seeders;
 
+use App\Models\DiplomadoCurso;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\DiplomadoCurso;
 
 class DiplomadoCursoSeeder extends Seeder
 {
+
     /**
      * Run the database seeds.
      */
@@ -68,4 +69,5 @@ class DiplomadoCursoSeeder extends Seeder
         $diplomadoCurso5->docente_id =5;
         $diplomadoCurso5->save();
     }
+
 }

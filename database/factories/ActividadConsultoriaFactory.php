@@ -18,11 +18,10 @@ class ActividadConsultoriaFactory extends Factory
     public function definition(): array
     {
         return [
-
-             'titulo' => $this->faker-> word,
-             'organismo'=> $this->faker->word,
-             'fecha'=> $this->faker->date(),
-             'docente_id' => Docente::all()->random()->id,
+            'docente_id' => Docente::all()->random()->id,
+            'titulo' => $this->faker->word,
+            'organismo' => $this->faker->word,
+            'fecha' => $this->faker->date(),
         ];
     }
 }

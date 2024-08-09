@@ -18,11 +18,10 @@ class AfiliacionInstitucionFactory extends Factory
     public function definition(): array
     {
         return [
-
+            'docente_id' => Docente::all()->random()->id,
             'institucion' => $this->faker->company,
             'condicion' => $this->faker->word,
             'fecha' => $this->faker->date(),
-            'docente_id' => Docente::factory(),
         ];
     }
 }

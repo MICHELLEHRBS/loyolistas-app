@@ -32,16 +32,16 @@ class IdiomaSeeder extends Seeder
         $idioma2->nivel = "Medio";
         $idioma3->save();
 
-        $idioma4 = new Idioma();
-        $idioma4->nombre_idioma = "";
-        $idioma4->tipo = "";
-        $idioma4->nivel = "";
-        $idioma4->save();
+        // $idioma4 = new Idioma();
+        // $idioma4->nombre_idioma = "";
+        // $idioma4->tipo = "";
+        // $idioma4->nivel = "";
+        // $idioma4->save();
 
-        $idioma5 = new Idioma();
-        $idioma5->nombre_idioma = "";
-        $idioma5->tipo = "";
-        $idioma5->nivel = "";
-        $idioma5->save();
+        // $idioma5 = new Idioma();
+        // $idioma5->nombre_idioma = "";
+        // $idioma5->tipo = "";
+        // $idioma5->nivel = "";
+        // $idioma5->save();
     }
 }

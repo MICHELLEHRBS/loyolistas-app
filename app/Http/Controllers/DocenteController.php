@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
 use App\Models\Docente;
@@ -14,7 +15,10 @@ class DocenteController extends Controller
     public function index()
     {
         $docentes = Docente::all();
-        return Inertia::render('Docentes/Index', ['docentes' => $docentes]);
+
+        return Inertia::render('Docentes/Index', [
+            'docentes' => $docentes,
+        ]);
     }
 
     /**
@@ -30,6 +34,18 @@ class DocenteController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'nombre' => 'required|string|max:255',
+            'apellido_paterno' => 'required|string|max:255',
+            'apellido_materno' => 'nullable|string|max:255',
+            'genero' => 'required|string|max:10',
+            'estado_civil' => 'nullable|string|max:50',
+            'celular' => 'nullable|string|max:20',
+        ]);
+
+        Docente::create($validated);
+
+        return redirect()->route('docentes.index');
     }
 
     /**
@@ -37,7 +53,7 @@ class DocenteController extends Controller
      */
     public function show(string $id)
     {
-        //
+        // Implementar si es necesario
     }
 
     /**
@@ -45,7 +61,8 @@ class DocenteController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $docente = Docente::findOrFail($id);
+        return Inertia::render('Docentes/Form', ['docente' => $docente]);
     }
 
     /**
@@ -53,7 +70,20 @@ class DocenteController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $docente = Docente::findOrFail($id);
+
+        $validated = $request->validate([
+            'nombre' => 'required|string|max:255',
+            'apellido_paterno' => 'required|string|max:255',
+            'apellido_materno' => 'nullable|string|max:255',
+            'genero' => 'required|string|max:10',
+            'estado_civil' => 'nullable|string|max:50',
+            'celular' => 'nullable|string|max:20',
+        ]);
+
+        $docente->update($validated);
+
+        return redirect()->route('docentes.index');
     }
 
     /**
@@ -61,6 +91,9 @@ class DocenteController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $docente = Docente::findOrFail($id);
+        $docente->delete();
+
+        return redirect()->route('docentes.index');
     }
 }

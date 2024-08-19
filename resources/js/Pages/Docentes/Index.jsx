@@ -1,8 +1,9 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { usePage } from "@inertiajs/react";
 
-export default function ({ auth }) {
+export default function Index({ auth }) {
     const { docentes } = usePage().props;
+
     return (
         <AuthenticatedLayout user={auth.user} header="Docentes">
             <div className="py-12">
@@ -30,7 +31,10 @@ export default function ({ auth }) {
                                             <td>{docente.genero}</td>
                                             <td>{docente.estado_civil}</td>
                                             <td>{docente.celular}</td>
-                                            <td>Editar</td>
+                                            <td>
+                                                <a href={route('docentes.edit', docente.id)} className="text-blue-500">Editar</a>
+                                                {/* Aquí puedes agregar un enlace para eliminar */}
+                                            </td>
                                         </tr>
                                     ))}
                                 </tbody>

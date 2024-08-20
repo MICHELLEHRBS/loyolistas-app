@@ -4,17 +4,27 @@ use App\Http\Controllers\DocenteController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use Illuminate\Foundation\Application;
 
-// Ruta raíz redirige a la lista de docentes
+//ruta  principal de regitro y acceso
 Route::get('/', function () {
-    return redirect()->route('docentes.index');
+    return Inertia::render('Welcome', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
 });
+
 
 // Ruta para la vista del dashboard
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+// Ruta raíz redirige a la lista de docentes
+Route::get('/', function () {
+    return redirect()->route('docentes.index');
+});
 
 // Agrupación de rutas protegidas por autenticación
 Route::middleware(['auth', 'verified'])->group(function () {

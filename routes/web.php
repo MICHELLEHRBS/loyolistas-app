@@ -1,20 +1,21 @@
 <?php
 
+use App\Http\Controllers\AdministrativoController;
 use App\Http\Controllers\DocenteController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RolePermissionController; // Importa el controlador para roles y permisos
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-//ruta  principal de regitro y acceso
+// Ruta principal de registro y acceso
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
+        'laravelVersion' => app()->version(),
         'phpVersion' => PHP_VERSION,
     ]);
 });
-
 
 // Ruta para la vista del dashboard
 Route::get('/dashboard', function () {
@@ -41,6 +42,17 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/docentes/{id}/edit', [DocenteController::class, 'edit'])->name('docentes.edit');
     Route::put('/docentes/{id}', [DocenteController::class, 'update'])->name('docentes.update');
     Route::delete('/docentes/{id}', [DocenteController::class, 'destroy'])->name('docentes.destroy');
+
+
+    // Rutas de administrativos
+    Route::get('/administrativos', [AdministrativoController::class, 'index'])->name('administrativos.index');
+
+    // Rutas para roles y permisos
+    Route::get('/roles-permissions', [RolePermissionController::class, 'index'])->name('roles_permissions.index');
+    Route::post('/roles', [RolePermissionController::class, 'createRole'])->name('roles.create');
+    Route::post('/permissions', [RolePermissionController::class, 'createPermission'])->name('permissions.create');
+    Route::post('/roles/assign', [RolePermissionController::class, 'assignRole'])->name('roles.assign');
+    Route::post('/permissions/assign', [RolePermissionController::class, 'assignPermission'])->name('permissions.assign');
 });
 
 // Cargar las rutas de autenticación

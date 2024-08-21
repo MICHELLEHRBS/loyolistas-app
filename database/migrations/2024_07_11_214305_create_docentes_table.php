@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('pasaporte', 45)->nullable();
             $table->date('nacimiento');
             $table->string('celular', 25);
-            $table->string('telefono', 15)->nullable();
+            $table->string('telefono', 25)->nullable();
             $table->string('correo', 75);
             $table->string('cua', 45);
             $table->enum('seguro', ['Caja Nacional de Salud (CNS)', 'Caja de Salud de Caminos y RA', 'Caja Cordes', 'Caja Petrolera de Salud', 'Seguro Integral de Salud SINEC', 'Corporación de Seguro Social Militar (Cossmil)', 'Otros', 'Ninguno']);

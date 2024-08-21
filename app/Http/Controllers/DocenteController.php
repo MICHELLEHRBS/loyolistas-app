@@ -14,7 +14,7 @@ class DocenteController extends Controller
      */
     public function index()
     {
-        $docentes = Docente::all();
+        $docentes = Docente::select('id', 'nombre', 'apellido_paterno', 'apellido_materno')->get();
 
         return Inertia::render('Docentes/Index', [
             'docentes' => $docentes,

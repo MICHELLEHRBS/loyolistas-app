@@ -47,12 +47,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Rutas de administrativos
     Route::get('/administrativos', [AdministrativoController::class, 'index'])->name('administrativos.index');
 
-    // Rutas para roles y permisos
-    Route::get('/roles-permissions', [RolePermissionController::class, 'index'])->name('roles_permissions.index');
-    Route::post('/roles', [RolePermissionController::class, 'createRole'])->name('roles.create');
-    Route::post('/permissions', [RolePermissionController::class, 'createPermission'])->name('permissions.create');
-    Route::post('/roles/assign', [RolePermissionController::class, 'assignRole'])->name('roles.assign');
-    Route::post('/permissions/assign', [RolePermissionController::class, 'assignPermission'])->name('permissions.assign');
 });
 
 // Cargar las rutas de autenticación

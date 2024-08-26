@@ -13,7 +13,7 @@ class PersonalAdministrativoController extends Controller
      */
     public function index(Request $request)
     {
-        $query = PersonalAdministrativo::query();
+        /* $query = PersonalAdministrativo::query();
 
         // Filtrar por búsqueda, si se proporciona
         if ($request->has('search')) {
@@ -29,7 +29,9 @@ class PersonalAdministrativoController extends Controller
 
         return Inertia::render('PersonalAdministrativo/Index', [
             'personalesAdministrativos' => $personalesAdministrativos,
-        ]);
+        ]); */
+        $personales = PersonalAdministrativo::all();
+        return Inertia::render('PersonalAdministrativo/Index', ['personales' => $personales]);
     }
 
     /**
@@ -74,7 +76,7 @@ class PersonalAdministrativoController extends Controller
     public function edit(string $id)
     {
         $personaladministativo = PersonalAdministrativo::findOrFail($id);
-        return Inertia::render('PersonalAdministrativo/Form', ['personaladministrativo' => $personaladministrativo]);
+        return Inertia::render('PersonalAdministrativo/Form', ['personaladministrativo' => $personaladministativo]);
     }
 
     /**

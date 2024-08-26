@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import { Link } from '@inertiajs/inertia-react';
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import React, { useState } from "react";
+//import { Link } from "@inertiajs/inertia-react";
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+import { Link, usePage } from "@inertiajs/react";
 
 export default function Index({ auth, docentes }) {
-    const [activeSection, setActiveSection] = useState('lista');
-    const [search, setSearch] = useState('');
+    const [activeSection, setActiveSection] = useState("lista");
+    const [search, setSearch] = useState("");
     const [filteredDocentes, setFilteredDocentes] = useState(docentes);
 
     const handleSearch = (e) => {
@@ -12,7 +13,7 @@ export default function Index({ auth, docentes }) {
         setSearch(query);
 
         // Filtrar los docentes basados en el apellido paterno
-        const filtered = docentes.filter(docente =>
+        const filtered = docentes.filter((docente) =>
             docente.apellido_paterno.toLowerCase().includes(query)
         );
         setFilteredDocentes(filtered);
@@ -26,20 +27,32 @@ export default function Index({ auth, docentes }) {
                     <div className="max-w-7xl mx-auto">
                         <div className="flex space-x-4 mb-4">
                             <button
-                                className={`text-lg font-semibold px-4 py-2 rounded-md ${activeSection === 'lista' ? 'bg-blue-500 text-white' : 'bg-white text-gray-600'} border border-gray-300 dark:border-gray-700`}
-                                onClick={() => setActiveSection('lista')}
+                                className={`text-lg font-semibold px-4 py-2 rounded-md ${
+                                    activeSection === "lista"
+                                        ? "bg-blue-500 text-white"
+                                        : "bg-white text-gray-600"
+                                } border border-gray-300 dark:border-gray-700`}
+                                onClick={() => setActiveSection("lista")}
                             >
                                 Lista de docentes
                             </button>
                             <button
-                                className={`text-lg font-semibold px-4 py-2 rounded-md ${activeSection === 'estadisticas' ? 'bg-blue-500 text-white' : 'bg-white text-gray-600'} border border-gray-300 dark:border-gray-700`}
-                                onClick={() => setActiveSection('estadisticas')}
+                                className={`text-lg font-semibold px-4 py-2 rounded-md ${
+                                    activeSection === "estadisticas"
+                                        ? "bg-blue-500 text-white"
+                                        : "bg-white text-gray-600"
+                                } border border-gray-300 dark:border-gray-700`}
+                                onClick={() => setActiveSection("estadisticas")}
                             >
                                 Estadísticas
                             </button>
                             <button
-                                className={`text-lg font-semibold px-4 py-2 rounded-md ${activeSection === 'horarios' ? 'bg-blue-500 text-white' : 'bg-white text-gray-600'} border border-gray-300 dark:border-gray-700`}
-                                onClick={() => setActiveSection('horarios')}
+                                className={`text-lg font-semibold px-4 py-2 rounded-md ${
+                                    activeSection === "horarios"
+                                        ? "bg-blue-500 text-white"
+                                        : "bg-white text-gray-600"
+                                } border border-gray-300 dark:border-gray-700`}
+                                onClick={() => setActiveSection("horarios")}
                             >
                                 Horarios
                             </button>
@@ -53,7 +66,7 @@ export default function Index({ auth, docentes }) {
                     <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="p-6 text-gray-900 dark:text-gray-100">
                             {/* Barra de búsqueda */}
-                            {activeSection === 'lista' && (
+                            {activeSection === "lista" && (
                                 <div className="mb-4">
                                     <input
                                         type="text"
@@ -66,58 +79,71 @@ export default function Index({ auth, docentes }) {
                             )}
 
                             {/* Contenido según la sección activa */}
-                            {activeSection === 'lista' && (
+                            {activeSection === "lista" && (
                                 <div>
                                     <table className="w-full table-auto">
                                         <thead>
                                             <tr>
-                                                <th className="px-4 py-2">Nombre</th>
-                                                <th className="px-4 py-2">Apellido Paterno</th>
-                                                <th className="px-4 py-2">Apellido Materno</th>
-                                                <th className="px-4 py-2">Acción</th>
+                                                <th className="px-4 py-2">
+                                                    Nombre
+                                                </th>
+                                                <th className="px-4 py-2">
+                                                    Apellido Paterno
+                                                </th>
+                                                <th className="px-4 py-2">
+                                                    Apellido Materno
+                                                </th>
+                                                <th className="px-4 py-2">
+                                                    Acción
+                                                </th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {filteredDocentes.length > 0 ? (
-                                                filteredDocentes.map((docente) => (
-                                                    <tr key={docente.id}>
-                                                        <td className="border px-4 py-2">
-                                                            {docente.nombre}
-                                                        </td>
-                                                        <td className="border px-4 py-2">
-                                                            {docente.apellido_paterno}
-                                                        </td>
-                                                        <td className="border px-4 py-2">
-                                                            {docente.apellido_materno}
-                                                        </td>
-                                                        <td className="border px-4 py-2">
-                                                            <Link
-                                                                href={route('docentes.edit', docente.id)}
-                                                                className="text-blue-500 hover:text-blue-700"
-                                                            >
-                                                                ACCEDER
-                                                            </Link>
-                                                        </td>
-                                                    </tr>
-                                                ))
-                                            ) : (
-                                                <tr>
-                                                    <td colSpan="4" className="text-center py-4">No se encontraron resultados</td>
+                                            {filteredDocentes.map((docente) => (
+                                                <tr key={docente.id}>
+                                                    <td className="border px-4 py-2">
+                                                        {docente.nombre}
+                                                    </td>
+                                                    <td className="border px-4 py-2">
+                                                        {
+                                                            docente.apellido_paterno
+                                                        }
+                                                    </td>
+                                                    <td className="border px-4 py-2">
+                                                        {
+                                                            docente.apellido_materno
+                                                        }
+                                                    </td>
+                                                    <td className="border px-4 py-2">
+                                                        <Link
+                                                            href={route(
+                                                                "docentes.edit",
+                                                                docentes.id
+                                                            )}
+                                                            className="text-blue-500 hover:text-blue-700"
+                                                        >
+                                                            ACCEDER
+                                                        </Link>
+                                                    </td>
                                                 </tr>
-                                            )}
+                                            ))}
                                         </tbody>
                                     </table>
                                 </div>
                             )}
-                            {activeSection === 'estadisticas' && (
+                            {activeSection === "estadisticas" && (
                                 <div>
-                                    <h2 className="text-xl font-bold mb-4">Estadísticas</h2>
+                                    <h2 className="text-xl font-bold mb-4">
+                                        Estadísticas
+                                    </h2>
                                     {/* Agrega contenido de estadísticas aquí */}
                                 </div>
                             )}
-                            {activeSection === 'horarios' && (
+                            {activeSection === "horarios" && (
                                 <div>
-                                    <h2 className="text-xl font-bold mb-4">Horarios</h2>
+                                    <h2 className="text-xl font-bold mb-4">
+                                        Horarios
+                                    </h2>
                                     {/* Agrega contenido de horarios aquí */}
                                 </div>
                             )}

@@ -26,19 +26,19 @@ export default function Index({ auth, docentes }) {
                     <div className="max-w-7xl mx-auto">
                         <div className="flex space-x-4 mb-4">
                             <button
-                                className={`text-lg font-semibold px-4 py-2 rounded-md ${activeSection === 'lista' ? 'bg-blue-500 text-white' : 'bg-white text-gray-600'} border border-gray-300 dark:border-gray-700`}
+                                className={`text-lg font-semibold px-4 py-2 rounded-md ${activeSection === 'lista' ? 'bg-green-500 text-white' : 'bg-white text-gray-600'} border border-gray-300 dark:border-gray-700`}
                                 onClick={() => setActiveSection('lista')}
                             >
                                 Lista de docentes
                             </button>
                             <button
-                                className={`text-lg font-semibold px-4 py-2 rounded-md ${activeSection === 'estadisticas' ? 'bg-blue-500 text-white' : 'bg-white text-gray-600'} border border-gray-300 dark:border-gray-700`}
+                                className={`text-lg font-semibold px-4 py-2 rounded-md ${activeSection === 'estadisticas' ? 'bg-green-500 text-white' : 'bg-white text-gray-600'} border border-gray-300 dark:border-gray-700`}
                                 onClick={() => setActiveSection('estadisticas')}
                             >
                                 Estadísticas
                             </button>
                             <button
-                                className={`text-lg font-semibold px-4 py-2 rounded-md ${activeSection === 'horarios' ? 'bg-blue-500 text-white' : 'bg-white text-gray-600'} border border-gray-300 dark:border-gray-700`}
+                                className={`text-lg font-semibold px-4 py-2 rounded-md ${activeSection === 'horarios' ? 'bg-green-500 text-white' : 'bg-white text-gray-600'} border border-gray-300 dark:border-gray-700`}
                                 onClick={() => setActiveSection('horarios')}
                             >
                                 Horarios

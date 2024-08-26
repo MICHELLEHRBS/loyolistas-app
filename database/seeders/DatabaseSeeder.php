@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use App\Models\ActividadConsultoria;
 use App\Models\AfiliacionInstitucion;
+use App\Models\PersonalAdministrativo;
 
 
 class DatabaseSeeder extends Seeder
@@ -25,6 +26,7 @@ class DatabaseSeeder extends Seeder
         Docente::factory(10)->create();
         ActividadConsultoria::factory(10)->create();
         AfiliacionInstitucion::factory(10)->create();
+        PersonalAdministrativo::factory(10)->create();
 
         $this->call([
             DocenteSeeder::class,
@@ -39,6 +41,7 @@ class DatabaseSeeder extends Seeder
             InformacionLaboralSeeder::class,
             DireccionSeeder::class,
             DocenteIdiomaSeeder::class,
+            PersonalAdministrativoSeeder::class,
         ]);
 
 

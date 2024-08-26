@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Http\Controllers;
 
 use App\Models\Docente;
@@ -12,14 +11,26 @@ class DocenteController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $docentes = Docente::select('id', 'nombre', 'apellido_paterno', 'apellido_materno')->get();
 
-        return Inertia::render('Docentes/Index', [
-            'docentes' => $docentes,
-        ]);
+        $query = Docente::query();
+
+    if ($request->has('search')) {
+        $searchTerm = $request->input('search');
+        $query->where(function ($q) use ($searchTerm) {
+            $q->where('apellido_paterno', 'like', "%{$searchTerm}%")
+              ->orWhere('apellido_materno', 'like', "%{$searchTerm}%");
+        });
     }
+
+    $docentes = $query->select('id', 'nombre', 'apellido_paterno', 'apellido_materno')->get();
+
+    return Inertia::render('Docentes/Index', [
+        'docentes' => $docentes,
+    ]);
+}
+
 
     /**
      * Show the form for creating a new resource.
@@ -53,7 +64,7 @@ class DocenteController extends Controller
      */
     public function show(string $id)
     {
-        // Implementar si es necesario
+        return Inertia::render('Docentes/RegisterForm');
     }
 
     /**

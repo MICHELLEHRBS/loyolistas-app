@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
-import { Link } from '@inertiajs/inertia-react';
+import { Link, usePage } from '@inertiajs/inertia-react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 
-export default function Index({ auth, docentes }) {
+export default function Index({ auth, personalAdministrativo }) {
     const [activeSection, setActiveSection] = useState('lista');
     const [search, setSearch] = useState('');
-    const [filteredDocentes, setFilteredDocentes] = useState(docentes);
+    const [filteredPersonal, setFilteredPersonal] = useState(personalAdministrativo);
 
     const handleSearch = (e) => {
         const query = e.target.value.toLowerCase();
         setSearch(query);
 
-        // Filtrar los docentes basados en el apellido paterno
-        const filtered = docentes.filter(docente =>
-            docente.apellido_paterno.toLowerCase().includes(query)
+        // Filtrar el personal administrativo basado en el apellido paterno y materno
+        const filtered = personalAdministrativo.filter(personaladministativo=>
+            personaladministativo.apellido_paterno.toLowerCase().includes(query)
         );
-        setFilteredDocentes(filtered);
+        setFilteredPersonal(filtered);
     };
 
     return (
@@ -29,14 +29,9 @@ export default function Index({ auth, docentes }) {
                                 className={`text-lg font-semibold px-4 py-2 rounded-md ${activeSection === 'lista' ? 'bg-blue-500 text-white' : 'bg-white text-gray-600'} border border-gray-300 dark:border-gray-700`}
                                 onClick={() => setActiveSection('lista')}
                             >
-                                Lista de docentes
+                                Lista de Personal
                             </button>
-                            <button
-                                className={`text-lg font-semibold px-4 py-2 rounded-md ${activeSection === 'estadisticas' ? 'bg-blue-500 text-white' : 'bg-white text-gray-600'} border border-gray-300 dark:border-gray-700`}
-                                onClick={() => setActiveSection('estadisticas')}
-                            >
-                                Estadísticas
-                            </button>
+
                             <button
                                 className={`text-lg font-semibold px-4 py-2 rounded-md ${activeSection === 'horarios' ? 'bg-blue-500 text-white' : 'bg-white text-gray-600'} border border-gray-300 dark:border-gray-700`}
                                 onClick={() => setActiveSection('horarios')}
@@ -59,7 +54,7 @@ export default function Index({ auth, docentes }) {
                                         type="text"
                                         value={search}
                                         onChange={handleSearch}
-                                        placeholder="Buscar docente..."
+                                        placeholder="Buscar por apellido paterno..."
                                         className="border border-gray-300 dark:border-gray-700 p-2 rounded-md w-full text-black"
                                     />
                                 </div>
@@ -78,21 +73,21 @@ export default function Index({ auth, docentes }) {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {filteredDocentes.length > 0 ? (
-                                                filteredDocentes.map((docente) => (
-                                                    <tr key={docente.id}>
+                                            {filteredPersonal.length > 0 ? (
+                                                filteredPersonal.map((personaladministativo) => (
+                                                    <tr key={personaladministativo.id}>
                                                         <td className="border px-4 py-2">
-                                                            {docente.nombre}
+                                                            {personaladministativo.nombre}
                                                         </td>
                                                         <td className="border px-4 py-2">
-                                                            {docente.apellido_paterno}
+                                                            {personaladministativo.apellido_paterno}
                                                         </td>
                                                         <td className="border px-4 py-2">
-                                                            {docente.apellido_materno}
+                                                            {personaladministativo.apellido_materno }
                                                         </td>
                                                         <td className="border px-4 py-2">
                                                             <Link
-                                                                href={route('docentes.edit', docente.id)}
+                                                                href={route('personal_administrativo.edit', personal.id)}
                                                                 className="text-blue-500 hover:text-blue-700"
                                                             >
                                                                 ACCEDER
@@ -109,12 +104,7 @@ export default function Index({ auth, docentes }) {
                                     </table>
                                 </div>
                             )}
-                            {activeSection === 'estadisticas' && (
-                                <div>
-                                    <h2 className="text-xl font-bold mb-4">Estadísticas</h2>
-                                    {/* Agrega contenido de estadísticas aquí */}
-                                </div>
-                            )}
+
                             {activeSection === 'horarios' && (
                                 <div>
                                     <h2 className="text-xl font-bold mb-4">Horarios</h2>

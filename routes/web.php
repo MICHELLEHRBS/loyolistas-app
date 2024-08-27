@@ -50,12 +50,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 
     // Rutas de Personal Administrativo
+    //Route::get('/personal_administrativo', [PersonalAdministrativoController::class, 'index'])->name('personal_administrativo.index');
     Route::get('/personal-administrativo', [PersonalAdministrativoController::class, 'index'])->name('personal_administrativo.index');
-    Route::get('/personal-administrativo/create', [PersonalAdministrativoController::class, 'create'])->name('personal_administrativo.create');
-    Route::post('/personal-administrativo', [PersonalAdministrativoController::class, 'store'])->name('personal_administrativo.store');
+    Route::get('/personal_administrativo/create', [PersonalAdministrativoController::class, 'create'])->name('personal_administrativo.create');
+    Route::post('/personal_administrativo', [PersonalAdministrativoController::class, 'store'])->name('personal_administrativo.store');
     Route::get('/personal-administrativo/{id}/edit', [PersonalAdministrativoController::class, 'edit'])->name('personal_administrativo.edit');
-    Route::put('/personal-administrativo/{id}', [PersonalAdministrativoController::class, 'update'])->name('personal_administrativo.update');
-    Route::delete('/personal-administrativo/{id}', [PersonalAdministrativoController::class, 'destroy'])->name('personal_administrativo.destroy');
+    Route::put('/personal_administrativo/{id}', [PersonalAdministrativoController::class, 'update'])->name('personal_administrativo.update');
+    Route::delete('/personal_administrativo/{id}', [PersonalAdministrativoController::class, 'destroy'])->name('personal_administrativo.destroy');
 });
 
 

@@ -122,7 +122,7 @@ export default function Authenticated({ user, header, children }) {
 
                 <div className={showingNavigationDropdown ? "block" : "hidden"}>
                     <div className="pt-2 pb-3 space-y-1">
-                        <ResponsiveNavLink
+                    <ResponsiveNavLink
                             href={route("dashboard")}
                             active={route().current("dashboard")}
                         >
@@ -148,7 +148,7 @@ export default function Authenticated({ user, header, children }) {
 
                     <div className="pt-4 pb-1 border-t border-gray-200 dark:border-gray-700">
                         <div className="px-4">
-                            <span className="text-sm font-medium text-gray-900 dark:text-gray-100">
+                        <span className="text-sm font-medium text-gray-900 dark:text-gray-100">
                                 {user.name}
                             </span>
                             <span className="text-sm font-medium text-gray-600 dark:text-gray-400">

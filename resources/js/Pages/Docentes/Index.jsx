@@ -122,7 +122,7 @@ export default function Index({ auth, docentes }) {
                                                         <Link
                                                             href={route(
                                                                 "docentes.edit",
-                                                                docentes.id
+                                                                docente.id
                                                             )}
                                                             className="text-blue-500 hover:text-blue-700"
                                                         >

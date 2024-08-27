@@ -65,7 +65,7 @@ export default function Form({ auth, docente }) {
                                                     e.target.value
                                                 )
                                             }
-                                            className="mt-1 block w-full"
+                                            className=" mt-1 block w-full text-gray-200 dark:text-gray-800"
                                         />
                                         {errors.nombre && (
                                             <span className="text-red-500">
@@ -91,7 +91,7 @@ export default function Form({ auth, docente }) {
                                                     e.target.value
                                                 )
                                             }
-                                            className="mt-1 block w-full"
+                                            className=" mt-1 block w-full text-gray-200 dark:text-gray-800"
                                         />
                                         {errors.apellido_paterno && (
                                             <span className="text-red-500">
@@ -117,7 +117,7 @@ export default function Form({ auth, docente }) {
                                                     e.target.value
                                                 )
                                             }
-                                            className="mt-1 block w-full"
+                                            className=" mt-1 block w-full text-gray-200 dark:text-gray-800"
                                         />
                                         {errors.apellido_materno && (
                                             <span className="text-red-500">
@@ -165,6 +165,13 @@ export default function Form({ auth, docente }) {
                                         <select
                                             name="estado civil"
                                             id="estado civil"
+                                            value={data.estado_civil}
+                                            onChange={(e) =>
+                                                setData(
+                                                    "estado civil",
+                                                    e.target.value
+                                                )
+                                            }
                                             className=" text-gray-200 dark:text-gray-800"
                                         >
                                             <option value="">
@@ -183,7 +190,160 @@ export default function Form({ auth, docente }) {
                                                 Divorciado/a
                                             </option>
                                         </select>
+                                        {errors.estado_civil&& (
+                                            <span className="text-red-500">
+                                                {errors.estado_civil}
+                                            </span>
+                                        )}
                                     </div>
+
+                                    <div>
+                                        <label
+                                            htmlFor="ci"
+                                            className="block text-sm font-medium "
+                                        >
+                                            Carnet de Identidad
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="ci"
+                                            name="ci"
+                                            value={data.ci}
+                                            onChange={(e) =>
+                                                setData(
+                                                    "ci",
+                                                    e.target.value
+                                                )
+                                            }
+                                            className=" mt-1 block w-full text-gray-200 dark:text-gray-800"
+                                        />
+                                        {errors.ci && (
+                                            <span className="text-red-500">
+                                                {errors.ci}
+                                            </span>
+                                        )}
+                                    </div>
+
+                                    <div>
+                                        <label
+                                            htmlFor="expedido_ci"
+                                            className="block text-sm font-medium"
+                                        >
+                                            Expedido en:
+                                        </label>
+                                        <select
+                                            name="expedido ci"
+                                            id="expedido ci"
+                                            value={data.expedido_ci}
+                                            onChange={(e) =>
+                                                setData(
+                                                    "expedido ci",
+                                                    e.target.value
+                                                )
+                                            }
+                                            className=" text-gray-200 dark:text-gray-800"
+                                        >
+                                            <option value=""> Seleccionar </option>
+                                            <option value="or"> OR </option>
+                                            <option value="cb"> CB </option>
+                                            <option value="sc"> SC </option>
+                                            <option value="lp"> LP </option>
+                                            <option value="ch"> CH </option>
+                                            <option value="pa"> PA </option>
+                                            <option value="bn"> BN </option>
+                                            <option value="tj"> TJ </option>
+                                            <option value="pt"> PT </option>
+                                        </select>
+                                        {errors.expedido_ci&& (
+                                            <span className="text-red-500">
+                                                {errors.expedido_ci}
+                                            </span>
+                                        )}
+                                    </div>
+
+                                    <div>
+                                        <label
+                                            htmlFor="ci extranjero"
+                                            className="block text-sm font-medium "
+                                        >
+                                            CI Extranjero
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="ci extranjero"
+                                            name="ci extranjero"
+                                            value={data.ci_extranjero}
+                                            onChange={(e) =>
+                                                setData(
+                                                    "ci extranjero",
+                                                    e.target.value
+                                                )
+                                            }
+                                            className=" mt-1 block w-full text-gray-200 dark:text-gray-800"
+                                        />
+                                        {errors.ci_extranjero && (
+                                            <span className="text-red-500">
+                                                {errors.ci_extranjero}
+                                            </span>
+                                        )}
+                                    </div>
+
+                                    <div>
+                                        <label
+                                            htmlFor="pasaporte"
+                                            className="block text-sm font-medium "
+                                        >
+                                            Pasaporte
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="pasaporte"
+                                            name="pasaporte"
+                                            value={data.pasaporte}
+                                            onChange={(e) =>
+                                                setData(
+                                                    "pasaporte",
+                                                    e.target.value
+                                                )
+                                            }
+                                            className=" mt-1 block w-full text-gray-200 dark:text-gray-800"
+                                        />
+                                        {errors.pasaporte && (
+                                            <span className="text-red-500">
+                                                {errors.pasaporte}
+                                            </span>
+                                        )}
+                                    </div>
+
+                                        //*FECHA DE NACIMIENTO
+                                    <div>
+
+                                        <label
+                                            htmlFor="telefono"
+                                            className="block text-sm font-medium "
+                                        >
+                                            Teléfono
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="telefono"
+                                            name="telefono"
+                                            value={data.telefono}
+                                            onChange={(e) =>
+                                                setData(
+                                                    "telefono",
+                                                    e.target.value
+                                                )
+                                            }
+                                            className=" mt-1 block w-full text-gray-200 dark:text-gray-800"
+                                        />
+                                        {errors.telefono && (
+                                            <span className="text-red-500">
+                                                {errors.telefono}
+                                            </span>
+                                        )}
+                                    </div>
+
                                     <div>
                                         <label
                                             htmlFor="celular"
@@ -202,7 +362,7 @@ export default function Form({ auth, docente }) {
                                                     e.target.value
                                                 )
                                             }
-                                            className="mt-1 block w-full"
+                                            className=" mt-1 block w-full text-gray-200 dark:text-gray-800"
                                         />
                                         {errors.celular && (
                                             <span className="text-red-500">
@@ -210,6 +370,99 @@ export default function Form({ auth, docente }) {
                                             </span>
                                         )}
                                     </div>
+
+                                    <div>
+                                        <label htmlFor="correo"
+                                            className="block text-sm font-medium "
+                                        >
+                                            Correo Personal:
+                                        </label>
+                                        <input
+                                            type="email"
+                                            id="correo"
+                                            name="correo"
+                                            value={data.correo}
+                                            onChange={(e) =>
+                                                setData(
+                                                    "correo",
+                                                    e.target.value
+                                                )
+                                            }
+                                            className=" mt-1 block w-full text-gray-200 dark:text-gray-800"
+                                        />
+                                        {errors.correo&& (
+                                            <span className="text-red-500">
+                                                {errors.correo}
+                                            </span>
+                                        )}
+                                    </div>
+
+                                    //*DIRECCION
+                                    //*TIPO DE VIVIENDA
+                                    //*ENLACE DE UBICACION
+
+                                    <div>
+                                        <label
+                                            htmlFor="cua"
+                                            className="block text-sm font-medium "
+                                        >
+                                            CUA
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="cua"
+                                            name="cua"
+                                            value={data.cua}
+                                            onChange={(e) =>
+                                                setData(
+                                                    "cua",
+                                                    e.target.value
+                                                )
+                                            }
+                                            className=" mt-1 block w-full text-gray-200 dark:text-gray-800"
+                                        />
+                                        {errors.cua && (
+                                            <span className="text-red-500">
+                                                {errors.cua}
+                                            </span>
+                                        )}
+                                    </div>
+
+                                    <div>
+                                        <label
+                                            htmlFor="seguro"
+                                            className="block text-sm font-medium"
+                                        >
+                                            ¿A qué seguro esta afiliado?
+                                        </label>
+                                        <select
+                                            name="seguro"
+                                            id="seguro"
+                                            value={data.seguro}
+                                            onChange={(e) =>
+                                                setData(
+                                                    "seguro",
+                                                    e.target.value
+                                                )
+                                            }
+                                            className=" text-gray-200 dark:text-gray-800"
+                                        >
+                                            <option value=""> Seleccione </option>
+                                            <option value="or"> Caja Nacional de Salud (CNS)</option>
+                                            <option value="cb"> Caja de Salud de Caminos y RA</option>
+                                            <option value="sc"> Caja Cordes </option>
+                                            <option value="lp"> Caja Petrolera de Salud  </option>
+                                            <option value="ch"> Seguro Integral de Salud SINEC </option>
+                                            <option value="pa"> Corporación del Seguro Social Militar (COSMIL) </option>
+                                            <option value="bn"> Otros... </option>
+                                        </select>
+                                        {errors.seguro && (
+                                            <span className="text-red-500">
+                                                {errors.seguro}
+                                            </span>
+                                        )}
+                                    </div>
+
                                     <div className="mt-4">
                                         <button
                                             type="submit"

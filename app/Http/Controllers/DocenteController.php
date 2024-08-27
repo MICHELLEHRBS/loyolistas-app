@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Docente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class DocenteController extends Controller
@@ -14,22 +15,19 @@ class DocenteController extends Controller
     public function index(Request $request)
     {
 
-        $query = Docente::query();
+        $docentes = Docente::all();
+        return Inertia::render('Docentes/Index', ['docentes' => $docentes]);
 
-    if ($request->has('search')) {
-        $searchTerm = $request->input('search');
-        $query->where(function ($q) use ($searchTerm) {
-            $q->where('apellido_paterno', 'like', "%{$searchTerm}%")
-              ->orWhere('apellido_materno', 'like', "%{$searchTerm}%");
-        });
+        //$query = Docente::query();
+
+        if ($request->has('search')) {
+            $searchTerm = $request->input('search');
+            $query->where(function ($q) use ($searchTerm) {
+                $q->where('apellido_paterno', 'like', "%{$searchTerm}%")
+                    ->orWhere('apellido_materno', 'like', "%{$searchTerm}%");
+            });
+        }
     }
-
-    $docentes = $query->select('id', 'nombre', 'apellido_paterno', 'apellido_materno')->get();
-
-    return Inertia::render('Docentes/Index', [
-        'docentes' => $docentes,
-    ]);
-}
 
 
     /**
@@ -45,18 +43,17 @@ class DocenteController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'nombre' => 'required|string|max:255',
-            'apellido_paterno' => 'required|string|max:255',
-            'apellido_materno' => 'nullable|string|max:255',
-            'genero' => 'required|string|max:10',
-            'estado_civil' => 'nullable|string|max:50',
-            'celular' => 'nullable|string|max:20',
-        ]);
 
-        Docente::create($validated);
+        $docente = new Docente();
+        $docente->nombre = $request->nombre;
+        $docente->apellido_paterno = $request->apellido_paterno;
+        $docente->apellido_materno = $request->apellido_materno;
+        $docente->genero = $request->genero;
+        $docente->estado_civil = $request->estado_civil;
+        $docente->celular = $request->celular;
+        $docente->save();
 
-        return redirect()->route('docentes.index');
+        return Redirect::route('docentes.index');
     }
 
     /**
@@ -64,7 +61,8 @@ class DocenteController extends Controller
      */
     public function show(string $id)
     {
-        return Inertia::render('Docentes/RegisterForm');
+        $docente = Docente::find($id);
+        return Inertia::render('Docentes/Show', ['docente' => $docente]);
     }
 
     /**
@@ -82,19 +80,16 @@ class DocenteController extends Controller
     public function update(Request $request, string $id)
     {
         $docente = Docente::findOrFail($id);
+        $docente = new Docente();
+        $docente->nombre = $request->nombre;
+        $docente->apellido_paterno = $request->apellido_paterno;
+        $docente->apellido_materno = $request->apellido_materno;
+        $docente->genero = $request->genero;
+        $docente->estado_civil = $request->estado_civil;
+        $docente->celular = $request->celular;
+        $docente->save();
 
-        $validated = $request->validate([
-            'nombre' => 'required|string|max:255',
-            'apellido_paterno' => 'required|string|max:255',
-            'apellido_materno' => 'nullable|string|max:255',
-            'genero' => 'required|string|max:10',
-            'estado_civil' => 'nullable|string|max:50',
-            'celular' => 'nullable|string|max:20',
-        ]);
-
-        $docente->update($validated);
-
-        return redirect()->route('docentes.index');
+        return Redirect::route('docentes.index');
     }
 
     /**
@@ -105,6 +100,6 @@ class DocenteController extends Controller
         $docente = Docente::findOrFail($id);
         $docente->delete();
 
-        return redirect()->route('docentes.index');
+        return Redirect::route('docentes.index');
     }
 }

@@ -13,25 +13,26 @@ class PersonalAdministrativoController extends Controller
      */
     public function index(Request $request)
     {
-        /* $query = PersonalAdministrativo::query();
+        $query = PersonalAdministrativo::query();
 
         // Filtrar por búsqueda, si se proporciona
         if ($request->has('search')) {
             $searchTerm = $request->input('search');
             $query->where(function ($q) use ($searchTerm) {
                 $q->where('apellido_paterno', 'like', "%{$searchTerm}%")
-                  ->orWhere('apellido_materno', 'like', "%{$searchTerm}%");
+                    ->orWhere('apellido_materno', 'like', "%{$searchTerm}%");
             });
         }
 
 
         $personalesAdministrativos = $query->select('id', 'nombre', 'apellido_paterno', 'apellido_materno')->get();
 
+        //return Inertia::render('PersonalAdministrativo/Index', [
+        //'personalesAdministrativos' => $personalesAdministrativos,
+        // ]); 
         return Inertia::render('PersonalAdministrativo/Index', [
-            'personalesAdministrativos' => $personalesAdministrativos,
-        ]); */
-        $personales = PersonalAdministrativo::all();
-        return Inertia::render('PersonalAdministrativo/Index', ['personales' => $personales]);
+            'personalAdministrativos' => $personalesAdministrativos
+        ]);
     }
 
     /**
@@ -66,8 +67,11 @@ class PersonalAdministrativoController extends Controller
      */
     public function show(string $id)
     {
-        //$personal = PersonalAdministrativo::findOrFail($id);
-        //return Inertia::render('PersonalAdministrativo/Show', ['personal' => $personal]);
+        $personal = PersonalAdministrativo::findOrFail($id);
+        return Inertia::render(
+            'PersonalAdministrativo/Show',
+            ['personal' => $personal]
+        );
     }
 
     /**

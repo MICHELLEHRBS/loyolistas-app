@@ -190,13 +190,12 @@ export default function Form({ auth, docente }) {
                                                 Divorciado/a
                                             </option>
                                         </select>
-                                        {errors.estado_civil&& (
+                                        {errors.estado_civil && (
                                             <span className="text-red-500">
                                                 {errors.estado_civil}
                                             </span>
                                         )}
                                     </div>
-
                                     <div>
                                         <label
                                             htmlFor="ci"
@@ -210,10 +209,7 @@ export default function Form({ auth, docente }) {
                                             name="ci"
                                             value={data.ci}
                                             onChange={(e) =>
-                                                setData(
-                                                    "ci",
-                                                    e.target.value
-                                                )
+                                                setData("ci", e.target.value)
                                             }
                                             className=" mt-1 block w-full text-gray-200 dark:text-gray-800"
                                         />
@@ -223,7 +219,6 @@ export default function Form({ auth, docente }) {
                                             </span>
                                         )}
                                     </div>
-
                                     <div>
                                         <label
                                             htmlFor="expedido_ci"
@@ -243,7 +238,10 @@ export default function Form({ auth, docente }) {
                                             }
                                             className=" text-gray-200 dark:text-gray-800"
                                         >
-                                            <option value=""> Seleccionar </option>
+                                            <option value="">
+                                                {" "}
+                                                Seleccionar{" "}
+                                            </option>
                                             <option value="or"> OR </option>
                                             <option value="cb"> CB </option>
                                             <option value="sc"> SC </option>
@@ -254,13 +252,12 @@ export default function Form({ auth, docente }) {
                                             <option value="tj"> TJ </option>
                                             <option value="pt"> PT </option>
                                         </select>
-                                        {errors.expedido_ci&& (
+                                        {errors.expedido_ci && (
                                             <span className="text-red-500">
                                                 {errors.expedido_ci}
                                             </span>
                                         )}
                                     </div>
-
                                     <div>
                                         <label
                                             htmlFor="ci extranjero"
@@ -287,7 +284,6 @@ export default function Form({ auth, docente }) {
                                             </span>
                                         )}
                                     </div>
-
                                     <div>
                                         <label
                                             htmlFor="pasaporte"
@@ -314,10 +310,31 @@ export default function Form({ auth, docente }) {
                                             </span>
                                         )}
                                     </div>
-
-                                        //*FECHA DE NACIMIENTO
                                     <div>
-
+                                        <label
+                                            htmlFor="fecha_nac"
+                                            className="block text-sm font-medium "
+                                        >
+                                            Fecha de Nacimiento
+                                        </label>
+                                        <input
+                                            type="date"
+                                            value={data.fecha_nac}
+                                            onChange={(e) =>
+                                                setData(
+                                                    "Fecha_Nac",
+                                                    e.target.value
+                                                )
+                                            }
+                                            className=" text-gray-200 dark:text-gray-800"
+                                        />
+                                        {errors.fecha_nac && (
+                                            <span className="text-red-500">
+                                                {errors.fecha_nac}
+                                            </span>
+                                        )}
+                                    </div>
+                                    <div>
                                         <label
                                             htmlFor="telefono"
                                             className="block text-sm font-medium "
@@ -343,7 +360,6 @@ export default function Form({ auth, docente }) {
                                             </span>
                                         )}
                                     </div>
-
                                     <div>
                                         <label
                                             htmlFor="celular"
@@ -370,9 +386,9 @@ export default function Form({ auth, docente }) {
                                             </span>
                                         )}
                                     </div>
-
                                     <div>
-                                        <label htmlFor="correo"
+                                        <label
+                                            htmlFor="correo"
                                             className="block text-sm font-medium "
                                         >
                                             Correo Personal:
@@ -390,17 +406,14 @@ export default function Form({ auth, docente }) {
                                             }
                                             className=" mt-1 block w-full text-gray-200 dark:text-gray-800"
                                         />
-                                        {errors.correo&& (
+                                        {errors.correo && (
                                             <span className="text-red-500">
                                                 {errors.correo}
                                             </span>
                                         )}
                                     </div>
-
-                                    //*DIRECCION
-                                    //*TIPO DE VIVIENDA
-                                    //*ENLACE DE UBICACION
-
+                                    //*DIRECCION //*TIPO DE VIVIENDA //*ENLACE
+                                    DE UBICACION
                                     <div>
                                         <label
                                             htmlFor="cua"
@@ -414,10 +427,7 @@ export default function Form({ auth, docente }) {
                                             name="cua"
                                             value={data.cua}
                                             onChange={(e) =>
-                                                setData(
-                                                    "cua",
-                                                    e.target.value
-                                                )
+                                                setData("cua", e.target.value)
                                             }
                                             className=" mt-1 block w-full text-gray-200 dark:text-gray-800"
                                         />
@@ -427,7 +437,6 @@ export default function Form({ auth, docente }) {
                                             </span>
                                         )}
                                     </div>
-
                                     <div>
                                         <label
                                             htmlFor="seguro"
@@ -447,14 +456,39 @@ export default function Form({ auth, docente }) {
                                             }
                                             className=" text-gray-200 dark:text-gray-800"
                                         >
-                                            <option value=""> Seleccione </option>
-                                            <option value="or"> Caja Nacional de Salud (CNS)</option>
-                                            <option value="cb"> Caja de Salud de Caminos y RA</option>
-                                            <option value="sc"> Caja Cordes </option>
-                                            <option value="lp"> Caja Petrolera de Salud  </option>
-                                            <option value="ch"> Seguro Integral de Salud SINEC </option>
-                                            <option value="pa"> Corporación del Seguro Social Militar (COSMIL) </option>
-                                            <option value="bn"> Otros... </option>
+                                            <option value="">
+                                                {" "}
+                                                Seleccione{" "}
+                                            </option>
+                                            <option value="or">
+                                                {" "}
+                                                Caja Nacional de Salud (CNS)
+                                            </option>
+                                            <option value="cb">
+                                                {" "}
+                                                Caja de Salud de Caminos y RA
+                                            </option>
+                                            <option value="sc">
+                                                {" "}
+                                                Caja Cordes{" "}
+                                            </option>
+                                            <option value="lp">
+                                                {" "}
+                                                Caja Petrolera de Salud{" "}
+                                            </option>
+                                            <option value="ch">
+                                                {" "}
+                                                Seguro Integral de Salud SINEC{" "}
+                                            </option>
+                                            <option value="pa">
+                                                {" "}
+                                                Corporación del Seguro Social
+                                                Militar (COSMIL){" "}
+                                            </option>
+                                            <option value="bn">
+                                                {" "}
+                                                Otros...{" "}
+                                            </option>
                                         </select>
                                         {errors.seguro && (
                                             <span className="text-red-500">
@@ -462,7 +496,6 @@ export default function Form({ auth, docente }) {
                                             </span>
                                         )}
                                     </div>
-
                                     <div className="mt-4">
                                         <button
                                             type="submit"

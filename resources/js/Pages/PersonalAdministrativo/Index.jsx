@@ -1,10 +1,6 @@
 import React, { useState } from "react";
-//import { Link, usePage } from "@inertiajs/inertia-react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-
-// import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Link, usePage } from "@inertiajs/react";
-// import { useState } from "react";
 
 export default function Index({ auth, personalAdministrativos }) {
     const [activeSection, setActiveSection] = useState("lista");
@@ -12,17 +8,14 @@ export default function Index({ auth, personalAdministrativos }) {
     const [filteredPersonales, setFilteredPersonales] = useState(
         personalAdministrativos
     );
-    const { personales } = usePage().props;
+    //const { personales } = usePage().props;
     const handleSearch = (e) => {
         const query = e.target.value.toLowerCase();
         setSearch(query);
 
         // Filtrar el personal administrativo basado en el apellido paterno y materno
-        const filtered = personalAdministrativos.filter(
-            (personaladministativo) =>
-                personaladministativo.apellido_paterno
-                    .toLowerCase()
-                    .includes(query)
+        const filtered = personalAdministrativos.filter((personal) =>
+            personal.apellido_paterno.toLowerCase().includes(query)
         );
         setFilteredPersonales(filtered);
     };
@@ -37,7 +30,7 @@ export default function Index({ auth, personalAdministrativos }) {
                             <button
                                 className={`text-lg font-semibold px-4 py-2 rounded-md ${
                                     activeSection === "lista"
-                                        ? "bg-blue-500 text-white"
+                                        ? "bg-green-500 text-white"
                                         : "bg-white text-gray-600"
                                 } border border-gray-300 dark:border-gray-700`}
                                 onClick={() => setActiveSection("lista")}
@@ -48,7 +41,7 @@ export default function Index({ auth, personalAdministrativos }) {
                             <button
                                 className={`text-lg font-semibold px-4 py-2 rounded-md ${
                                     activeSection === "horarios"
-                                        ? "bg-blue-500 text-white"
+                                        ? "bg-green-500 text-white"
                                         : "bg-white text-gray-600"
                                 } border border-gray-300 dark:border-gray-700`}
                                 onClick={() => setActiveSection("horarios")}
@@ -98,33 +91,27 @@ export default function Index({ auth, personalAdministrativos }) {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {personales.map(
-                                                (personaladministativo) => (
-                                                    <tr
-                                                        key={
-                                                            personaladministativo.id
-                                                        }
-                                                    >
+                                            {filteredPersonales.map(
+                                                (personal) => (
+                                                    <tr key={personal.id}>
+                                                        <td className="border px-4 py-2">
+                                                            {personal.nombre}
+                                                        </td>
                                                         <td className="border px-4 py-2">
                                                             {
-                                                                personaladministativo.nombre
+                                                                personal.apellido_paterno
                                                             }
                                                         </td>
                                                         <td className="border px-4 py-2">
                                                             {
-                                                                personaladministativo.apellido_paterno
-                                                            }
-                                                        </td>
-                                                        <td className="border px-4 py-2">
-                                                            {
-                                                                personaladministativo.apellido_materno
+                                                                personal.apellido_materno
                                                             }
                                                         </td>
                                                         <td className="border px-4 py-2">
                                                             <Link
                                                                 href={route(
                                                                     "personal_administrativo.edit",
-                                                                    personaladministativo.id
+                                                                    personal.id
                                                                 )}
                                                                 className="text-blue-500 hover:text-blue-700"
                                                             >

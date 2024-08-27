@@ -1,21 +1,30 @@
-import React, { useState } from 'react';
-import { Link, usePage } from '@inertiajs/inertia-react';
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import React, { useState } from "react";
+//import { Link, usePage } from "@inertiajs/inertia-react";
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 
-export default function Index({ auth, personalAdministrativo }) {
-    const [activeSection, setActiveSection] = useState('lista');
-    const [search, setSearch] = useState('');
-    const [filteredPersonal, setFilteredPersonal] = useState(personalAdministrativo);
+// import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+import { Link, usePage } from "@inertiajs/react";
+// import { useState } from "react";
 
+export default function Index({ auth, personalAdministrativos }) {
+    const [activeSection, setActiveSection] = useState("lista");
+    const [search, setSearch] = useState("");
+    const [filteredPersonales, setFilteredPersonales] = useState(
+        personalAdministrativos
+    );
+    const { personales } = usePage().props;
     const handleSearch = (e) => {
         const query = e.target.value.toLowerCase();
         setSearch(query);
 
         // Filtrar el personal administrativo basado en el apellido paterno y materno
-        const filtered = personalAdministrativo.filter(personaladministativo=>
-            personaladministativo.apellido_paterno.toLowerCase().includes(query)
+        const filtered = personalAdministrativos.filter(
+            (personaladministativo) =>
+                personaladministativo.apellido_paterno
+                    .toLowerCase()
+                    .includes(query)
         );
-        setFilteredPersonal(filtered);
+        setFilteredPersonales(filtered);
     };
 
     return (
@@ -26,15 +35,23 @@ export default function Index({ auth, personalAdministrativo }) {
                     <div className="max-w-7xl mx-auto">
                         <div className="flex space-x-4 mb-4">
                             <button
-                                className={`text-lg font-semibold px-4 py-2 rounded-md ${activeSection === 'lista' ? 'bg-blue-500 text-white' : 'bg-white text-gray-600'} border border-gray-300 dark:border-gray-700`}
-                                onClick={() => setActiveSection('lista')}
+                                className={`text-lg font-semibold px-4 py-2 rounded-md ${
+                                    activeSection === "lista"
+                                        ? "bg-blue-500 text-white"
+                                        : "bg-white text-gray-600"
+                                } border border-gray-300 dark:border-gray-700`}
+                                onClick={() => setActiveSection("lista")}
                             >
                                 Lista de Personal
                             </button>
 
                             <button
-                                className={`text-lg font-semibold px-4 py-2 rounded-md ${activeSection === 'horarios' ? 'bg-blue-500 text-white' : 'bg-white text-gray-600'} border border-gray-300 dark:border-gray-700`}
-                                onClick={() => setActiveSection('horarios')}
+                                className={`text-lg font-semibold px-4 py-2 rounded-md ${
+                                    activeSection === "horarios"
+                                        ? "bg-blue-500 text-white"
+                                        : "bg-white text-gray-600"
+                                } border border-gray-300 dark:border-gray-700`}
+                                onClick={() => setActiveSection("horarios")}
                             >
                                 Horarios
                             </button>
@@ -48,7 +65,7 @@ export default function Index({ auth, personalAdministrativo }) {
                     <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="p-6 text-gray-900 dark:text-gray-100">
                             {/* Barra de búsqueda */}
-                            {activeSection === 'lista' && (
+                            {activeSection === "lista" && (
                                 <div className="mb-4">
                                     <input
                                         type="text"
@@ -61,53 +78,72 @@ export default function Index({ auth, personalAdministrativo }) {
                             )}
 
                             {/* Contenido según la sección activa */}
-                            {activeSection === 'lista' && (
+                            {activeSection === "lista" && (
                                 <div>
                                     <table className="w-full table-auto">
                                         <thead>
                                             <tr>
-                                                <th className="px-4 py-2">Nombre</th>
-                                                <th className="px-4 py-2">Apellido Paterno</th>
-                                                <th className="px-4 py-2">Apellido Materno</th>
-                                                <th className="px-4 py-2">Acción</th>
+                                                <th className="px-4 py-2">
+                                                    Nombre
+                                                </th>
+                                                <th className="px-4 py-2">
+                                                    Apellido Paterno
+                                                </th>
+                                                <th className="px-4 py-2">
+                                                    Apellido Materno
+                                                </th>
+                                                <th className="px-4 py-2">
+                                                    Acción
+                                                </th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {filteredPersonal.length > 0 ? (
-                                                filteredPersonal.map((personaladministativo) => (
-                                                    <tr key={personaladministativo.id}>
+                                            {personales.map(
+                                                (personaladministativo) => (
+                                                    <tr
+                                                        key={
+                                                            personaladministativo.id
+                                                        }
+                                                    >
                                                         <td className="border px-4 py-2">
-                                                            {personaladministativo.nombre}
+                                                            {
+                                                                personaladministativo.nombre
+                                                            }
                                                         </td>
                                                         <td className="border px-4 py-2">
-                                                            {personaladministativo.apellido_paterno}
+                                                            {
+                                                                personaladministativo.apellido_paterno
+                                                            }
                                                         </td>
                                                         <td className="border px-4 py-2">
-                                                            {personaladministativo.apellido_materno }
+                                                            {
+                                                                personaladministativo.apellido_materno
+                                                            }
                                                         </td>
                                                         <td className="border px-4 py-2">
                                                             <Link
-                                                                href={route('personal_administrativo.edit', personal.id)}
+                                                                href={route(
+                                                                    "personal_administrativo.edit",
+                                                                    personaladministativo.id
+                                                                )}
                                                                 className="text-blue-500 hover:text-blue-700"
                                                             >
                                                                 ACCEDER
                                                             </Link>
                                                         </td>
                                                     </tr>
-                                                ))
-                                            ) : (
-                                                <tr>
-                                                    <td colSpan="4" className="text-center py-4">No se encontraron resultados</td>
-                                                </tr>
+                                                )
                                             )}
                                         </tbody>
                                     </table>
                                 </div>
                             )}
 
-                            {activeSection === 'horarios' && (
+                            {activeSection === "horarios" && (
                                 <div>
-                                    <h2 className="text-xl font-bold mb-4">Horarios</h2>
+                                    <h2 className="text-xl font-bold mb-4">
+                                        Horarios
+                                    </h2>
                                     {/* Agrega contenido de horarios aquí */}
                                 </div>
                             )}
@@ -118,3 +154,40 @@ export default function Index({ auth, personalAdministrativo }) {
         </AuthenticatedLayout>
     );
 }
+
+// export default function Index({ auth }) {
+//     const { personales } = usePage().props;
+//     const [activeSection, setActiveSection] = useState("lista");
+//     console.log(personales);
+//     return (
+//         <AuthenticatedLayout header="PERSONAL ADMINISTRATIVO" user={auth.user}>
+//             <div className="bg-white dark:bg-gray-800 p-4">
+//                 <div className="max-w-7xl mx-auto">
+//                     <div className="flex space-x-4 mb-4">
+//                         <button
+//                             className={`text-lg font-semibold px-4 py-2 rounded-md ${
+//                                 activeSection === "lista"
+//                                     ? "bg-blue-500 text-white"
+//                                     : "bg-white text-gray-600"
+//                             } border border-gray-300 dark:border-gray-700`}
+//                             onClick={() => setActiveSection("lista")}
+//                         >
+//                             Lista de Personal
+//                         </button>
+
+//                         <button
+//                             className={`text-lg font-semibold px-4 py-2 rounded-md ${
+//                                 activeSection === "horarios"
+//                                     ? "bg-blue-500 text-white"
+//                                     : "bg-white text-gray-600"
+//                             } border border-gray-300 dark:border-gray-700`}
+//                             onClick={() => setActiveSection("horarios")}
+//                         >
+//                             Horarios
+//                         </button>
+//                     </div>
+//                 </div>
+//             </div>
+//         </AuthenticatedLayout>
+//     );
+// }

@@ -6,13 +6,14 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\PersonalAdministrativoController;
+use Illuminate\Console\Application;
 
 // Ruta principal de registro y acceso
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
+        //'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
 });
@@ -25,7 +26,7 @@ Route::get('/dashboard', function () {
 
 // Ruta raíz redirige a la lista de docentes
 //Route::get('/', function () {
-   // return redirect()->route('docentes.index');
+// return redirect()->route('docentes.index');
 //});
 
 // Agrupación de rutas protegidas por autenticación
@@ -38,7 +39,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 
-    // Rutas de docentes
+// Rutas de docentes
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/docentes', [DocenteController::class, 'index'])->name('docentes.index');
     Route::get('/docentes/create', [DocenteController::class, 'create'])->name('docentes.create');
@@ -48,15 +49,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/docentes/{id}', [DocenteController::class, 'destroy'])->name('docentes.destroy');
 
 
- // Rutas de Personal Administrativo
- Route::get('/personal-administrativo', [PersonalAdministrativoController::class, 'index'])->name('personal_administrativo.index');
- Route::get('/personal-administrativo/create', [PersonalAdministrativoController::class, 'create'])->name('personal_administrativo.create');
- Route::post('/personal-administrativo', [PersonalAdministrativoController::class, 'store'])->name('personal_administrativo.store');
- Route::get('/personal-administrativo/{id}/edit', [PersonalAdministrativoController::class, 'edit'])->name('personal_administrativo.edit');
- Route::put('/personal-administrativo/{id}', [PersonalAdministrativoController::class, 'update'])->name('personal_administrativo.update');
- Route::delete('/personal-administrativo/{id}', [PersonalAdministrativoController::class, 'destroy'])->name('personal_administrativo.destroy');
+    // Rutas de Personal Administrativo
+    Route::get('/personal-administrativo', [PersonalAdministrativoController::class, 'index'])->name('personal_administrativo.index');
+    Route::get('/personal-administrativo/create', [PersonalAdministrativoController::class, 'create'])->name('personal_administrativo.create');
+    Route::post('/personal-administrativo', [PersonalAdministrativoController::class, 'store'])->name('personal_administrativo.store');
+    Route::get('/personal-administrativo/{id}/edit', [PersonalAdministrativoController::class, 'edit'])->name('personal_administrativo.edit');
+    Route::put('/personal-administrativo/{id}', [PersonalAdministrativoController::class, 'update'])->name('personal_administrativo.update');
+    Route::delete('/personal-administrativo/{id}', [PersonalAdministrativoController::class, 'destroy'])->name('personal_administrativo.destroy');
 });
 
 
 // Cargar las rutas de autenticación
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

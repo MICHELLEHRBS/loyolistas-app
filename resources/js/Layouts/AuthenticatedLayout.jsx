@@ -1,15 +1,16 @@
-import { useState } from 'react';
-import ApplicationLogo from '@/Components/ApplicationLogo';
-import Dropdown from '@/Components/Dropdown';
-import NavLink from '@/Components/NavLink';
-import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
-import { Link } from '@inertiajs/react';
+import { useState } from "react";
+import ApplicationLogo from "@/Components/ApplicationLogo";
+import Dropdown from "@/Components/Dropdown";
+import NavLink from "@/Components/NavLink";
+import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
+import { Link } from "@inertiajs/react";
 
 export default function Authenticated({ user, header, children }) {
-    const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
+    const [showingNavigationDropdown, setShowingNavigationDropdown] =
+        useState(false);
 
     return (
-        <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
+        <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
             <nav className="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
@@ -20,15 +21,28 @@ export default function Authenticated({ user, header, children }) {
                                 </Link>
                             </div>
                             <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <NavLink href={route('dashboard')} active={route().current('dashboard')}>
+                                <NavLink
+                                    href={route("dashboard")}
+                                    active={route().current("dashboard")}
+                                >
                                     Dashboard
                                 </NavLink>
 
-                                <NavLink href={route('docentes.index')} active={route().current('docentes.index')}>
+                                <NavLink
+                                    href={route("docentes.index")}
+                                    active={route().current("docentes.index")}
+                                >
                                     DOCENTES
                                 </NavLink>
 
-                                <NavLink href={route('personal_administrativo.index')} active={route().current('personal_administrativo.index')}>
+                                <NavLink
+                                    href={route(
+                                        "personal_administrativo.index"
+                                    )}
+                                    active={route().current(
+                                        "personal_administrativo.index"
+                                    )}
+                                >
                                     PERSONAL ADMINISTRATIVO
                                 </NavLink>
                             </div>
@@ -60,8 +74,16 @@ export default function Authenticated({ user, header, children }) {
                                         </span>
                                     </Dropdown.Trigger>
                                     <Dropdown.Content>
-                                        <Dropdown.Link href={route('profile.edit')}>Profile</Dropdown.Link>
-                                        <Dropdown.Link href={route('logout')} method="post" as="button">
+                                        <Dropdown.Link
+                                            href={route("profile.edit")}
+                                        >
+                                            Profile
+                                        </Dropdown.Link>
+                                        <Dropdown.Link
+                                            href={route("logout")}
+                                            method="post"
+                                            as="button"
+                                        >
                                             Log Out
                                         </Dropdown.Link>
                                     </Dropdown.Content>
@@ -71,7 +93,11 @@ export default function Authenticated({ user, header, children }) {
 
                         <div className="-me-2 flex items-center sm:hidden">
                             <button
-                                onClick={() => setShowingNavigationDropdown(!showingNavigationDropdown)}
+                                onClick={() =>
+                                    setShowingNavigationDropdown(
+                                        !showingNavigationDropdown
+                                    )
+                                }
                                 type="button"
                                 className="inline-flex items-center justify-center p-2 border border-transparent text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
                                 aria-expanded={showingNavigationDropdown}
@@ -94,31 +120,52 @@ export default function Authenticated({ user, header, children }) {
                     </div>
                 </div>
 
-                <div className={showingNavigationDropdown ? 'block' : 'hidden'}>
+                <div className={showingNavigationDropdown ? "block" : "hidden"}>
                     <div className="pt-2 pb-3 space-y-1">
-                        <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>
+                        <ResponsiveNavLink
+                            href={route("dashboard")}
+                            active={route().current("dashboard")}
+                        >
                             Dashboard
                         </ResponsiveNavLink>
 
-                        <ResponsiveNavLink href={route('docentes.index')} active={route().current('docentes.index')}>
+                        <ResponsiveNavLink
+                            href={route("docentes.index")}
+                            active={route().current("docentes.index")}
+                        >
                             DOCENTES
                         </ResponsiveNavLink>
 
-                        <ResponsiveNavLink href={route('personal_administrativo.index')} active={route().current('personal_administrativo.index')}>
+                        <ResponsiveNavLink
+                            href={route("personal_administrativo.index")}
+                            active={route().current(
+                                "personal_administrativo.index"
+                            )}
+                        >
                             PERSONAL ADMINISTRATIVO
                         </ResponsiveNavLink>
                     </div>
 
                     <div className="pt-4 pb-1 border-t border-gray-200 dark:border-gray-700">
                         <div className="px-4">
-                            <span className="text-sm font-medium text-gray-900 dark:text-gray-100">{user.name}</span>
-                            <span className="text-sm font-medium text-gray-600 dark:text-gray-400">{user.email}</span>
+                            <span className="text-sm font-medium text-gray-900 dark:text-gray-100">
+                                {user.name}
+                            </span>
+                            <span className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                                {user.email}
+                            </span>
                         </div>
 
                         <div className="mt-3 space-y-1">
-                            <ResponsiveNavLink href={route('profile.edit')}>Profile</ResponsiveNavLink>
+                            <ResponsiveNavLink href={route("profile.edit")}>
+                                Profile
+                            </ResponsiveNavLink>
 
-                            <ResponsiveNavLink href={route('logout')} method="post" as="button">
+                            <ResponsiveNavLink
+                                href={route("logout")}
+                                method="post"
+                                as="button"
+                            >
                                 Log Out
                             </ResponsiveNavLink>
                         </div>

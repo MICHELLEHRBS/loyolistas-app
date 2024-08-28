@@ -13,7 +13,12 @@ class PersonalAdministrativoController extends Controller
      */
     public function index(Request $request)
     {
-        $query = PersonalAdministrativo::query();
+
+       $personalesAdministrativos = PersonalAdministrativo::all();
+       return Inertia::render('PersonalAdministrativo/Index', [
+        'personalAdministrativos' => $personalesAdministrativos]);
+
+        //$query = PersonalAdministrativo::query();
 
         // Filtrar por búsqueda, si se proporciona
         if ($request->has('search')) {
@@ -25,14 +30,14 @@ class PersonalAdministrativoController extends Controller
         }
 
 
-        $personalesAdministrativos = $query->select('id', 'nombre', 'apellido_paterno', 'apellido_materno')->get();
+       // $personalesAdministrativos = $query->select('id', 'nombre', 'apellido_paterno', 'apellido_materno')->get();
 
         //return Inertia::render('PersonalAdministrativo/Index', [
         //'personalesAdministrativos' => $personalesAdministrativos,
-        // ]); 
-        return Inertia::render('PersonalAdministrativo/Index', [
-            'personalAdministrativos' => $personalesAdministrativos
-        ]);
+        // ]);
+        //return Inertia::render('PersonalAdministrativo/Index', [
+          //  'personalAdministrativos' => $personalesAdministrativos
+        //]);
     }
 
     /**
@@ -48,18 +53,18 @@ class PersonalAdministrativoController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'nombre' => 'required|string|max:255',
-            'apellido_paterno' => 'required|string|max:255',
-            'apellido_materno' => 'nullable|string|max:255',
-            'genero' => 'required|string|max:10',
-            'estado_civil' => 'nullable|string|max:50',
-            'celular' => 'nullable|string|max:20',
-        ]);
 
-        PersonalAdministrativo::create($validated);
+        $personalesAdministrativos = new PersonalAdministrativo();
+        $personalesAdministrativos->nombre = $request->nombre;
+        $personalesAdministrativos->apellido_paterno = $request->apellido_paterno;
+        $personalesAdministrativos->apellido_materno = $request->apellido_materno;
+        $personalesAdministrativos->genero = $request->genero;
+        $personalesAdministrativos->estado_civil = $request->estado_civil;
+        $personalesAdministrativos->celular = $request->celular;
+        $docente->save();
 
-        return redirect()->route('personal_administrativo.index');
+        return Redirect::route('personal_administrativo.index');
+
     }
 
     /**
@@ -90,18 +95,17 @@ class PersonalAdministrativoController extends Controller
     {
         $personaladministativo = PersonalAdministrativo::findOrFail($id);
 
-        $validated = $request->validate([
-            'nombre' => 'required|string|max:255',
-            'apellido_paterno' => 'required|string|max:255',
-            'apellido_materno' => 'nullable|string|max:255',
-            'genero' => 'required|string|max:10',
-            'estado_civil' => 'nullable|string|max:50',
-            'celular' => 'nullable|string|max:20',
-        ]);
+        $personalesAdministrativos = new PersonalAdministrativo();
+        $personalesAdministrativos->nombre = $request->nombre;
+        $personalesAdministrativos->apellido_paterno = $request->apellido_paterno;
+        $personalesAdministrativos->apellido_materno = $request->apellido_materno;
+        $personalesAdministrativos->genero = $request->genero;
+        $personalesAdministrativos->estado_civil = $request->estado_civil;
+        $personalesAdministrativos->celular = $request->celular;
+        $docente->save();
 
-        $personaladministativo->update($validated);
+        return Redirect::route('personal_administrativo.index');
 
-        return redirect()->route('personal_administrativo.index');
     }
 
     /**

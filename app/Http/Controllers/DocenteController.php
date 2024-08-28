@@ -17,18 +17,7 @@ class DocenteController extends Controller
 
         $docentes = Docente::all();
         return Inertia::render('Docentes/Index', ['docentes' => $docentes]);
-
-        //$query = Docente::query();
-
-        if ($request->has('search')) {
-            $searchTerm = $request->input('search');
-            $query->where(function ($q) use ($searchTerm) {
-                $q->where('apellido_paterno', 'like', "%{$searchTerm}%")
-                    ->orWhere('apellido_materno', 'like', "%{$searchTerm}%");
-            });
-        }
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -44,6 +33,17 @@ class DocenteController extends Controller
     public function store(Request $request)
     {
 
+        $docente = Docente::create($request->only([
+            'nombre',
+            'apellido_paterno',
+            'apellido_materno',
+            'genero',
+            'estado_civil',
+            'celular'
+        ]));
+
+        return response()->json($docente);
+        /*
         $docente = new Docente();
         $docente->nombre = $request->nombre;
         $docente->apellido_paterno = $request->apellido_paterno;
@@ -53,7 +53,7 @@ class DocenteController extends Controller
         $docente->celular = $request->celular;
         $docente->save();
 
-        return Redirect::route('docentes.index');
+        return Redirect::route('docentes.index');*/
     }
 
     /**
@@ -80,6 +80,17 @@ class DocenteController extends Controller
     public function update(Request $request, string $id)
     {
         $docente = Docente::findOrFail($id);
+        $docente->update($request->only([
+            'nombre',
+            'apellido_paterno',
+            'apellido_materno',
+            'genero',
+            'estado_civil',
+            'celular'
+        ]));
+
+        return response()->json($docente);
+        /* $docente = Docente::findOrFail($id);
         $docente = new Docente();
         $docente->nombre = $request->nombre;
         $docente->apellido_paterno = $request->apellido_paterno;
@@ -89,7 +100,7 @@ class DocenteController extends Controller
         $docente->celular = $request->celular;
         $docente->save();
 
-        return Redirect::route('docentes.index');
+        return Redirect::route('docentes.index');*/
     }
 
     /**

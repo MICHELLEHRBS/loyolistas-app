@@ -44,16 +44,21 @@ class DocenteController extends Controller
     public function store(Request $request)
     {
 
-        $docente = new Docente();
-        $docente->nombre = $request->nombre;
-        $docente->apellido_paterno = $request->apellido_paterno;
-        $docente->apellido_materno = $request->apellido_materno;
-        $docente->genero = $request->genero;
-        $docente->estado_civil = $request->estado_civil;
-        $docente->celular = $request->celular;
-        $docente->save();
+        $docente = Docente::create($request->only([
+            'nombre',
+            'apellido_paterno',
+            'apellido_materno',
+            'genero',
+            'estado_civil',
+            'ci', 'expedido_ci',
+            'ci_extranjero', 'pasaporte',
+            'nacimiento',
+            'celular', 'telefono',
+            'correo', 'cua',
+            'seguro'
+        ]));
 
-        return Redirect::route('docentes.index');
+        return response()->json($docente);
     }
 
     /**
@@ -80,16 +85,22 @@ class DocenteController extends Controller
     public function update(Request $request, string $id)
     {
         $docente = Docente::findOrFail($id);
-        $docente = new Docente();
-        $docente->nombre = $request->nombre;
-        $docente->apellido_paterno = $request->apellido_paterno;
-        $docente->apellido_materno = $request->apellido_materno;
-        $docente->genero = $request->genero;
-        $docente->estado_civil = $request->estado_civil;
-        $docente->celular = $request->celular;
-        $docente->save();
+        $docente->update($request->only([
+'nombre',
+            'apellido_paterno',
+            'apellido_materno',
+            'genero',
+            'estado_civil',
+            'ci', 'expedido_ci',
+            'ci_extranjero', 'pasaporte',
+            'nacimiento',
+            'celular', 'telefono',
+            'correo', 'cua',
+            'seguro'
+        ]));
 
-        return Redirect::route('docentes.index');
+        return response()->json($docente);
+
     }
 
     /**

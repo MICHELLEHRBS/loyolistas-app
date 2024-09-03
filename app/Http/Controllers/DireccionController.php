@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Direccion;
 use Illuminate\Http\Request;
 
 class DireccionController extends Controller
@@ -27,7 +28,16 @@ class DireccionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $direccion = Direccion::create($request->only([
+            'domicilio',
+            'zona',
+            'Municipio',
+            'numero_casa_referencia',
+            'tipo_vivienda',
+            'docente_id'
+        ]));
+
+        return response()->json($direccion);
     }
 
     /**
@@ -51,7 +61,16 @@ class DireccionController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $direccion = Direccion::findOrFail($id);
+        $direccion->update($request->only([
+            'domicilio',
+            'zona',
+            'Municipio',
+            'numero_casa_referencia',
+            'tipo_vivienda'
+        ]));
+
+        return response()->json($direccion);
     }
 
     /**

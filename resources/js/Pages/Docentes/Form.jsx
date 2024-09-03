@@ -1,7 +1,6 @@
 //import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 //import { usePage, useForm } from "@inertiajs/react";
 //import { useEffect } from "react";
-
 import React, { useState, useEffect } from "react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { usePage, useForm } from "@inertiajs/react";
@@ -24,11 +23,25 @@ export default function Form({ auth, docente }) {
         },
     });
 
+    console.log(data);
+
+    useEffect(() => {
+        if (docente) {
+            setData({
+                nombre: docente.nombre,
+                apellido_paterno: docente.apellido_paterno,
+                apellido_materno: docente.apellido_materno,
+                genero: docente.genero,
+                estado_civil: docente.estado_civil,
+                celular: docente.celular,
+            });
+        }
+    }, [docente]);
     const [docenteId, setDocenteId] = useState(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
-
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         setIsSubmitting(true);
 
         try {
@@ -58,7 +71,6 @@ export default function Form({ auth, docente }) {
             setIsSubmitting(false);
         }
     };
-
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -77,163 +89,180 @@ export default function Form({ auth, docente }) {
                                         DATOS PERSONALES
                                     </legend>
                                     {/* Campos del Docente */}
-                                    <div className="grid grid-cols-1 gap-6">
-                                        <div className="grid grid-cols-3 gap-4 ">
-                                            <div>
-                                                <label
-                                                    htmlFor="nombre"
-                                                    className="block text-sm font-medium"
-                                                >
-                                                    Nombre
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    id="nombre"
-                                                    name="nombre"
-                                                    value={data.nombre}
-                                                    onChange={(e) =>
-                                                        setData(
-                                                            "nombre",
-                                                            e.target.value
-                                                        )
-                                                    }
-                                                    className="mt-1 block w-full text-gray-200 dark:text-gray-800"
-                                                />
-                                                {errors.nombre && (
-                                                    <span className="text-red-500">
-                                                        {errors.nombre}
-                                                    </span>
-                                                )}
-                                            </div>
-                                            <div>
-                                                <label
-                                                    htmlFor="apellido_paterno"
-                                                    className="block text-sm font-medium"
-                                                >
-                                                    Apellido Paterno
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    id="apellido_paterno"
-                                                    name="apellido_paterno"
-                                                    value={
-                                                        data.apellido_paterno
-                                                    }
-                                                    onChange={(e) =>
-                                                        setData(
-                                                            "apellido_paterno",
-                                                            e.target.value
-                                                        )
-                                                    }
-                                                    className=" mt-1 block w-full text-gray-200 dark:text-gray-800"
-                                                />
-                                                {errors.apellido_paterno && (
-                                                    <span className="text-red-500">
-                                                        {
-                                                            errors.apellido_paterno
-                                                        }
-                                                    </span>
-                                                )}
-                                            </div>
-                                            <div>
-                                                <label
-                                                    htmlFor="apellido_materno"
-                                                    className="block text-sm font-medium"
-                                                >
-                                                    Apellido Materno
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    id="apellido_materno"
-                                                    name="apellido_materno"
-                                                    value={
-                                                        data.apellido_materno
-                                                    }
-                                                    onChange={(e) =>
-                                                        setData(
-                                                            "apellido_materno",
-                                                            e.target.value
-                                                        )
-                                                    }
-                                                    className=" mt-1 block w-full text-gray-200 dark:text-gray-800"
-                                                />
-                                                {errors.apellido_materno && (
-                                                    <span className="text-red-500">
-                                                        {
-                                                            errors.apellido_materno
-                                                        }
-                                                    </span>
-                                                )}
-                                            </div>
-                                        </div>
+
+                                    <div className="grid grid-cols-3 gap-4 ">
                                         <div>
                                             <label
-                                                htmlFor="genero"
+                                                htmlFor="nombre"
                                                 className="block text-sm font-medium"
                                             >
-                                                Género
+                                                Nombre
                                             </label>
-                                            <select
-                                                name="genero"
-                                                id="genero"
-                                                value={data.genero}
+                                            <input
+                                                type="text"
+                                                id="nombre"
+                                                name="nombre"
+                                                value={data.nombre}
                                                 onChange={(e) =>
                                                     setData(
-                                                        "genero",
+                                                        "nombre",
                                                         e.target.value
                                                     )
                                                 }
-                                                className=" text-gray-200 dark:text-gray-800"
-                                            >
-                                                <option value="">
-                                                    Selecciona una opcion
-                                                </option>
-                                                <option value="masculino">
-                                                    Masculino
-                                                </option>
-                                                <option value="femenino">
-                                                    Femenino
-                                                </option>
-                                            </select>
-                                        </div>
-                                        <div>
-                                            <label
-                                                htmlFor="estado_civil"
-                                                className="block text-sm font-medium"
-                                            >
-                                                Estado Civil
-                                            </label>
-                                            <select
-                                                name="estado_civil"
-                                                id="estado_civil"
-                                                value={data.estado_civil}
-                                                onChange={(e) =>
-                                                    setData(
-                                                        "estado_civil",
-                                                        e.target.value
-                                                    )
-                                                }
-                                                className=" text-gray-200 dark:text-gray-800"
-                                            >
-                                                <option value="">
-                                                    Seleccione
-                                                </option>
-                                                <option value="soltero/a">
-                                                    Soltero/a
-                                                </option>
-                                                <option value="casado/a">
-                                                    Casado/a
-                                                </option>
-                                                <option value="viudo/a">
-                                                    Viudo/a
-                                                </option>
-                                                <option value="divorciado/a">
-                                                    Divorciado/a
-                                                </option>
-                                            </select>
-                                            {errors.estado_civil && (
+                                                className="mt-1 block w-full text-gray-200 dark:text-gray-800"
+                                            />
+                                            {errors.nombre && (
                                                 <span className="text-red-500">
-                                                    {errors.estado_civil}
+                                                    {errors.nombre}
+                                                </span>
+                                            )}
+                                        </div>
+                                        <div>
+                                            <label
+                                                htmlFor="apellido_paterno"
+                                                className="block text-sm font-medium"
+                                            >
+                                                Apellido Paterno
+                                            </label>
+                                            <input
+                                                type="text"
+                                                id="apellido_paterno"
+                                                name="apellido_paterno"
+                                                value={data.apellido_paterno}
+                                                onChange={(e) =>
+                                                    setData(
+                                                        "apellido_paterno",
+                                                        e.target.value
+                                                    )
+                                                }
+                                                className=" mt-1 block w-full text-gray-200 dark:text-gray-800"
+                                            />
+                                            {errors.apellido_paterno && (
+                                                <span className="text-red-500">
+                                                    {errors.apellido_paterno}
+                                                </span>
+                                            )}
+                                        </div>
+                                        <div>
+                                            <label
+                                                htmlFor="apellido_materno"
+                                                className="block text-sm font-medium"
+                                            >
+                                                Apellido Materno
+                                            </label>
+                                            <input
+                                                type="text"
+                                                id="apellido_materno"
+                                                name="apellido_materno"
+                                                value={data.apellido_materno}
+                                                onChange={(e) =>
+                                                    setData(
+                                                        "apellido_materno",
+                                                        e.target.value
+                                                    )
+                                                }
+                                                className=" mt-1 block w-full text-gray-200 dark:text-gray-800"
+                                            />
+                                            {errors.apellido_materno && (
+                                                <span className="text-red-500">
+                                                    {errors.apellido_materno}
+                                                </span>
+                                            )}
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label
+                                            htmlFor="genero"
+                                            className="block text-sm font-medium"
+                                        >
+                                            Género
+                                        </label>
+                                        <select
+                                            name="genero"
+                                            id="genero"
+                                            value={data.genero}
+                                            onChange={(e) =>
+                                                setData(
+                                                    "genero",
+                                                    e.target.value
+                                                )
+                                            }
+                                            className=" text-gray-200 dark:text-gray-800"
+                                        >
+                                            <option value="">
+                                                Selecciona una opcion
+                                            </option>
+                                            <option value="Masculino">
+                                                Masculino
+                                            </option>
+                                            <option value="Femenino">
+                                                Femenino
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label
+                                            htmlFor="estado_civil"
+                                            className="block text-sm font-medium"
+                                        >
+                                            Estado Civil
+                                        </label>
+                                        <select
+                                            name="estado_civil"
+                                            id="estado_civil"
+                                            value={data.estado_civil}
+                                            onChange={(e) =>
+                                                setData(
+                                                    "estado_civil",
+                                                    e.target.value
+                                                )
+                                            }
+                                            className=" text-gray-200 dark:text-gray-800"
+                                        >
+                                            <option value="">Seleccione</option>
+                                            <option value="Soltera/o">
+                                                Soltera/o
+                                            </option>
+                                            <option value="Casada/o">
+                                                Casada/o
+                                            </option>
+                                            <option value="Viuda/o">
+                                                Viuda/o
+                                            </option>
+                                            <option value="Divorciada/o">
+                                                Divorciada/o
+                                            </option>
+                                        </select>
+                                        {errors.estado_civil && (
+                                            <span className="text-red-500">
+                                                {errors.estado_civil}
+                                            </span>
+                                        )}
+                                    </div>
+                                    <div className="grid grid-cols-2 gap-4 ">
+                                        <div>
+                                            <label
+                                                htmlFor="apellido_casada"
+                                                className="block text-sm font-medium "
+                                            >
+                                                Apellido de Casada
+                                            </label>
+                                            <input
+                                                type="text"
+                                                id="apellido_casada"
+                                                name="apellido_casada"
+                                                value={data.apellido_casada}
+                                                onChange={(e) =>
+                                                    setData(
+                                                        "apellido_casada",
+                                                        e.target.value
+                                                    )
+                                                }
+                                                className=" mt-1 block w-full text-gray-200 dark:text-gray-800"
+                                            />
+                                            {errors.apellido_casada && (
+                                                <span className="text-red-500">
+                                                    {errors.apellido_casada}
                                                 </span>
                                             )}
                                         </div>
@@ -246,7 +275,7 @@ export default function Form({ auth, docente }) {
                                                     Carnet de Identidad
                                                 </label>
                                                 <input
-                                                    type="text"
+                                                    type="number"
                                                     id="ci"
                                                     name="ci"
                                                     value={data.ci}
@@ -272,12 +301,12 @@ export default function Form({ auth, docente }) {
                                                     Expedido en:
                                                 </label>
                                                 <select
-                                                    name="expedido ci"
-                                                    id="expedido ci"
+                                                    name="expedido_ci"
+                                                    id="expedido_ci"
                                                     value={data.expedido_ci}
                                                     onChange={(e) =>
                                                         setData(
-                                                            "expedido ci",
+                                                            "expedido_ci",
                                                             e.target.value
                                                         )
                                                     }
@@ -287,39 +316,39 @@ export default function Form({ auth, docente }) {
                                                         {" "}
                                                         Seleccionar{" "}
                                                     </option>
-                                                    <option value="or">
+                                                    <option value="OR">
                                                         {" "}
                                                         OR{" "}
                                                     </option>
-                                                    <option value="cb">
+                                                    <option value="OR">
                                                         {" "}
                                                         CB{" "}
                                                     </option>
-                                                    <option value="sc">
+                                                    <option value="SC">
                                                         {" "}
                                                         SC{" "}
                                                     </option>
-                                                    <option value="lp">
+                                                    <option value="LP">
                                                         {" "}
                                                         LP{" "}
                                                     </option>
-                                                    <option value="ch">
+                                                    <option value="CH">
                                                         {" "}
                                                         CH{" "}
                                                     </option>
-                                                    <option value="pa">
+                                                    <option value="PA">
                                                         {" "}
                                                         PA{" "}
                                                     </option>
-                                                    <option value="bn">
+                                                    <option value="BN">
                                                         {" "}
                                                         BN{" "}
                                                     </option>
-                                                    <option value="tj">
+                                                    <option value="TJ">
                                                         {" "}
                                                         TJ{" "}
                                                     </option>
-                                                    <option value="pt">
+                                                    <option value="PT">
                                                         {" "}
                                                         PT{" "}
                                                     </option>
@@ -334,19 +363,19 @@ export default function Form({ auth, docente }) {
                                         <div className="grid grid-cols-2 gap-4">
                                             <div>
                                                 <label
-                                                    htmlFor="ci extranjero"
+                                                    htmlFor="ci_extranjero"
                                                     className="block text-sm font-medium "
                                                 >
                                                     CI Extranjero
                                                 </label>
                                                 <input
                                                     type="text"
-                                                    id="ci extranjero"
-                                                    name="ci extranjero"
+                                                    id="ci_extranjero"
+                                                    name="ci_extranjero"
                                                     value={data.ci_extranjero}
                                                     onChange={(e) =>
                                                         setData(
-                                                            "ci extranjero",
+                                                            "ci_extranjero",
                                                             e.target.value
                                                         )
                                                     }
@@ -388,55 +417,29 @@ export default function Form({ auth, docente }) {
                                         </div>
                                         <div>
                                             <label
-                                                htmlFor="fecha_nac"
+                                                htmlFor="nacimiento"
                                                 className="block text-sm font-medium "
                                             >
                                                 Fecha de Nacimiento
                                             </label>
                                             <input
                                                 type="date"
-                                                value={data.fecha_nac}
+                                                value={data.nacimiento}
                                                 onChange={(e) =>
                                                     setData(
-                                                        "Fecha_Nac",
+                                                        "nacimiento",
                                                         e.target.value
                                                     )
                                                 }
                                                 className="text-gray-200 dark:text-gray-800"
                                             />
-                                            {errors.fecha_nac && (
+                                            {errors.nacimiento && (
                                                 <span className="text-red-500">
-                                                    {errors.fecha_nac}
+                                                    {errors.nacimiento}
                                                 </span>
                                             )}
                                         </div>
                                         <div className="grid grid-cols-2 gap-4">
-                                            <div>
-                                                <label
-                                                    htmlFor="telefono"
-                                                    className="block text-sm font-medium "
-                                                >
-                                                    Teléfono
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    id="telefono"
-                                                    name="telefono"
-                                                    value={data.telefono}
-                                                    onChange={(e) =>
-                                                        setData(
-                                                            "telefono",
-                                                            e.target.value
-                                                        )
-                                                    }
-                                                    className=" mt-1 block w-full text-gray-200 dark:text-gray-800"
-                                                />
-                                                {errors.telefono && (
-                                                    <span className="text-red-500">
-                                                        {errors.telefono}
-                                                    </span>
-                                                )}
-                                            </div>
                                             <div>
                                                 <label
                                                     htmlFor="celular"
@@ -445,7 +448,7 @@ export default function Form({ auth, docente }) {
                                                     Celular
                                                 </label>
                                                 <input
-                                                    type="text"
+                                                    type="number"
                                                     id="celular"
                                                     name="celular"
                                                     value={data.celular}
@@ -460,6 +463,32 @@ export default function Form({ auth, docente }) {
                                                 {errors.celular && (
                                                     <span className="text-red-500">
                                                         {errors.celular}
+                                                    </span>
+                                                )}
+                                            </div>
+                                            <div>
+                                                <label
+                                                    htmlFor="telefono"
+                                                    className="block text-sm font-medium "
+                                                >
+                                                    Teléfono
+                                                </label>
+                                                <input
+                                                    type="number"
+                                                    id="telefono"
+                                                    name="telefono"
+                                                    value={data.telefono}
+                                                    onChange={(e) =>
+                                                        setData(
+                                                            "telefono",
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                    className=" mt-1 block w-full text-gray-200 dark:text-gray-800"
+                                                />
+                                                {errors.telefono && (
+                                                    <span className="text-red-500">
+                                                        {errors.telefono}
                                                     </span>
                                                 )}
                                             </div>
@@ -624,23 +653,23 @@ export default function Form({ auth, docente }) {
                                                     {" "}
                                                     Seleccione{" "}
                                                 </option>
-                                                <option value="casa">
+                                                <option value="Casa">
                                                     {" "}
                                                     Casa{" "}
                                                 </option>
-                                                <option value="departamento">
+                                                <option value="Departamento">
                                                     {" "}
                                                     Departamento{" "}
                                                 </option>
-                                                <option value="condominio">
+                                                <option value="Condominio">
                                                     {" "}
                                                     Condominio{" "}
                                                 </option>
-                                                <option value="urbanizacio cerrada">
+                                                <option value="Urbanizacio Cerrada">
                                                     {" "}
                                                     Urbanización Cerrrada{" "}
                                                 </option>
-                                                <option value="urbanizacion abierta">
+                                                <option value="Urbanizacion Abierta">
                                                     {" "}
                                                     Urbanización Abierta{" "}
                                                 </option>
@@ -659,7 +688,7 @@ export default function Form({ auth, docente }) {
                                                 CUA
                                             </label>
                                             <input
-                                                type="text"
+                                                type="number"
                                                 id="cua"
                                                 name="cua"
                                                 value={data.cua}
@@ -700,36 +729,54 @@ export default function Form({ auth, docente }) {
                                                     {" "}
                                                     Seleccione{" "}
                                                 </option>
-                                                <option value="or">
+                                                <option value="Caja Nacional de Salud (CNS)">
                                                     {" "}
                                                     Caja Nacional de Salud (CNS)
                                                 </option>
-                                                <option value="cb">
+                                                <option
+                                                    value="Caja de Salud de Caminos y
+                                                    RA"
+                                                >
                                                     {" "}
                                                     Caja de Salud de Caminos y
                                                     RA
                                                 </option>
-                                                <option value="sc">
+                                                <option value="Caja Cordes">
                                                     {" "}
                                                     Caja Cordes{" "}
                                                 </option>
-                                                <option value="lp">
+                                                <option value="Caja Petrolera de Salud">
                                                     {" "}
                                                     Caja Petrolera de Salud{" "}
                                                 </option>
-                                                <option value="ch">
+                                                <option
+                                                    value="Seguro Integral de Salud
+                                                    SINEC"
+                                                >
                                                     {" "}
                                                     Seguro Integral de Salud
                                                     SINEC{" "}
                                                 </option>
-                                                <option value="pa">
+                                                <option
+                                                    value="Corporación del Seguro
+                                                    Social Militar (Cossmil)"
+                                                >
                                                     {" "}
                                                     Corporación del Seguro
-                                                    Social Militar (COSMIL){" "}
+                                                    Social Militar (Cossmil){" "}
                                                 </option>
-                                                <option value="bn">
+                                                <option value="Otros">
                                                     {" "}
-                                                    Otros...{" "}
+                                                    Otros{" "}
+                                                </option>
+
+                                                <option value="Ninguno">
+                                                    {" "}
+                                                    Ninguno{" "}
+                                                </option>
+                                                <option value="Ninguno">
+                                                    {" "}
+                                                    Ninguno{" "}
                                                 </option>
                                             </select>
                                             {errors.seguro && (

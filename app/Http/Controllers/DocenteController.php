@@ -33,27 +33,26 @@ class DocenteController extends Controller
     public function store(Request $request)
     {
 
-        $docente = Docente::create($request->only([
-            'nombre',
-            'apellido_paterno',
-            'apellido_materno',
-            'genero',
-            'estado_civil',
-            'celular'
-        ]));
-
-        return response()->json($docente);
-        /*
         $docente = new Docente();
         $docente->nombre = $request->nombre;
         $docente->apellido_paterno = $request->apellido_paterno;
         $docente->apellido_materno = $request->apellido_materno;
         $docente->genero = $request->genero;
         $docente->estado_civil = $request->estado_civil;
+        $docente->ci = $request->ci;
+        $docente->expedido_ci = $request->expedido_ci;
+        $docente->ci_extranjero = $request->ci_extranjero;
+        $docente->pasaporte = $request->pasaporte;
+        $docente->nacimiento = $request->nacimiento;
         $docente->celular = $request->celular;
+        $docente->telefono = $request->telefono;
+        $docente->correo = $request->correo;
+        $docente->cua = $request->cua;
+        $docente->seguro = $request->seguro;
         $docente->save();
 
-        return Redirect::route('docentes.index');*/
+
+        return Redirect::route('docente.index');
     }
 
     /**
@@ -79,28 +78,26 @@ class DocenteController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $docente = Docente::findOrFail($id);
-        $docente->update($request->only([
-            'nombre',
-            'apellido_paterno',
-            'apellido_materno',
-            'genero',
-            'estado_civil',
-            'celular'
-        ]));
-
-        return response()->json($docente);
-        /* $docente = Docente::findOrFail($id);
-        $docente = new Docente();
+        $docente = Docente::find($id);
         $docente->nombre = $request->nombre;
         $docente->apellido_paterno = $request->apellido_paterno;
         $docente->apellido_materno = $request->apellido_materno;
         $docente->genero = $request->genero;
         $docente->estado_civil = $request->estado_civil;
+        $docente->ci = $request->ci;
+        $docente->expedido_ci = $request->expedido_ci;
+        $docente->ci_extranjero = $request->ci_extranjero;
+        $docente->pasaporte = $request->pasaporte;
+        $docente->nacimiento = $request->nacimiento;
         $docente->celular = $request->celular;
+        $docente->telefono = $request->telefono;
+        $docente->correo = $request->correo;
+        $docente->cua = $request->cua;
+        $docente->seguro = $request->seguro;
         $docente->save();
 
-        return Redirect::route('docentes.index');*/
+
+        return Redirect::route('docente.index');
     }
 
     /**
@@ -108,7 +105,7 @@ class DocenteController extends Controller
      */
     public function destroy(string $id)
     {
-        $docente = Docente::findOrFail($id);
+        $docente = Docente::find($id);
         $docente->delete();
 
         return Redirect::route('docentes.index');

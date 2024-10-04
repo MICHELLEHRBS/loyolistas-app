@@ -22,53 +22,60 @@ export default function Form({ auth, docente }) {
             tipo_vivienda: "",
         },
     });
-
-    useEffect(() => {
-        if (docente) {
-            setData({
-                nombre: docente.nombre,
-                apellido_paterno: docente.apellido_paterno,
-                apellido_materno: docente.apellido_materno,
-                genero: docente.genero,
-                estado_civil: docente.estado_civil,
-                celular: docente.celular,
-            });
-        }
-    }, [docente]);
+console.log(data);
+    // useEffect(() => {
+    //     if (docente) {
+    //         setData({
+    //             nombre: docente.nombre,
+    //             apellido_paterno: docente.apellido_paterno,
+    //             apellido_materno: docente.apellido_materno,
+    //             genero: docente.genero,
+    //             estado_civil: docente.estado_civil,
+    //             celular: docente.celular,
+    //         });
+    //     }
+    // }, [docente]);
 const [docenteId, setDocenteId] = useState(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const handleSubmit = async (e) => {
+    // 
+    function enviarDocente(e)
+    {
+        console.log("HOLA");
         e.preventDefault();
+        post(route("docentes.store"), {
+            onSuccess: (res)=>{console.log("ok", res)}, onError:(error)=>{console.log("error",error)}
+        })}
+    //     e.preventDefault();
 
-        setIsSubmitting(true);
+    //     setIsSubmitting(true);
 
-        try {
-            if (docente) {
-                // Actualizar docente existente
-                await put(route("docentes.update", docente.id), data);
-                // Luego actualizar o agregar la dirección
-                await put(route("direcciones.update", docente.direccion.id), {
-                    ...data.direccion,
-                    docente_id: docente.id,
-                });
-            } else {
-                // Guardar nuevo docente
-                const response = await post(route("docentes.store"), data);
-                const newDocenteId = response.data.id;
-                setDocenteId(newDocenteId);
+    //     try {
+    //         if (docente) {
+    //             // Actualizar docente existente
+    //             await put(route("docentes.update", docente.id), data);
+    //             // Luego actualizar o agregar la dirección
+    //             await put(route("direcciones.update", docente.direccion.id), {
+    //                 ...data.direccion,
+    //                 docente_id: docente.id,
+    //             });
+    //         } else {
+    //             // Guardar nuevo docente
+    //             const response = await post(route("docentes.store"), data);
+    //             const newDocenteId = response.data.id;
+    //             setDocenteId(newDocenteId);
 
-                // Guardar la dirección asociada al nuevo docente
-                await post(route("direcciones.store"), {
-                    ...data.direccion,
-                    docente_id: newDocenteId,
-                });
-            }
-        } catch (error) {
-            console.error(error);
-        } finally {
-            setIsSubmitting(false);
-        }
-    };
+    //             // Guardar la dirección asociada al nuevo docente
+    //             await post(route("direcciones.store"), {
+    //                 ...data.direccion,
+    //                 docente_id: newDocenteId,
+    //             });
+    //         }
+    //     } catch (error) {
+    //         console.error(error);
+    //     } finally {
+    //         setIsSubmitting(false);
+    //     }
+    // };
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -81,7 +88,7 @@ const [docenteId, setDocenteId] = useState(null);
                             <h1 className="text-2x1 font-bold mb-6 text-center">
                                 FORMULARIO DE HOJA DE VIDA DE DOCENTES
                             </h1>
-                            <form onSubmit={handleSubmit}>
+                            <form onSubmit={enviarDocente}>
 
                             <section className="mb-6 border-t-2 border-b-2 border-gray-300 pt-4 pb-4">
                                     <legend className="border-b-2 border-gray-300 pt-4 pb-4 text-xl font-semibold mb-4">
@@ -199,10 +206,10 @@ const [docenteId, setDocenteId] = useState(null);
                                                 <option value="">
                                                     Selecciona una opcion
                                                 </option>
-                                                <option value="masculino">
+                                                <option value="Masculino">
                                                     Masculino
                                                 </option>
-                                                <option value="femenino">
+                                                <option value="Femenino">
                                                     Femenino
                                                 </option>
                                             </select>
@@ -229,17 +236,17 @@ const [docenteId, setDocenteId] = useState(null);
                                                 <option value="">
                                                     Seleccione
                                                 </option>
-                                                <option value="soltera/o">
-                                                    Soltera/o
+                                                <option value="Soltero/a">
+                                                    Soltero/a
                                                 </option>
-                                                <option value="casada/o">
-                                                    Casada/o
+                                                <option value="Casado/a">
+                                                    Casado/a
                                                 </option>
-                                                <option value="viuda/o">
-                                                    Viuda/o
+                                                <option value="Viudo/a">
+                                                    Viudo/a
                                                 </option>
-                                                <option value="divorciada/o">
-                                                    Divorciada/o
+                                                <option value="Divorciado/a">
+                                                    Divorciado/a
                                                 </option>
                                             </select>
                                             {errors.estado_civil && (
@@ -257,18 +264,21 @@ const [docenteId, setDocenteId] = useState(null);
                                                     Carnet de Identidad
                                                 </label>
                                                 <input
-                                                    type="text"
+                                                    type="number"
                                                     id="ci"
                                                     name="ci"
-                                                    value={data.ci}
+                                                    value={data.ci || ""}
                                                     onChange={(e) =>
                                                         setData(
                                                             "ci",
                                                             e.target.value
                                                         )
                                                     }
-                                                    className=" mt-1 block w-full text-gray-200 dark:text-gray-800"
-                                                />
+                                                    //min="0" // No permite valores negativos
+                                                    //max="999999999" // Máximo valor posible con 9 dígitos
+                                                    //step="1" // No permite decimales
+                                                    className="mt-1 block w-full text-gray-200 dark:text-gray-800"
+                                                    />
                                                 {errors.ci && (
                                                     <span className="text-red-500">
                                                         {errors.ci}
@@ -298,39 +308,39 @@ const [docenteId, setDocenteId] = useState(null);
                                                         {" "}
                                                         Seleccionar{" "}
                                                     </option>
-                                                    <option value="or">
+                                                    <option value="OR">
                                                         {" "}
                                                         OR{" "}
                                                     </option>
-                                                    <option value="cb">
+                                                    <option value="CB">
                                                         {" "}
                                                         CB{" "}
                                                     </option>
-                                                    <option value="sc">
+                                                    <option value="SC">
                                                         {" "}
                                                         SC{" "}
                                                     </option>
-                                                    <option value="lp">
+                                                    <option value="LP">
                                                         {" "}
                                                         LP{" "}
                                                     </option>
-                                                    <option value="ch">
+                                                    <option value="CH">
                                                         {" "}
                                                         CH{" "}
                                                     </option>
-                                                    <option value="pa">
+                                                    <option value="PA">
                                                         {" "}
                                                         PA{" "}
                                                     </option>
-                                                    <option value="bn">
+                                                    <option value="BN">
                                                         {" "}
                                                         BN{" "}
                                                     </option>
-                                                    <option value="tj">
+                                                    <option value="TJ">
                                                         {" "}
                                                         TJ{" "}
                                                     </option>
-                                                    <option value="pt">
+                                                    <option value="PT">
                                                         {" "}
                                                         PT{" "}
                                                     </option>
@@ -351,16 +361,18 @@ const [docenteId, setDocenteId] = useState(null);
                                                     CI Extranjero
                                                 </label>
                                                 <input
-                                                    type="text"
+                                                    type="number"
                                                     id="ci_extranjero"
                                                     name="ci_extranjero"
-                                                    value={data.ci_extranjero}
+                                                    value={data.ci_extranjero || ""}
                                                     onChange={(e) =>
                                                         setData(
                                                             "ci_extranjero",
                                                             e.target.value
                                                         )
                                                     }
+                            
+                                                    
                                                     className=" mt-1 block w-full text-gray-200 dark:text-gray-800"
                                                 />
                                                 {errors.ci_extranjero && (
@@ -381,7 +393,7 @@ const [docenteId, setDocenteId] = useState(null);
                                                     type="text"
                                                     id="pasaporte"
                                                     name="pasaporte"
-                                                    value={data.pasaporte}
+                                                    value={data.pasaporte || ""}
                                                     onChange={(e) =>
                                                         setData(
                                                             "pasaporte",
@@ -406,7 +418,7 @@ const [docenteId, setDocenteId] = useState(null);
                                             </label>
                                             <input
                                                 type="date"
-                                                value={data.nacimiento}
+                                                value={data.nacimiento || ""}
                                                 onChange={(e) =>
                                                     setData(
                                                         "nacimiento",
@@ -431,16 +443,19 @@ const [docenteId, setDocenteId] = useState(null);
                                                     Teléfono
                                                 </label>
                                                 <input
-                                                    type="text"
+                                                    type="number"
                                                     id="telefono"
                                                     name="telefono"
-                                                    value={data.telefono}
+                                                    value={data.telefono || ""}
                                                     onChange={(e) =>
                                                         setData(
                                                             "telefono",
                                                             e.target.value
                                                         )
                                                     }
+                                                        min="0" // No permite valores negativos
+                                                        max="9999999" // Máximo valor posible con 9 dígitos
+                                                        step="1" // No permite decimales
                                                     className=" mt-1 block w-full text-gray-200 dark:text-gray-800"
                                                 />
                                                 {errors.telefono && (
@@ -457,16 +472,19 @@ const [docenteId, setDocenteId] = useState(null);
                                                     Celular
                                                 </label>
                                                 <input
-                                                    type="text"
+                                                    type="number"
                                                     id="celular"
                                                     name="celular"
-                                                    value={data.celular}
+                                                    value={data.celular || ""}
                                                     onChange={(e) =>
                                                         setData(
                                                             "celular",
                                                             e.target.value
                                                         )
                                                     }
+                                                        min="0" // No permite valores negativos
+                                                        max="99999999" // Máximo valor posible con 9 dígitos
+                                                        step="1" // No permite decimales
                                                     className=" mt-1 block w-full text-gray-200 dark:text-gray-800"
                                                 />
                                                 {errors.celular && (
@@ -487,7 +505,7 @@ const [docenteId, setDocenteId] = useState(null);
                                                 type="email"
                                                 id="correo"
                                                 name="correo"
-                                                value={data.correo}
+                                                value={data.correo || ""}
                                                 onChange={(e) =>
                                                     setData(
                                                         "correo",
@@ -515,7 +533,7 @@ const [docenteId, setDocenteId] = useState(null);
                                                     type="text"
                                                     id="domicilio"
                                                     name="domicilio"
-                                                    value={data.domicilio}
+                                                    value={data.domicilio || ""}
                                                     onChange={(e) =>
                                                         setData(
                                                             "domicilio",
@@ -541,7 +559,7 @@ const [docenteId, setDocenteId] = useState(null);
                                                     type="text"
                                                     id="zona"
                                                     name="zona"
-                                                    value={data.zona}
+                                                    value={data.zona || ""}
                                                     onChange={(e) =>
                                                         setData(
                                                             "zona",
@@ -568,7 +586,7 @@ const [docenteId, setDocenteId] = useState(null);
                                                 type="text"
                                                 id="municipio"
                                                 name="municipio"
-                                                value={data.municipio}
+                                                value={data.municipio || ""}
                                                 onChange={(e) =>
                                                     setData(
                                                         "municipio",
@@ -595,7 +613,7 @@ const [docenteId, setDocenteId] = useState(null);
                                                 id="numero_casa_referencia"
                                                 name="numero_casa_referencia"
                                                 value={
-                                                    data.numero_casa_referencia
+                                                    data.numero_casa_referencia || ""
                                                 }
                                                 onChange={(e) =>
                                                     setData(
@@ -623,7 +641,7 @@ const [docenteId, setDocenteId] = useState(null);
                                             <select
                                                 name="tipo_vivienda"
                                                 id="tipo_vivienda"
-                                                value={data.tipo_vivienda}
+                                                value={data.tipo_vivienda || ""}
                                                 onChange={(e) =>
                                                     setData(
                                                         "tipo_vivienda",
@@ -636,23 +654,23 @@ const [docenteId, setDocenteId] = useState(null);
                                                     {" "}
                                                     Seleccione{" "}
                                                 </option>
-                                                <option value="casa">
+                                                <option value="Casa">
                                                     {" "}
                                                     Casa{" "}
                                                 </option>
-                                                <option value="departamento">
+                                                <option value="Departamento">
                                                     {" "}
                                                     Departamento{" "}
                                                 </option>
-                                                <option value="condominio">
+                                                <option value="Condominio">
                                                     {" "}
                                                     Condominio{" "}
                                                 </option>
-                                                <option value="urbanizacio cerrada">
+                                                <option value="Urbanizacio cerrada">
                                                     {" "}
                                                     Urbanización Cerrrada{" "}
                                                 </option>
-                                                <option value="urbanizacion abierta">
+                                                <option value="Urbanizacion abierta">
                                                     {" "}
                                                     Urbanización Abierta{" "}
                                                 </option>
@@ -671,16 +689,19 @@ const [docenteId, setDocenteId] = useState(null);
                                                 CUA
                                             </label>
                                             <input
-                                                type="text"
+                                                type="number"
                                                 id="cua"
                                                 name="cua"
-                                                value={data.cua}
+                                                value={data.cua || ""}
                                                 onChange={(e) =>
                                                     setData(
                                                         "cua",
                                                         e.target.value
                                                     )
                                                 }
+                                                    min="0" // No permite valores negativos
+                                                    max="9999" // Máximo valor posible con 9 dígitos
+                                                    step="1" // No permite decimales
                                                 className=" mt-1 block w-full text-gray-200 dark:text-gray-800"
                                             />
                                             {errors.cua && (
@@ -699,7 +720,7 @@ const [docenteId, setDocenteId] = useState(null);
                                             <select
                                                 name="seguro"
                                                 id="seguro"
-                                                value={data.seguro}
+                                                value={data.seguro || ""}
                                                 onChange={(e) =>
                                                     setData(
                                                         "seguro",
@@ -712,36 +733,37 @@ const [docenteId, setDocenteId] = useState(null);
                                                     {" "}
                                                     Seleccione{" "}
                                                 </option>
-                                                <option value="or">
+                                                <option value="Caja Nacional de Salud (CNS)">
                                                     {" "}
                                                     Caja Nacional de Salud (CNS)
                                                 </option>
-                                                <option value="cb">
+                                                <option value="Caja de Salud de Caminos y RA">
                                                     {" "}
-                                                    Caja de Salud de Caminos y
-                                                    RA
+                                                    Caja de Salud de Caminos y RA
                                                 </option>
-                                                <option value="sc">
+                                                <option value="Caja Cordes">
                                                     {" "}
                                                     Caja Cordes{" "}
                                                 </option>
-                                                <option value="lp">
+                                                <option value="Caja Petrolera de Salud">
                                                     {" "}
                                                     Caja Petrolera de Salud{" "}
                                                 </option>
-                                                <option value="ch">
+                                                <option value="Seguro Integral de Salud SINEC">
                                                     {" "}
-                                                    Seguro Integral de Salud
-                                                    SINEC{" "}
+                                                    Seguro Integral de Salud SINEC{" "}
                                                 </option>
-                                                <option value="pa">
+                                                <option value="Corporación de Seguro Social Militar (Cossmil)">
                                                     {" "}
-                                                    Corporación del Seguro
-                                                    Social Militar (COSMIL){" "}
+                                                    Corporación de Seguro Social Militar (Cossmil){" "}
                                                 </option>
-                                                <option value="bn">
+                                                <option value="Otros">
                                                     {" "}
-                                                    Otros...{" "}
+                                                    Otros{" "}
+                                                </option>
+                                                <option value="Ninguno">
+                                                    {" "}
+                                                    Ninguno{" "}
                                                 </option>
                                             </select>
                                             {errors.seguro && (
@@ -773,4 +795,3 @@ const [docenteId, setDocenteId] = useState(null);
         </AuthenticatedLayout>
     );
 }
-

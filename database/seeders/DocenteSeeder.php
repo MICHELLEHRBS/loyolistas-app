@@ -22,14 +22,15 @@ class DocenteSeeder extends Seeder
         $docente->apellido_paterno = "Zurita";
         $docente->apellido_materno = "Herbas";
         $docente->genero = "Femenino";
-        $docente->estado_civil = "Soltera/o";
-        $docente->ci = "1234567";
+        $docente->estado_civil = "Soltero/a";
+        $docente->apellido_casada= "Quinteros";
+        $docente->ci = "1237724";
         $docente->expedido_ci = "CB";
         $docente->nacimiento = "2002-01-01";
         $docente->celular = "76758475";
-        $docente->telefono = "454738";
+        $docente->telefono = "4547383";
         $docente->correo = "sara@gmail.com";
-        $docente->cua = "1111sara";
+        $docente->cua = "1111";
         $docente->seguro = "Caja Nacional de Salud (CNS)";
         $docente->save();
 
@@ -38,14 +39,14 @@ class DocenteSeeder extends Seeder
         $docente2->apellido_paterno = "Medina";
         $docente2->apellido_materno = "Fabiani";
         $docente2->genero = "Masculino";
-        $docente2->estado_civil = "Soltera/o";
+        $docente2->estado_civil = "Soltero/a";
         $docente2->ci = "7894561";
         $docente2->expedido_ci = "CB";
         $docente2->nacimiento = "2000-01-01";
         $docente2->celular = "78546215";
         $docente2->telefono = "124578";
         $docente2->correo = "rafa@gmail.com";
-        $docente2->cua = "1111rafa";
+        $docente2->cua = "4456";
         $docente2->seguro = "Caja Nacional de Salud (CNS)";
         $docente2->save();
 
@@ -54,7 +55,7 @@ class DocenteSeeder extends Seeder
         $docente3->apellido_paterno = "Barrios";
         $docente3->apellido_materno = "Flores";
         $docente3->genero = "Masculino";
-        $docente3->estado_civil = "Soltera/o";
+        $docente3->estado_civil = "Soltero/a";
         $docente3->ci = "1384720";
         $docente3->expedido_ci = "CB";
         $docente3->nacimiento = "2000-07-04";
@@ -70,7 +71,7 @@ class DocenteSeeder extends Seeder
         $docente4->apellido_paterno = "Zurita";
         $docente4->apellido_materno = "Justiniano";
         $docente4->genero = "Femenino";
-        $docente4->estado_civil = "Soltera/o";
+        $docente4->estado_civil = "Soltero/a";
         $docente4->ci = "13003445";
         $docente4->expedido_ci = "CB";
         $docente4->nacimiento = "2002-07-23";
@@ -86,7 +87,7 @@ class DocenteSeeder extends Seeder
         $docente5->apellido_paterno = "Vasquez";
         $docente5->apellido_materno = "Padilla";
         $docente5->genero = "Masculino";
-        $docente5->estado_civil = "Soltera/o";
+        $docente5->estado_civil = "Soltero/a";
         $docente5->ci = "3452345";
         $docente5->expedido_ci = "CB";
         $docente5->nacimiento = "2005-07-09";

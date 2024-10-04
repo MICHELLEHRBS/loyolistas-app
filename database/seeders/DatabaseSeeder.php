@@ -23,10 +23,10 @@ class DatabaseSeeder extends Seeder
 
 
 
-        Docente::factory(10)->create();
+        /*Docente::factory(10)->create();
         ActividadConsultoria::factory(10)->create();
         AfiliacionInstitucion::factory(10)->create();
-        PersonalAdministrativo::factory(10)->create();
+        PersonalAdministrativo::factory(10)->create();*/
 
         $this->call([
             DocenteSeeder::class,

@@ -12,22 +12,23 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('docentes', function (Blueprint $table) {
+            
             $table->id();
             $table->string('nombre', 75);
             $table->string('apellido_paterno', 35)->nullable();
             $table->string('apellido_materno', 35)->nullable();
             $table->enum('genero', ['Masculino', 'Femenino']);
-            $table->enum('estado_civil', ['Soltera/o', 'Casada/o', 'Viuda/o', 'Divorciada/o']);
+            $table->enum('estado_civil', ['Soltero/a', 'Casado/a', 'Viudo/a', 'Divorciado/a']);
             $table->string('apellido_casada', 35)->nullable();
-            $table->string('ci', 15)->unique();
-            $table->string('expedido_ci', 35);
-            $table->string('ci_extranjero', 15)->unique()->nullable();
+            $table->integer('ci')->unique();
+            $table->enum('expedido_ci', ['OR', 'CB', 'SC', 'LP', 'CH', 'PA', 'BN', 'TJ', 'PT']);
+            $table->integer('ci_extranjero')->unique()->nullable();
             $table->string('pasaporte', 45)->nullable();
             $table->date('nacimiento');
-            $table->string('celular', 25);
-            $table->string('telefono', 25)->nullable();
-            $table->string('correo', 75);
-            $table->string('cua', 45);
+            $table->integer('celular');
+            $table->integer('telefono')->nullable();
+            $table->string('correo', 35);
+            $table->integer('cua');
             $table->enum('seguro', ['Caja Nacional de Salud (CNS)', 'Caja de Salud de Caminos y RA', 'Caja Cordes', 'Caja Petrolera de Salud', 'Seguro Integral de Salud SINEC', 'Corporación de Seguro Social Militar (Cossmil)', 'Otros', 'Ninguno']);
             $table->timestamps();
         });

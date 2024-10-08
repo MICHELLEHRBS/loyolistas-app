@@ -96,7 +96,7 @@ const [docenteId, setDocenteId] = useState(null);
                                     </legend>
                                     {/* Campos del Docente */}
                                     <div className="grid grid-cols-1 gap-6">
-                                        <div className="grid grid-cols-3 gap-4 ">
+                                        <div  className="grid grid-cols-3 gap-4 ">
                                             <div>
                                                 <label
                                                     htmlFor="nombre"
@@ -184,6 +184,8 @@ const [docenteId, setDocenteId] = useState(null);
                                                 )}
                                             </div>
                                         </div>
+
+                                       
                                         <div>
                                             <label
                                                 htmlFor="genero"
@@ -214,6 +216,32 @@ const [docenteId, setDocenteId] = useState(null);
                                                 </option>
                                             </select>
                                         </div>
+
+                                        <div>
+                                            <label
+                                                htmlFor="nacimiento"
+                                                className="block text-sm font-medium "
+                                            >
+                                                Fecha de Nacimiento
+                                            </label>
+                                            <input
+                                                type="date"
+                                                value={data.nacimiento || ""}
+                                                onChange={(e) =>
+                                                    setData(
+                                                        "nacimiento",
+                                                        e.target.value
+                                                    )
+                                                }
+                                                className="text-gray-200 dark:text-gray-800"
+                                            />
+                                            {errors.nacimiento && (
+                                                <span className="text-red-500">
+                                                    {errors.nacimiento}
+                                                </span>
+                                            )}
+                                        </div>
+
                                         <div>
                                             <label
                                                 htmlFor="estado_civil"
@@ -408,30 +436,6 @@ const [docenteId, setDocenteId] = useState(null);
                                                     </span>
                                                 )}
                                             </div>
-                                        </div>
-                                        <div>
-                                            <label
-                                                htmlFor="nacimiento"
-                                                className="block text-sm font-medium "
-                                            >
-                                                Fecha de Nacimiento
-                                            </label>
-                                            <input
-                                                type="date"
-                                                value={data.nacimiento || ""}
-                                                onChange={(e) =>
-                                                    setData(
-                                                        "nacimiento",
-                                                        e.target.value
-                                                    )
-                                                }
-                                                className="text-gray-200 dark:text-gray-800"
-                                            />
-                                            {errors.nacimiento && (
-                                                <span className="text-red-500">
-                                                    {errors.nacimiento}
-                                                </span>
-                                            )}
                                         </div>
 
                                         <div className="grid grid-cols-2 gap-4">
@@ -787,12 +791,14 @@ const [docenteId, setDocenteId] = useState(null);
                                         </div>
                                         </div>
                                         </section>
+
+
                             <section className="mb-6 border-t-2 border-b-2 border-gray-300 pt-4 pb-4">
                             <legend className="border-b-2 border-gray-300 pt-4 pb-4 text-xl font-semibold mb-4">
                                         FORMACIÓN ACADÉMICA
                                     </legend>
                                     <div className="grid grid-cols-1 gap-6">
-                                        <div className="grid grid-cols-3 gap-4 ">
+                                        <div className="grid grid-cols-4 gap-4 ">
                                             <div>
                                                 <label
                                                     htmlFor="institucion"
@@ -850,7 +856,8 @@ const [docenteId, setDocenteId] = useState(null);
                                                 )}
                                             </div>
                                         </div>
-                    
+
+                                        <div className="grid grid-cols-6 gap-4 ">
                                         <div>
                                             <label
                                                 htmlFor="fecha_inicio"
@@ -900,9 +907,9 @@ const [docenteId, setDocenteId] = useState(null);
                                                 </span>
                                             )}
                                         </div>
-                                        <div className="grid grid-cols-2 gap-4">
-                                            
                                         </div>
+
+                                
                                         <div>
                                             <label
                                                 htmlFor="grado"
@@ -936,7 +943,7 @@ const [docenteId, setDocenteId] = useState(null);
                                                 </option>
                                                 <option value="Ingenerio">
                                                     {" "}
-                                                    ingeniero{" "}
+                                                    Ingeniero{" "}
                                                 </option>
                                                 <option value="Arquitecto">
                                                     {" "}
@@ -957,34 +964,34 @@ const [docenteId, setDocenteId] = useState(null);
                                                 </span>
                                             )}
                                         </div>
+                                        <div className="grid grid-cols-2 gap-4">
                                         <div>
-                                            <label
-                                                htmlFor="especialidad"
-                                                className="block text-sm font-medium "
-                                            >
-                                                Especialidad
-                                            </label>
-                                            <input
-                                                type="especialidad"
-                                                id="especialidad"
-                                                name="especialidad"
-                                                value={data.especialidad || ""}
-                                                onChange={(e) =>
-                                                    setData(
-                                                        "especialidad",
-                                                        e.target.value
-                                                    )
-                                                }
-                                                className=" mt-1 block w-full text-gray-200 dark:text-gray-800"
-                                            />
-                                            {errors.especialidad && (
-                                                <span className="text-red-500">
-                                                    {errors.especialidad}
-                                                </span>
-                                            )}
-                                        </div>
-                                       
-                                    
+                                                <label
+                                                    htmlFor="especialidad"
+                                                    className="block text-sm font-medium"
+                                                >
+                                                    Especialidad
+                                                </label>
+                                                <input
+                                                    type="text"
+                                                    id="especialidad"
+                                                    name="especialidad"
+                                                    value={data.especialidad}
+                                                    onChange={(e) =>
+                                                        setData(
+                                                            "especialidad",
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                    className="mt-1 block w-full text-gray-200 dark:text-gray-800"
+                                                />
+                                                {errors.especialidad && (
+                                                    <span className="text-red-500">
+                                                        {errors.especialidad}
+                                                    </span>
+                                                )}
+                                            </div>
+                                            </div>
                                         <div className="mt-4">
                                             <button
                                                 type="submit"
@@ -1373,6 +1380,8 @@ const [docenteId, setDocenteId] = useState(null);
                                                 </span>
                                             )}
                                         </div>
+                                        </div>
+                                        <div className="grid grid-cols-3 gap-4 ">
                                             <div>
                                                 <label
                                                     htmlFor="titulo"
@@ -1453,7 +1462,8 @@ const [docenteId, setDocenteId] = useState(null);
                                                     </span>
                                                 )}
                                             </div>
-
+                                            </div>
+                                 
                                             <div>
                                             <label
                                                 htmlFor="fecha_inicio"
@@ -1503,14 +1513,7 @@ const [docenteId, setDocenteId] = useState(null);
                                                 </span>
                                             )}
                                         </div>
-                                        </div>
-                    
-                                        <div className="grid grid-cols-2 gap-4">
-                                            
-                                        </div>
-                                        
-                                    
-                                    
+
                                         <div className="mt-4">
                                             <button
                                                 type="submit"
@@ -1780,12 +1783,277 @@ const [docenteId, setDocenteId] = useState(null);
                             <legend className="border-b-2 border-gray-300 pt-4 pb-4 text-xl font-semibold mb-4">
                             PREMIOS Y DISTINCIONES EN EL ÁREA
                                     </legend>
+
+                            <div className="grid grid-cols-1 gap-6">
+                                        <div>
+                                            <label
+                                                htmlFor="tipo"
+                                                className="block text-sm font-medium"
+                                            >
+                                                TIPO
+                                            </label>
+                                            <select
+                                                name="tipo"
+                                                id="tipo"
+                                                value={data.tipo || ""}
+                                                onChange={(e) =>
+                                                    setData(
+                                                        "tipo",
+                                                        e.target.value
+                                                    )
+                                                }
+                                                className=" text-gray-200 dark:text-gray-800"
+                                            >
+                                                <option value="">
+                                                    {" "}
+                                                    Seleccione{" "}
+                                                </option>
+                                                <option value="Premio">
+                                                    {" "}
+                                                    Premio{" "}
+                                                </option>
+                                                <option value="Distincion">
+                                                    {" "}
+                                                    Distinción{" "}
+                                                </option>
+                                            </select>
+                                            {errors.tipo && (
+                                                <span className="text-red-500">
+                                                    {errors.tipo}
+                                                </span>
+                                            )}
+                                        </div>    
+                            <div className="grid grid-cols-3 gap-4 ">
+                                <div>
+                                                <label
+                                                    htmlFor="titulo"
+                                                    className="block text-sm font-medium"
+                                                >
+                                                    Título
+                                                </label>
+                                                <input
+                                                    type="text"
+                                                    id="titulo"
+                                                    name="titulo"
+                                                    value={
+                                                        data.titulo
+                                                    }
+                                                    onChange={(e) =>
+                                                        setData(
+                                                            "titulo",
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                    className=" mt-1 block w-full text-gray-200 dark:text-gray-800"
+                                                />
+                                                {errors.titulo && (
+                                                    <span className="text-red-500">
+                                                        {
+                                                            errors.titulo
+                                                        }
+                                                    </span>
+                                                )}
+                                </div>
+
+                                <div>
+                                                <label
+                                                    htmlFor="institucion"
+                                                    className="block text-sm font-medium"
+                                                >
+                                                    Institución
+                                                </label>
+                                                <input
+                                                    type="text"
+                                                    id="institucion"
+                                                    name="institucion"
+                                                    value={data.institucion}
+                                                    onChange={(e) =>
+                                                        setData(
+                                                            "instittucion",
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                    className="mt-1 block w-full text-gray-200 dark:text-gray-800"
+                                                />
+                                                {errors.institucion && (
+                                                    <span className="text-red-500">
+                                                        {errors.institucion}
+                                                    </span>
+                                                )}
+                                </div>
+
+                                <div>
+                                            <label
+                                                htmlFor="lugar"
+                                                className="block text-sm font-medium "
+                                            >
+                                                Lugar
+                                            </label>
+                                            <input
+                                                type="text"
+                                                id="lugar"
+                                                name="lugar"
+                                                value={data.lugar || ""}
+                                                onChange={(e) =>
+                                                    setData(
+                                                        "lugar",
+                                                        e.target.value
+                                                    )
+                                                }
+                                                className=" mt-1 block w-full text-gray-200 dark:text-gray-800"
+                                            />
+                                            {errors.lugar && (
+                                                <span className="text-red-500">
+                                                    {errors.lugar}
+                                                </span>
+                                            )}
+                                </div>
+                                </div>
+
+                                        <div>
+                                            <label
+                                                htmlFor="fecha"
+                                                className="block text-sm font-medium "
+                                            >
+                                                Fecha
+                                            </label>
+                                            <input
+                                                type="date"
+                                                value={data.fecha || ""}
+                                                onChange={(e) =>
+                                                    setData(
+                                                        "fecha",
+                                                        e.target.value
+                                                    )
+                                                }
+                                                className="text-gray-200 dark:text-gray-800"
+                                            />
+                                            {errors.fecha && (
+                                                <span className="text-red-500">
+                                                    {errors.fecha}
+                                                </span>
+                                            )}
+                                        </div>
+                                    
+                                        <div className="mt-4">
+                                            <button
+                                                type="submit"
+                                                className="inline-flex items-center px-4 py-2 bg-blue-500 border border-transparent rounded-md font-semibold text-white shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                                                disabled={isSubmitting}
+                                            >
+                                                {isSubmitting
+                                                    ? "Guardando..."
+                                                    : docente
+                                                    ? "Actualizar"
+                                                    : "Guardar"}
+                                            </button>
+                                        </div>
+                                        </div>        
+                                                                        
                             </section>
                             
                             <section className="mb-6 border-t-2 border-b-2 border-gray-300 pt-4 pb-4">
                             <legend className="border-b-2 border-gray-300 pt-4 pb-4 text-xl font-semibold mb-4">
                             AFILIACIONES EN INSTITUCIONES Y/O ASOCIACIONES EN EL ÁREA EDUCATIVA
                                     </legend>
+
+                                    <div className="grid grid-cols-1 gap-6">
+                                        <div className="grid grid-cols-3 gap-4 ">  
+
+                                            <div>
+                                                <label
+                                                    htmlFor="institucion"
+                                                    className="block text-sm font-medium"
+                                                >
+                                                    Institución
+                                                </label>
+                                                <input
+                                                    type="text"
+                                                    id="institucion"
+                                                    name="institucion"
+                                                    value={data.institucion}
+                                                    onChange={(e) =>
+                                                        setData(
+                                                            "instittucion",
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                    className="mt-1 block w-full text-gray-200 dark:text-gray-800"
+                                                />
+                                                {errors.institucion && (
+                                                    <span className="text-red-500">
+                                                        {errors.institucion}
+                                                    </span>
+                                                )}
+                                            </div>
+
+                                            <div>
+                                            <label
+                                                htmlFor="contidicion"
+                                                className="block text-sm font-medium "
+                                            >
+                                                Condición
+                                            </label>
+                                            <input
+                                                type="text"
+                                                id="condicion"
+                                                name="condicion"
+                                                value={data.condicion || ""}
+                                                onChange={(e) =>
+                                                    setData(
+                                                        "condicion",
+                                                        e.target.value
+                                                    )
+                                                }
+                                                className=" mt-1 block w-full text-gray-200 dark:text-gray-800"
+                                            />
+                                            {errors.condicion && (
+                                                <span className="text-red-500">
+                                                    {errors.condicion}
+                                                </span>
+                                            )}
+                                            </div>
+
+                                            <div>
+                                            <label
+                                                htmlFor="fecha"
+                                                className="block text-sm font-medium "
+                                            >
+                                                Fecha
+                                            </label>
+                                            <input
+                                                type="date"
+                                                value={data.fecha || ""}
+                                                onChange={(e) =>
+                                                    setData(
+                                                        "fecha",
+                                                        e.target.value
+                                                    )
+                                                }
+                                                className="text-gray-200 dark:text-gray-800"
+                                            />
+                                            {errors.fecha && (
+                                                <span className="text-red-500">
+                                                    {errors.fecha}
+                                                </span>
+                                            )}
+                                            </div>
+                                    </div>
+                                        <div className="mt-4">
+                                            <button
+                                                type="submit"
+                                                className="inline-flex items-center px-4 py-2 bg-blue-500 border border-transparent rounded-md font-semibold text-white shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                                                disabled={isSubmitting}
+                                            >
+                                                {isSubmitting
+                                                    ? "Guardando..."
+                                                    : docente
+                                                    ? "Actualizar"
+                                                    : "Guardar"}
+                                            </button>
+                                        </div>
+                                        </div>  
+
                             </section>
 
                             <section className="mb-6 border-t-2 border-b-2 border-gray-300 pt-4 pb-4">

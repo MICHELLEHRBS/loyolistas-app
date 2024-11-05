@@ -1,6 +1,4 @@
-//import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-//import { usePage, useForm } from "@inertiajs/react";
-//import { useEffect } from "react";
+
 import React, { useState, useEffect } from "react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { usePage, useForm } from "@inertiajs/react";
@@ -23,18 +21,7 @@ export default function Form({ auth, docente }) {
         },
     });
 console.log(data);
-    // useEffect(() => {
-    //     if (docente) {
-    //         setData({
-    //             nombre: docente.nombre,
-    //             apellido_paterno: docente.apellido_paterno,
-    //             apellido_materno: docente.apellido_materno,
-    //             genero: docente.genero,
-    //             estado_civil: docente.estado_civil,
-    //             celular: docente.celular,
-    //         });
-    //     }
-    // }, [docente]);
+   
 const [docenteId, setDocenteId] = useState(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
     // 
@@ -45,41 +32,11 @@ const [docenteId, setDocenteId] = useState(null);
         post(route("docentes.store"), {
             onSuccess: (res)=>{console.log("ok", res)}, onError:(error)=>{console.log("error",error)}
         })}
-    //     e.preventDefault();
-
-    //     setIsSubmitting(true);
-
-    //     try {
-    //         if (docente) {
-    //             // Actualizar docente existente
-    //             await put(route("docentes.update", docente.id), data);
-    //             // Luego actualizar o agregar la dirección
-    //             await put(route("direcciones.update", docente.direccion.id), {
-    //                 ...data.direccion,
-    //                 docente_id: docente.id,
-    //             });
-    //         } else {
-    //             // Guardar nuevo docente
-    //             const response = await post(route("docentes.store"), data);
-    //             const newDocenteId = response.data.id;
-    //             setDocenteId(newDocenteId);
-
-    //             // Guardar la dirección asociada al nuevo docente
-    //             await post(route("direcciones.store"), {
-    //                 ...data.direccion,
-    //                 docente_id: newDocenteId,
-    //             });
-    //         }
-    //     } catch (error) {
-    //         console.error(error);
-    //     } finally {
-    //         setIsSubmitting(false);
-    //     }
-    // };
+   
     return (
         <AuthenticatedLayout
             user={auth.user}
-            header={docente ? "Editar Docente" : "Crear Docente"}
+            header={docente ? "Editar Docente" : "Crear"}
         >
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8  text-gray-800 dark:text-gray-200">
@@ -788,12 +745,17 @@ const [docenteId, setDocenteId] = useState(null);
                                                     ? "Actualizar"
                                                     : "Guardar"}
                                             </button>
+
                                         </div>
+                                        <div>
+                                            <a href={route('formaciones.create')}>SIGUIENTE</a>
+                                        </div>
+
                                         </div>
                                         </section>
 
 
-                            <section className="mb-6 border-t-2 border-b-2 border-gray-300 pt-4 pb-4">
+                            {/* <section className="mb-6 border-t-2 border-b-2 border-gray-300 pt-4 pb-4">
                             <legend className="border-b-2 border-gray-300 pt-4 pb-4 text-xl font-semibold mb-4">
                                         FORMACIÓN ACADÉMICA
                                     </legend>
@@ -1006,7 +968,7 @@ const [docenteId, setDocenteId] = useState(null);
                                             </button>
                                         </div>
                                         </div>
-                            </section>
+                            </section> */}
 
                             <section className="mb-6 border-t-2 border-b-2 border-gray-300 pt-4 pb-4">
                             <legend className="border-b-2 border-gray-300 pt-4 pb-4 text-xl font-semibold mb-4">

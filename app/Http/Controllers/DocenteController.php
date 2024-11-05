@@ -18,7 +18,7 @@ class DocenteController extends Controller
         $docentes = Docente::all();
         return Inertia::render('Docentes/Index', ['docentes' => $docentes]);
 
-        //$query = Docente::query();
+        
 
         if ($request->has('search')) {
             $searchTerm = $request->input('search');

@@ -45,6 +45,17 @@ export default function Authenticated({ user, header, children }) {
                                 >
                                     PERSONAL ADMINISTRATIVO
                                 </NavLink>
+
+                                <NavLink
+                                    href={route(
+                                        "formaciones.index"
+                                    )}
+                                    active={route().current(
+                                        "formaciones.index"
+                                    )}
+                                >
+                                    FORMACIÓN ACADÉMICA
+                                </NavLink>
                             </div>
                         </div>
 

@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FormacionAcademica;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Inertia\Inertia;
+
 
 class FormacionController extends Controller
 {
@@ -11,7 +15,8 @@ class FormacionController extends Controller
      */
     public function index()
     {
-        //
+        $formaciones_academicas = FormacionAcademica::all();
+        return Inertia::render('FormacionAcademica/Index', ['formaciones'=> $formaciones_academicas]);
     }
 
     /**
@@ -19,7 +24,7 @@ class FormacionController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('FormacionAcademica/Form');
     }
 
     /**
@@ -27,7 +32,27 @@ class FormacionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "institucion"=>"required|max:100",
+            "titulo"=>"required|max:15",
+            "fecha_inicio"=>"required",
+            "fecha_egreso"=>"required",
+            "grado"=> "required|in:Normalista,Licenciado,Ingeniero,Arquitecto,Magister,Doctor",
+            "especialidad"=>"nullable|max:50"
+            
+        ]);
+
+        $formaciones_academicas= new FormacionAcademica();
+        $formaciones_academicas->institucion = $request->institucion;
+        $formaciones_academicas->titulo = $request->titulo;
+        $formaciones_academicas->fecha_inicio = $request->fecha_inicio;
+        $formaciones_academicas->fecha_egreso = $request-> fecha_egreso;
+        $formaciones_academicas->grado = $request->grado;
+        $formaciones_academicas->especialidad = $request->especialidad;
+        $formaciones_academicas->save();
+
+        return Redirect::route('formaciones.index');
+
     }
 
     /**

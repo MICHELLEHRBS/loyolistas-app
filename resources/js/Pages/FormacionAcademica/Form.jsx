@@ -5,15 +5,15 @@ import { usePage, useForm } from "@inertiajs/react";
 export default function FormacionForm({ auth, formacion }) {
     const { errors } = usePage().props;
     const { data, setData, post } = useForm({
-        institucion: formacion?.institucion || "", 
-        titulo: formacion?.titulo || "", 
-        fecha_inicio: formacion?.fecha_inicio || "", 
-        fecha_egreso: formacion?.fecha_egreso || "", 
-        grado: formacion?.grado || "", 
+        institucion: formacion?.institucion || "",
+        titulo: formacion?.titulo || "",
+        fecha_inicio: formacion?.fecha_inicio || "",
+        fecha_egreso: formacion?.fecha_egreso || "",
+        grado: formacion?.grado || "",
         especialidad: formacion?.especialidad || "",
-    
-    });
 
+    });
+console.log(data);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     function enviarFormacion(e) {
@@ -217,23 +217,23 @@ export default function FormacionForm({ auth, formacion }) {
                                         </div>
                                     </div>
                                 </div>
-                               
+
                                 <div className="mt-4">
                                 <button
                                     type="submit"
                                     className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700"
                                     disabled={isSubmitting}
                                 >
-                                    {isSubmitting 
-                                    ? "Guardando..." 
+                                    {isSubmitting
+                                    ? "Guardando..."
                                     : formacion
                                     ? "Actualizar"
                                     : "Guardar"}
                                 </button>
                                 </div>
-                                {/* <div className="mt-4" >
-                                <a href={route('formaciones.create')}>SIGUIENTE</a>
-                                </div> */}
+                                <div className="mt-4" >
+                                <a href={route('idiomas.create')}>SIGUIENTE</a>
+                                </div>
                             </form>
                         </div>
                     </div>

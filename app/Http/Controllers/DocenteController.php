@@ -18,7 +18,7 @@ class DocenteController extends Controller
         $docentes = Docente::all();
         return Inertia::render('Docentes/Index', ['docentes' => $docentes]);
 
-        
+
 
         if ($request->has('search')) {
             $searchTerm = $request->input('search');
@@ -110,16 +110,19 @@ class DocenteController extends Controller
     {
         $docente = Docente::findOrFail($id);
         $docente->update($request->only([
-'nombre',
+            'nombre',
             'apellido_paterno',
             'apellido_materno',
             'genero',
             'estado_civil',
             'ci', 'expedido_ci',
-            'ci_extranjero', 'pasaporte',
+            'ci_extranjero',
+            'pasaporte',
             'nacimiento',
-            'celular', 'telefono',
-            'correo', 'cua',
+            'celular',
+            'telefono',
+            'correo',
+            'cua',
             'seguro'
         ]));
 

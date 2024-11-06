@@ -39,7 +39,7 @@ class FormacionController extends Controller
             "fecha_egreso"=>"required",
             "grado"=> "required|in:Normalista,Licenciado,Ingeniero,Arquitecto,Magister,Doctor",
             "especialidad"=>"nullable|max:50"
-            
+
         ]);
 
         $formaciones_academicas= new FormacionAcademica();
@@ -60,7 +60,8 @@ class FormacionController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $formaciones_academicas = FormacionAcademica::find($id);
+        return Inertia::render('FormacionAcademica/Show', ['formaciones' => $formaciones_academicas]);
     }
 
     /**
@@ -68,7 +69,8 @@ class FormacionController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $formaciones_academicas = FormacionAcademica::find($id);
+        return Inertia::render('FormacionAcademica/Form', ['formaciones' => $formaciones_academicas]);
     }
 
     /**
@@ -76,7 +78,16 @@ class FormacionController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $formaciones_academicas = FormacionAcademica::findOrFail($id);
+        $formaciones_academicas->update($request->only([
+            "institucion",
+            "titulo",
+            "fecha_inicio",
+            "fecha_egreso",
+            "grado",
+            "especialidad"
+        ]));
+
     }
 
     /**
@@ -84,6 +95,9 @@ class FormacionController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $formaciones_academicas = FormacionAcademica::findOrFail($id);
+        $formaciones_academicas->delete();
+
+        return Redirect::route('formaciones.index');
     }
 }

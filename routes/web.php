@@ -25,10 +25,6 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-// Ruta raíz redirige a la lista de docentes
-//Route::get('/', function () {
-// return redirect()->route('docentes.index');
-//});
 
 // Agrupación de rutas protegidas por autenticación
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -60,6 +56,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     //Ruta de formulario de formacion academica
     Route::get('/formaciones', [FormacionController::class, 'index'])->name('formaciones.index');
     Route::get('/formaciones/create', [FormacionController::class, 'create'])->name('formaciones.create');
+    Route::post('/formaciones', [FormacionController::class, 'store'])->name('formaciones.store');
+
+   //Ruta de formulario de idioma
+   Route::get('/idiomas', [IdiomaController::class, 'index'])->name('idiomas.index');
+   Route::get('/idiomas/create', [IdiomaController::class, 'create'])->name('idiomas.create');
+   Route::post('/idiomas', [IdiomaController::class, 'store'])->name('idiomas.store');
+
 });
 
 

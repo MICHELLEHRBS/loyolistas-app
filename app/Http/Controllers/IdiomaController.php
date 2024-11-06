@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Idioma;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Inertia\Inertia;
 
 class IdiomaController extends Controller
 {
@@ -11,7 +14,10 @@ class IdiomaController extends Controller
      */
     public function index()
     {
-        //
+        $idiomas = Idioma::all();
+        return Inetia::render('Idiomas/Index', ['idiomas' => $idiomas]);
+
+
     }
 
     /**
@@ -19,7 +25,7 @@ class IdiomaController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Idioma/Form');
     }
 
     /**
@@ -27,7 +33,21 @@ class IdiomaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "nombre_idioma"=>"required|max:10",
+            "tipo"=> "required|in:Lee,Habla,Escribe",
+            "nivel"=> "required|in:Basico,Medio,Avanzado"
+
+        ]);
+
+
+        $idiomas= new FormacionAcademica();
+        $idiomas->nombre_idioma = $request->nombre_idioma;
+        $idiomas->tipo = $request->tipo;
+        $idiomas->nivel = $request->nivel;
+        $idiomas->save();
+
+        return Redirect::route('idiomas.index');
     }
 
     /**
@@ -35,7 +55,8 @@ class IdiomaController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $idiomas = Idioma::find($id);
+        return Inertia::render('Idioma/Show', ['idiomas' => $idiomas]);
     }
 
     /**
@@ -43,7 +64,8 @@ class IdiomaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $idiomas = Idioma::find($id);
+        return Inertia::render('Idioma/Form', ['idiomas' => $idiomas]);
     }
 
     /**
@@ -51,7 +73,12 @@ class IdiomaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $idiomas = Idioma::findOrFail($id);
+        $idiomas->update($request->only([
+            "nombre_idioma",
+            "tipo",
+            "nivel"
+        ]));
     }
 
     /**
@@ -59,6 +86,9 @@ class IdiomaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $idiomas = Idioma::findOrFail($id);
+        $idiomas ->delete();
+
+        return Redirect::route('idiomas.index');
     }
 }

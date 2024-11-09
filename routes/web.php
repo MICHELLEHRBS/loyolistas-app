@@ -8,6 +8,7 @@ use Illuminate\Console\Application;
 use App\Http\Controllers\DocenteController;
 use App\Http\Controllers\PersonalAdministrativoController;
 use App\Http\Controllers\FormacionController;
+use App\Http\Controllers\IdiomaController;
 
 // Ruta principal de registro y acceso
 Route::get('/', function () {

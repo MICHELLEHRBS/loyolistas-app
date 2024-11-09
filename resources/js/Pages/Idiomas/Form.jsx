@@ -11,7 +11,7 @@ export default function IdiomaForm({ auth, idioma }) {
 
 
     });
-
+    console.log(data);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     function enviarIdioma(e) {
@@ -155,7 +155,7 @@ export default function IdiomaForm({ auth, idioma }) {
                                 >
                                     {isSubmitting
                                     ? "Guardando..."
-                                    : formacion
+                                    : idioma
                                     ? "Actualizar"
                                     : "Guardar"}
                                 </button>

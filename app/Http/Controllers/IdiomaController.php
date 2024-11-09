@@ -15,7 +15,7 @@ class IdiomaController extends Controller
     public function index()
     {
         $idiomas = Idioma::all();
-        return Inetia::render('Idiomas/Index', ['idiomas' => $idiomas]);
+        return Inertia::render('Idiomas/Index', ['idiomas' => $idiomas]);
 
 
     }
@@ -41,7 +41,7 @@ class IdiomaController extends Controller
         ]);
 
 
-        $idiomas= new FormacionAcademica();
+        $idiomas= new Idioma();
         $idiomas->nombre_idioma = $request->nombre_idioma;
         $idiomas->tipo = $request->tipo;
         $idiomas->nivel = $request->nivel;

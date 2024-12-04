@@ -1,14 +1,18 @@
 <?php
 
-
+use App\Http\Controllers\DiplomadoController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Illuminate\Console\Application;
 use App\Http\Controllers\DocenteController;
+use App\Http\Controllers\ExperienciaController;
 use App\Http\Controllers\PersonalAdministrativoController;
 use App\Http\Controllers\FormacionController;
 use App\Http\Controllers\IdiomaController;
+use App\Http\Controllers\PublicacionController;
+use App\Models\ExperienciaLaboral;
+use App\Models\Publicacion;
 
 // Ruta principal de registro y acceso
 Route::get('/', function () {
@@ -63,6 +67,21 @@ Route::middleware(['auth', 'verified'])->group(function () {
    Route::get('/idiomas', [IdiomaController::class, 'index'])->name('idiomas.index');
    Route::get('/idiomas/create', [IdiomaController::class, 'create'])->name('idiomas.create');
    Route::post('/idiomas', [IdiomaController::class, 'store'])->name('idiomas.store');
+
+//Ruta de formulario de experiencia laboral
+Route::get('/experiencias', [ExperienciaController::class, 'index'])->name('experiencias.index');
+Route::get('/experiencias/create', [ExperienciaController::class, 'create'])->name('experiencias.create');
+Route::post('/experiencias', [ExperienciaController::class, 'store'])->name('experiencias.store');
+
+//Ruta de formulario de Diplomados, cursos, seminarios y talleres
+Route::get('/diplomados', [DiplomadoController::class, 'index'])->name('diplomados.index');
+Route::get('/diplomados/create', [DiplomadoController::class, 'create'])->name('diplomados.create');
+Route::post('/diplomados', [DiplomadoController::class, 'store'])->name('diplomados.store');
+
+//Ruta de formulario de Diplomados, cursos, seminarios y talleres
+Route::get('/publicaciones', [PublicacionController::class, 'index'])->name('publicaciones.index');
+Route::get('/publicaciones/create', [PublicacionController::class, 'create'])->name('publicaciones.create');
+Route::post('/publicaciones', [PublicacionController::class, 'store'])->name('publicaciones.store');
 
 });
 

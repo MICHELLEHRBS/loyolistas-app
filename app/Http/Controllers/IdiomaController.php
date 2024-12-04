@@ -25,7 +25,7 @@ class IdiomaController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Idioma/Form');
+        return Inertia::render('Idiomas/Form');
     }
 
     /**
@@ -56,7 +56,7 @@ class IdiomaController extends Controller
     public function show(string $id)
     {
         $idiomas = Idioma::find($id);
-        return Inertia::render('Idioma/Show', ['idiomas' => $idiomas]);
+        return Inertia::render('Idiomas/Show', ['idiomas' => $idiomas]);
     }
 
     /**
@@ -65,7 +65,7 @@ class IdiomaController extends Controller
     public function edit(string $id)
     {
         $idiomas = Idioma::find($id);
-        return Inertia::render('Idioma/Form', ['idiomas' => $idiomas]);
+        return Inertia::render('Idiomas/Form', ['idiomas' => $idiomas]);
     }
 
     /**

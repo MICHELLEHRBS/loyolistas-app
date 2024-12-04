@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ExperienciaLaboral;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Inertia\Inertia;
 
 class ExperienciaController extends Controller
 {
@@ -11,7 +14,8 @@ class ExperienciaController extends Controller
      */
     public function index()
     {
-        //
+        $experiencias_laborales = ExperienciaLaboral::all();
+        return Inertia::render('ExperienciaLaboral/Index', ['experiencias'=> $experiencias_laborales]);
     }
 
     /**
@@ -19,7 +23,7 @@ class ExperienciaController extends Controller
      */
     public function create()
     {
-        //
+        Inertia::render('ExperienciaLaboral/Form');
     }
 
     /**
@@ -27,7 +31,22 @@ class ExperienciaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "nombre"=>"required|max:70",
+            "cargo"=>"required|max:70",
+            "fecha_inicio"=>"required",
+            "fecha_fin"=>"required",
+
+        ]);
+
+        $experiencias_laborales= new ExperienciaLaboral();
+        $experiencias_laborales->nombre = $request->nombre;
+        $experiencias_laborales->cargo = $request->cargo;
+        $experiencias_laborales->fecha_inicio = $request->fecha_inicio;
+        $experiencias_laborales->fecha_fin = $request-> fecha_fin;
+        $experiencias_laborales->save();
+
+        return Redirect::route('experiencias.index');
     }
 
     /**
@@ -35,7 +54,8 @@ class ExperienciaController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $experiencias_laborales = ExperienciaLaboral::find($id);
+        return Inertia::render('ExperienciaLaboral/Show', ['experiencias'=> $experiencias_laborales]);
     }
 
     /**
@@ -43,7 +63,8 @@ class ExperienciaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $$experiencias_laborales = ExperienciaLaboral::find($id);
+        return Inertia::render('ExperienciaLaboral/From', ['experiencias'=> $experiencias_laborales]);
     }
 
     /**
@@ -51,7 +72,14 @@ class ExperienciaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $experiencias_laborales = ExperienciaLaboral::findOrFail($id);
+        $experiencias_laborales->update($request->only([
+            "nombre",
+            "cargo",
+            "fecha_inicio",
+            "fecha_fin"
+        ]));
+
     }
 
     /**
@@ -59,6 +87,9 @@ class ExperienciaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $experiencias_laborales = ExperienciaLaboral::findOrFail($id);
+        $experiencias_laborales->delete();
+
+        return Redirect::route('experiencias.index');
     }
 }

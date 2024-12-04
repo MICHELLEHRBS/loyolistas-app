@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Publicacion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Inertia\Inertia;
 
 class PublicacionController extends Controller
 {
@@ -11,7 +14,8 @@ class PublicacionController extends Controller
      */
     public function index()
     {
-        //
+        $publicaciones = Publicacion::all();
+        return Inertia::render('Publicaciones/Index', ['publicaciones' => $publicaciones]);
     }
 
     /**
@@ -19,7 +23,7 @@ class PublicacionController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Publicaiones/Form');
     }
 
     /**
@@ -27,15 +31,32 @@ class PublicacionController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $request->validate([
 
+            "tipo_publicacion"=> "nullable|max:255",
+            "titulo"=>"nullable|max:75",
+            "lugar_publicacion"=>"nullable|max:75",
+            "fecha" =>"nullable"
+
+        ]);
+ 
+        $publicaciones= new Publicacion();
+        $publicaciones-> tipo_publicacion =$request->tipo_publicacion;
+        $publicaciones-> titulo =$request->titulo;
+        $publicaciones-> lugar_publicacion =$request->lugar_publicacion;
+        $publicaciones-> fecha =$request->fecha;
+        $publicaciones->save();
+
+        return Redirect::route('publicaciones.index');
+
+    }
     /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
-        //
+        $publicaciones = Publicacion::find($id);
+        return Inertia::render('Publicaciones/Show', ['publicaciones'=> $publicaciones]);
     }
 
     /**
@@ -43,7 +64,8 @@ class PublicacionController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $publicaciones = Publicacion::find($id);
+        return Inertia::render('Publicaciones/Form', ['publicaciones'=> $publicaciones]);
     }
 
     /**
@@ -51,7 +73,14 @@ class PublicacionController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $publicaciones = Publicacion::findOrFail($id);
+        $publicaciones->update($request->only([
+            "tipo_publicacion",
+            "titulo",
+            "lugar_publicacion",
+            "fecha"
+            
+        ]));
     }
 
     /**
@@ -59,6 +88,9 @@ class PublicacionController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $publicaciones= Publicacion::findOrFail($id);
+        $publicaciones->delete();
+
+        return Redirect::route('publicaciones.index');
     }
 }

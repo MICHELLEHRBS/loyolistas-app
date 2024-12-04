@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DiplomadoCurso;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Redirect;
+use Inertia\Inertia;
 class DiplomadoController extends Controller
 {
     /**
@@ -11,7 +13,9 @@ class DiplomadoController extends Controller
      */
     public function index()
     {
-        //
+        $diplomados_cursos_seminarios_talleres = DiplomadoCurso::all();
+        return Inertia::render('Diplomados/Index', ['diplomados'=> $diplomados_cursos_seminarios_talleres]);
+
     }
 
     /**
@@ -19,7 +23,7 @@ class DiplomadoController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Diplomados/Form');
     }
 
     /**
@@ -27,7 +31,30 @@ class DiplomadoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "rol"=>"nullable|in:Participante,Expositor",
+            "tipo_evento"=> "nullable|in:Diplomado,Curso,Seminario,Taller",
+            "titulo"=>"nullable|max:75",
+            "institucion"=>"nullable|max:100",
+            "lugar_pais"=>"nullable|max:45",
+            "fecha_inicio"=>"nullable",
+            "fecha_fin"=>"nullable",
+            
+
+        ]);
+
+        $diplomados_cursos_seminarios_talleres= new DiplomadoCurso();
+        $diplomados_cursos_seminarios_talleres->rol = $request->rol;
+        $diplomados_cursos_seminarios_talleres->tipo_evento = $request->tipo_evento;
+        $diplomados_cursos_seminarios_talleres->titulo = $request->titulo;
+        $diplomados_cursos_seminarios_talleres->institucion = $request-> institucion;
+        $diplomados_cursos_seminarios_talleres->lugar_pais = $request-> lugar_pais;
+        $diplomados_cursos_seminarios_talleres->fecha_inicio = $request->fecha_inicio;
+        $diplomados_cursos_seminarios_talleres->fecha_fin = $request-> fecha_fin;
+        $diplomados_cursos_seminarios_talleres->save();
+
+        return Redirect::route('diplomados.index');
+
     }
 
     /**
@@ -35,7 +62,8 @@ class DiplomadoController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $diplomados_cursos_seminarios_talleres = DiplomadoCurso::find($id);
+        return Inertia::render('Diplomados/Show', ['$diplomados'=>$diplomados_cursos_seminarios_talleres]);
     }
 
     /**
@@ -43,7 +71,9 @@ class DiplomadoController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $diplomados_cursos_seminarios_talleres = DiplomadoCurso::find($id);
+        return Inertia::render('Diplomados/Form', ['$diplomados'=>$diplomados_cursos_seminarios_talleres]);
+
     }
 
     /**
@@ -51,7 +81,16 @@ class DiplomadoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $diplomados_cursos_seminarios_talleres = DiplomadoCurso::findOrFail($id);
+        $diplomados_cursos_seminarios_talleres->update($request->only ([
+            "rol",
+            "tipo_evento",
+            "titulo",
+            "institucion",
+            "lugar_pais",
+            "fecha_inicio",
+            "fecha_fin"
+        ]));
     }
 
     /**
@@ -59,6 +98,9 @@ class DiplomadoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $diplomados_cursos_seminarios_talleres = DiplomadoCurso::findOrFail($id);
+        $diplomados_cursos_seminarios_talleres ->delete();
+
+        return Redirect::route('diplomados.index');
     }
 }

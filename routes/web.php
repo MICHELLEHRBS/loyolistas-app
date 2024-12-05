@@ -1,7 +1,6 @@
 <?php
 
-use App\Http\Controllers\DiplomadoController;
-use App\Http\Controllers\ProfileController;
+
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Illuminate\Console\Application;
@@ -10,9 +9,12 @@ use App\Http\Controllers\ExperienciaController;
 use App\Http\Controllers\PersonalAdministrativoController;
 use App\Http\Controllers\FormacionController;
 use App\Http\Controllers\IdiomaController;
+use App\Http\Controllers\PremioController;
 use App\Http\Controllers\PublicacionController;
-use App\Models\ExperienciaLaboral;
-use App\Models\Publicacion;
+use App\Http\Controllers\ActividadController;
+use App\Http\Controllers\AfiliacionController;
+use App\Http\Controllers\DiplomadoController;
+use App\Http\Controllers\ProfileController;
 
 // Ruta principal de registro y acceso
 Route::get('/', function () {
@@ -68,20 +70,36 @@ Route::middleware(['auth', 'verified'])->group(function () {
    Route::get('/idiomas/create', [IdiomaController::class, 'create'])->name('idiomas.create');
    Route::post('/idiomas', [IdiomaController::class, 'store'])->name('idiomas.store');
 
-//Ruta de formulario de experiencia laboral
-Route::get('/experiencias', [ExperienciaController::class, 'index'])->name('experiencias.index');
-Route::get('/experiencias/create', [ExperienciaController::class, 'create'])->name('experiencias.create');
-Route::post('/experiencias', [ExperienciaController::class, 'store'])->name('experiencias.store');
+   //Ruta de formulario de experiencia laboral
+   Route::get('/experiencias', [ExperienciaController::class, 'index'])->name('experiencias.index');
+   Route::get('/experiencias/create', [ExperienciaController::class, 'create'])->name('experiencias.create');
+   Route::post('/experiencias', [ExperienciaController::class, 'store'])->name('experiencias.store');
 
-//Ruta de formulario de Diplomados, cursos, seminarios y talleres
-Route::get('/diplomados', [DiplomadoController::class, 'index'])->name('diplomados.index');
-Route::get('/diplomados/create', [DiplomadoController::class, 'create'])->name('diplomados.create');
-Route::post('/diplomados', [DiplomadoController::class, 'store'])->name('diplomados.store');
+   //Ruta de formulario de Diplomados, cursos, seminarios y talleres
+   Route::get('/diplomados/create', [DiplomadoController::class, 'create'])->name('diplomados.create');
+   Route::get('/diplomados', [DiplomadoController::class, 'index'])->name('diplomados.index');
+   Route::post('/diplomados', [DiplomadoController::class, 'store'])->name('diplomados.store');
 
-//Ruta de formulario de Diplomados, cursos, seminarios y talleres
-Route::get('/publicaciones', [PublicacionController::class, 'index'])->name('publicaciones.index');
-Route::get('/publicaciones/create', [PublicacionController::class, 'create'])->name('publicaciones.create');
-Route::post('/publicaciones', [PublicacionController::class, 'store'])->name('publicaciones.store');
+   //Ruta de formulario de publicaciones
+   Route::get('/publicaciones', [PublicacionController::class, 'index'])->name('publicaciones.index');
+   Route::get('/publicaciones/create', [PublicacionController::class, 'create'])->name('publicaciones.create');
+   Route::post('/publicaciones', [PublicacionController::class, 'store'])->name('publicaciones.store');
+   
+   //Ruta de formulario de Actividades y consultaria
+   Route::get('/actividades', [ActividadController::class, 'index'])->name('actividades.index');
+   Route::get('/actividades/create', [ActividadController::class, 'create'])->name('actividades.create');
+   Route::post('/actividades', [ActividadController::class, 'store'])->name('actividades.store');
+   
+   //Ruta de formulario de premios
+   Route::get('/premios', [PremioController::class, 'index'])->name('premios.index');
+   Route::get('/premios/create', [PremioController::class, 'create'])->name('premios.create');
+   Route::post('/premios', [PremioController::class, 'store'])->name('premios.store');
+
+//Ruta de formulario de afiliaciones
+Route::get('/afiliaciones', [AfiliacionController::class, 'index'])->name('afiliaciones.index');
+Route::get('/afiliaciones/create', [AfiliacionController::class, 'create'])->name('afiliaciones.create');
+Route::post('/afiliaciones', [AfiliacionController::class, 'store'])->name('afiliaciones.store');
+
 
 });
 

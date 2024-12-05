@@ -161,7 +161,7 @@ export default function IdiomaForm({ auth, idioma }) {
                                 </button>
                                 </div>
                                 <div className="mt-4" >
-                                <a href={route('formaciones.create')}>SIGUIENTE</a>
+                                <a href={route('experiencias.create')}>SIGUIENTE</a>
                                 </div>
                             </form>
                         </div>

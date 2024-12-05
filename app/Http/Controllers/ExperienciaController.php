@@ -64,7 +64,7 @@ class ExperienciaController extends Controller
     public function edit(string $id)
     {
         $$experiencias_laborales = ExperienciaLaboral::find($id);
-        return Inertia::render('ExperienciaLaboral/From', ['experiencias'=> $experiencias_laborales]);
+        return Inertia::render('ExperienciaLaboral/Form', ['experiencias'=> $experiencias_laborales]);
     }
 
     /**

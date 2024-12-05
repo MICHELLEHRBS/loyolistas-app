@@ -38,7 +38,7 @@ class DiplomadoController extends Controller
             "institucion"=>"nullable|max:100",
             "lugar_pais"=>"nullable|max:45",
             "fecha_inicio"=>"nullable",
-            "fecha_fin"=>"nullable",
+            "fecha_fin"=>"nullable"
             
 
         ]);
@@ -63,7 +63,8 @@ class DiplomadoController extends Controller
     public function show(string $id)
     {
         $diplomados_cursos_seminarios_talleres = DiplomadoCurso::find($id);
-        return Inertia::render('Diplomados/Show', ['$diplomados'=>$diplomados_cursos_seminarios_talleres]);
+        return Inertia::render('Diplomados/Show', ['diplomados'=>$diplomados_cursos_seminarios_talleres]);
+    
     }
 
     /**
@@ -72,7 +73,7 @@ class DiplomadoController extends Controller
     public function edit(string $id)
     {
         $diplomados_cursos_seminarios_talleres = DiplomadoCurso::find($id);
-        return Inertia::render('Diplomados/Form', ['$diplomados'=>$diplomados_cursos_seminarios_talleres]);
+        return Inertia::render('Diplomados/Form', ['diplomados'=>$diplomados_cursos_seminarios_talleres]);
 
     }
 

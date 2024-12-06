@@ -1,0 +1,29 @@
+/* Estilos para el Footer */
+footer {
+    background-color: #014d33; /* Color verde del fondo */
+    color: #ffffff; /* Color blanco para el texto */
+    padding: 0; /* Espaciado vertical */
+  }
+  
+  /* Logo */
+.container .flex img {
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+  }
+  
+ 
+  /* Redes Sociales */
+   .flex img {
+    margin: 0 0.5rem; /* Espaciado entre los íconos */
+    cursor: pointer;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  
+ .flex img:hover {
+    transform: scale(1.1); /* Aumenta ligeramente el tamaño */
+    opacity: 0.8; /* Reduce la opacidad para un efecto visual */
+  }
+  
+  

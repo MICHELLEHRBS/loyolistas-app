@@ -15,7 +15,7 @@ class PublicacionController extends Controller
     public function index()
     {
         $publicaciones = Publicacion::all();
-        return Inertia::render('Publicaciones/Index', ['publicaciones' => $publicaciones]);
+        return Inertia::render('Publicacion/Index', ['publicaciones' => $publicaciones]);
     }
 
     /**
@@ -23,7 +23,7 @@ class PublicacionController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Publicaiones/Form');
+        return Inertia::render('Publicacion/Form');
     }
 
     /**
@@ -56,7 +56,7 @@ class PublicacionController extends Controller
     public function show(string $id)
     {
         $publicaciones = Publicacion::find($id);
-        return Inertia::render('Publicaciones/Show', ['publicaciones'=> $publicaciones]);
+        return Inertia::render('Publicacion/Show', ['publicaciones'=> $publicaciones]);
     }
 
     /**
@@ -65,7 +65,7 @@ class PublicacionController extends Controller
     public function edit(string $id)
     {
         $publicaciones = Publicacion::find($id);
-        return Inertia::render('Publicaciones/Form', ['publicaciones'=> $publicaciones]);
+        return Inertia::render('Publicacion/Form', ['publicaciones'=> $publicaciones]);
     }
 
     /**

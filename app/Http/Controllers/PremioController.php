@@ -15,7 +15,7 @@ class PremioController extends Controller
     public function index()
     {
         $premios_distinciones = PremioDistincion::all();
-        return Inertia::render('Premios/Index', ['premios'=> $premios_distinciones]);
+        return Inertia::render('PremioDisticion/Index', ['premios'=> $premios_distinciones]);
     }
 
     /**
@@ -23,7 +23,7 @@ class PremioController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Premios/Form');
+        return Inertia::render('PremioDistincion/Form');
     }
 
     /**
@@ -58,7 +58,7 @@ class PremioController extends Controller
     public function show(string $id)
     {
         $premios_distinciones = PremioDistincion::find($id);
-        return Inertia::render('Premios/Show', ['premios'=>$premios_distinciones]);
+        return Inertia::render('PremioDistincion/Show', ['premios'=>$premios_distinciones]);
     }
 
     /**
@@ -67,7 +67,7 @@ class PremioController extends Controller
     public function edit(string $id)
     {
         $premios_distinciones = PremioDistincion::find($id);
-        return Inertia::render('Premios/Form', ['premios'=>$premios_distinciones]);
+        return Inertia::render('PremioDistincion/Form', ['premios'=>$premios_distinciones]);
 
     }
 

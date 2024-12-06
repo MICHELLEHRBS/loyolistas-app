@@ -14,7 +14,7 @@ class DiplomadoController extends Controller
     public function index()
     {
         $diplomados_cursos_seminarios_talleres = DiplomadoCurso::all();
-        return Inertia::render('Diplomados/Index', ['diplomados'=> $diplomados_cursos_seminarios_talleres]);
+        return Inertia::render('DiplomadoCurso/Index', ['diplomados'=> $diplomados_cursos_seminarios_talleres]);
 
     }
 
@@ -23,7 +23,7 @@ class DiplomadoController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Diplomados/Form');
+        return Inertia::render('DiplomadoCurso/Form');
     }
 
     /**
@@ -63,7 +63,7 @@ class DiplomadoController extends Controller
     public function show(string $id)
     {
         $diplomados_cursos_seminarios_talleres = DiplomadoCurso::find($id);
-        return Inertia::render('Diplomados/Show', ['diplomados'=>$diplomados_cursos_seminarios_talleres]);
+        return Inertia::render('DiplomadoCurso/Show', ['diplomados'=>$diplomados_cursos_seminarios_talleres]);
     
     }
 
@@ -73,7 +73,7 @@ class DiplomadoController extends Controller
     public function edit(string $id)
     {
         $diplomados_cursos_seminarios_talleres = DiplomadoCurso::find($id);
-        return Inertia::render('Diplomados/Form', ['diplomados'=>$diplomados_cursos_seminarios_talleres]);
+        return Inertia::render('DiplomadoCurso/Form', ['diplomados'=>$diplomados_cursos_seminarios_talleres]);
 
     }
 

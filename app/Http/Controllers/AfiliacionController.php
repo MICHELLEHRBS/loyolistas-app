@@ -15,7 +15,7 @@ class AfiliacionController extends Controller
     public function index()
     {
         $afiliaciones_instituciones_asociados = AfiliacionInstitucion::all();
-        return Inertia::render('Afiliciaciones/Index', ['afiliaciones'=> $afiliaciones_instituciones_asociados]);
+        return Inertia::render('AfiliciacionInstitucion/Index', ['afiliaciones'=> $afiliaciones_instituciones_asociados]);
 
     }
 
@@ -24,7 +24,7 @@ class AfiliacionController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Afiliaciones/Form');
+        return Inertia::render('AfiliacionInstitucion/Form');
     }
 
     /**
@@ -55,7 +55,7 @@ class AfiliacionController extends Controller
     public function show(string $id)
     {
         $afiliaciones_instituciones_asociados = AfiliacionInstitucion::find($id);
-        return Inertia::render('Afiliaciones/Show', ['afiliaiciones'=>$afiliaciones_instituciones_asociados]);
+        return Inertia::render('AfiliacionInstitucion/Show', ['afiliaciones'=>$afiliaciones_instituciones_asociados]);
     
     }
 
@@ -65,7 +65,7 @@ class AfiliacionController extends Controller
     public function edit(string $id)
     {
         $afiliaciones_instituciones_asociados = AfiliacionInstitucion::find($id);
-        return Inertia::render('Afiliaciones/Form', ['afiliaciones'=>$afiliaciones_instituciones_asociados]);
+        return Inertia::render('AfiliacionInstitucion/Form', ['afiliaciones'=>$afiliaciones_instituciones_asociados]);
 
     }
 

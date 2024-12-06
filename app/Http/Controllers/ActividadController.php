@@ -15,7 +15,7 @@ class ActividadController extends Controller
     public function index()
     {
         $actividades_consultorias_investigaciones = ActividadConsultoria::all();
-        return Inertia::render('Actividades/Index', ['actividades'=> $actividades_consultorias_investigaciones]);
+        return Inertia::render('ActividadConsultoria/Index', ['actividades'=> $actividades_consultorias_investigaciones]);
     }
 
     /**
@@ -23,7 +23,7 @@ class ActividadController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Actividades/Form');
+        return Inertia::render('ActividadConsultoria/Form');
     }
 
     /**
@@ -51,7 +51,7 @@ class ActividadController extends Controller
     public function show(string $id)
     {
         $actividades_consultorias_investigaciones=ActividadConsultoria::find($id);
-        return inertia::render('Actividades/Show',['activividades'=>$actividades_consultorias_investigaciones]);
+        return inertia::render('ActividadConsultoria/Show',['actividades'=>$actividades_consultorias_investigaciones]);
 
     }
 
@@ -61,7 +61,7 @@ class ActividadController extends Controller
     public function edit(string $id)
     {
         $actividades_consultorias_investigaciones=ActividadConsultoria::find($id);
-        return inertia::render('Actividades/Form',['$activividades'=>$actividades_consultorias_investigaciones]);
+        return inertia::render('ActividaConsultoria/Form',['actividades'=>$actividades_consultorias_investigaciones]);
     }
 
     /**

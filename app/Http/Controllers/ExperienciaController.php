@@ -23,7 +23,7 @@ class ExperienciaController extends Controller
      */
     public function create()
     {
-        Inertia::render('ExperienciaLaboral/Form');
+        return Inertia::render('ExperienciaLaboral/Form');
     }
 
     /**
@@ -63,7 +63,7 @@ class ExperienciaController extends Controller
      */
     public function edit(string $id)
     {
-        $$experiencias_laborales = ExperienciaLaboral::find($id);
+        $experiencias_laborales = ExperienciaLaboral::find($id);
         return Inertia::render('ExperienciaLaboral/Form', ['experiencias'=> $experiencias_laborales]);
     }
 

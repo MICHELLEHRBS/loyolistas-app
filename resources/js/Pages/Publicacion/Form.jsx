@@ -2,25 +2,26 @@ import React, { useState } from "react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { usePage, useForm } from "@inertiajs/react";
 
-export default function ActividadForm({ auth, actividad }) {
+export default function PublicacionForm({ auth, publicacion }) {
     const { errors } = usePage().props;
     const { data, setData, post } = useForm({
-        titulo: actividad?.titulo || "",
-        organismo: actividad?.organismo || "",
-        fecha: actividad?.fecha || "",
+        tipo_publicacion: publicacion?.tipo_publicacion || "",
+        titulo: publicacion?.titulo || "",
+        lugar_publicacion: publicacion?.lugar_publicacion || "",
+        fecha: publicacion?.fecha || "",
 
     });
-    console.log(data);
+console.log(data);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    function enviarActividad(e) {
+    function enviarPublicacion(e) {
         e.preventDefault();
         setIsSubmitting(true);
-        post(route("actividades.store"), {
+        post(route("publicaciones.store"), {
             onSuccess: () => {
                 setIsSubmitting(false);
                 // Redirigir a una página de confirmación o a otra sección si es necesario
-                window.location.href = route("actividades.index");
+                window.location.href = route("publicaciones.index");
             },
             onError: (error) => {
                 setIsSubmitting(false);
@@ -30,19 +31,46 @@ export default function ActividadForm({ auth, actividad }) {
     }
 
     return (
-        <AuthenticatedLayout user={auth.user} header="Actividad de consultoria">
+        <AuthenticatedLayout user={auth.user} header="Publicacion">
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 text-gray-800 dark:text-gray-200">
                     <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="p-6 text-gray-900 dark:text-gray-100">
                             <h1 className="text-2x1 font-bold mb-6 text-center">
-                            ACTIVIDADES DE CONSULTORIA Y/O INVESTIGACIÓN EN EL ÁREA
+                                FORMULARIO DE PUBLICACIÓN
                             </h1>
-                            <form onSubmit={enviarActividad}>
+                            <form onSubmit={enviarPublicacion}>
                                 <div className="grid grid-cols-1 gap-6">
                                     <div className="grid grid-cols-2 gap-4 ">
-                                        <div>
-                                        <label
+                                    <div>
+                                                <label
+                                                    htmlFor="tipo_publicacion"
+                                                    className="block text-sm font-medium"
+                                                >
+                                                    Tipo de Publicación
+                                                </label>
+                                                <input
+                                                    type="text"
+                                                    id="tipo_publicacion"
+                                                    name="tipo_publicacion"
+                                                    value={data.tipo_publicacion}
+                                                    onChange={(e) =>
+                                                        setData(
+                                                            "tipo_publicacion",
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                    className="mt-1 block w-full text-gray-200 dark:text-gray-800"
+                                                />
+                                                {errors.tipo_publicacion&& (
+                                                    <span className="text-red-500">
+                                                        {errors.tipo_publicacion}
+                                                    </span>
+                                                )}
+                                            </div>
+                                    </div>
+                                    <div>
+                                                <label
                                                     htmlFor="titulo"
                                                     className="block text-sm font-medium"
                                                 >
@@ -67,30 +95,30 @@ export default function ActividadForm({ auth, actividad }) {
                                                     </span>
                                                 )}
                                             </div>
-
+                                        
                                             <div>
                                                 <label
-                                                    htmlFor="organismo"
+                                                    htmlFor="lugar_publicacion"
                                                     className="block text-sm font-medium"
                                                 >
-                                                    Organismo
+                                                    Lugar o País
                                                 </label>
                                                 <input
                                                     type="text"
-                                                    id="organismo"
-                                                    name="organismo"
-                                                    value={data.organismo}
+                                                    id="lugar_publicacion"
+                                                    name="lugar_publicacion"
+                                                    value={data.lugar_publicacion}
                                                     onChange={(e) =>
                                                         setData(
-                                                            "organismo",
+                                                            "lugar_publicacion",
                                                             e.target.value
                                                         )
                                                     }
                                                     className="mt-1 block w-full text-gray-200 dark:text-gray-800"
                                                 />
-                                                {errors.organismo&& (
+                                                {errors.lugar_publicacion&& (
                                                     <span className="text-red-500">
-                                                        {errors.organismo}
+                                                        {errors.lugar_publicacion}
                                                     </span>
                                                 )}
                                             </div>
@@ -119,29 +147,24 @@ export default function ActividadForm({ auth, actividad }) {
                                                 </span>
                                             )}
                                         </div>
+                                    
+                                </div>
 
-                                        </div>
-                    
-                                        {/* <div className="grid grid-cols-2 gap-4">
-                                            
-                                        </div> */}
-                                 
-                                        <div className="mt-4">
-                                            <button
-                                                type="submit"
-                                                className="inline-flex items-center px-4 py-2 bg-blue-500 border border-transparent rounded-md font-semibold text-white shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                                                disabled={isSubmitting}
-                                            >
-                                                {isSubmitting
-                                                    ? "Guardando..."
-                                                    : actividad
-                                                    ? "Actualizar"
-                                                    : "Guardar"}
-                                            </button>
-                                        </div>
-                                        </div>
                                 <div className="mt-4">
-                                    <a href={route('premios.create')}>SIGUIENTE</a>
+                                <button
+                                    type="submit"
+                                    className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700"
+                                    disabled={isSubmitting}
+                                >
+                                    {isSubmitting
+                                    ? "Guardando..."
+                                    : publicacion
+                                    ? "Actualizar"
+                                    : "Guardar"}
+                                </button>
+                                </div>
+                                <div className="mt-4" >
+                                <a href={route('actividades.create')}>SIGUIENTE</a>
                                 </div>
                             </form>
                         </div>

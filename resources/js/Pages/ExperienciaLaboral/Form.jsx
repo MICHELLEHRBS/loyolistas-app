@@ -10,7 +10,7 @@ export default function ExperienciaForm({ auth, experiencia }) {
         fecha_inicio: experiencia?.fecha_inicio || "",
         fecha_fin: experiencia?.fecha_fin || "",
     });
-
+    console.log(data);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     function enviarExperiencia(e) {

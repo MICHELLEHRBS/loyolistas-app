@@ -42,7 +42,7 @@ class InformacionLaboralController extends Controller
             "hora_final"=>"required",
             "salario"=>"required|max:100",
             "anios_servivio"=>"required|max:15",
-            "grado"=> "required|in:Plazo indefinido.Plazo definido",
+            "tipo_contrato"=> "required|in:Plazo indefinido.Plazo definido",
             "fecha_inicio"=>"required",
             "fecha_fin"=>"required",
             "evaluacion_pedagogica"=>"nullable|max:50",
@@ -51,19 +51,19 @@ class InformacionLaboralController extends Controller
         ]);
 
         $informaciones_laborales_loyola= new InformacionLaboral();
-        $informaciones_laborales_loyola->dia = $request->institucion;
-        $informaciones_laborales_loyola->nivel = $request->titulo;
-        $informaciones_laborales_loyola->materia = $request->fecha_inicio;
-        $informaciones_laborales_loyola->curso = $request-> fecha_egreso;
-        $informaciones_laborales_loyola->hora_inicio = $request->fecha_inicio;
-        $informaciones_laborales_loyola->hora_final = $request-> fecha_egreso;
-        $informaciones_laborales_loyola->salario = $request->grado;
-        $informaciones_laborales_loyola->anios_servicio = $request->grado;
-        $informaciones_laborales_loyola->grado = $request->fecha_inicio;
-        $informaciones_laborales_loyola->fecha_inicio = $request-> fecha_egreso;
-        $informaciones_laborales_loyola->fecha_fin = $request->fecha_inicio;
-        $informaciones_laborales_loyola->evaluacion_pedagogica = $request-> fecha_egreso;
-        $informaciones_laborales_loyola->evaluacion_psicologica = $request->especialidad;
+        $informaciones_laborales_loyola->dia = $request->dia;
+        $informaciones_laborales_loyola->nivel = $request->nivel;
+        $informaciones_laborales_loyola->materia = $request->materia;
+        $informaciones_laborales_loyola->curso = $request-> curso;
+        $informaciones_laborales_loyola->hora_inicio = $request->hora_inicio;
+        $informaciones_laborales_loyola->hora_final = $request-> hora_final;
+        $informaciones_laborales_loyola->salario = $request->salario;
+        $informaciones_laborales_loyola->anios_servicio = $request->anio_servicio;
+        $informaciones_laborales_loyola->tipo_contrato =$request->tipo_contrato;
+        $informaciones_laborales_loyola->fecha_inicio = $request-> fecha_inicio;
+        $informaciones_laborales_loyola->fecha_fin = $request->fecha_fin;
+        $informaciones_laborales_loyola->evaluacion_pedagogica = $request-> evaluacion_pedagogica;
+        $informaciones_laborales_loyola->evaluacion_psicologica = $request->evaluacion_psicologica;
         $informaciones_laborales_loyola->save();
 
 
@@ -96,12 +96,20 @@ return Redirect::route('formaciones.index');
     {
         $informaciones_laborales_loyola = InformacionLaboral::findOrFail($id);
         $informaciones_laborales_loyola->update($request->only([
-            "institucion",
-            "titulo",
+            
+            "dia",
+            "nivel",
+            "materia",
+            "curso",
+            "hora_inicio",
+            "hora_final",
+            "salario",
+            "anios_servicio",
+            "tipo_contrato",
             "fecha_inicio",
-            "fecha_egreso",
-            "grado",
-            "especialidad"
+            "fecha_fin",
+            "evaluacion_pedagogica",
+            "evaluacion_psicologica"
         ]));
     }
 

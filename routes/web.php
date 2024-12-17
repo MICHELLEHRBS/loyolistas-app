@@ -14,7 +14,9 @@ use App\Http\Controllers\PublicacionController;
 use App\Http\Controllers\ActividadController;
 use App\Http\Controllers\AfiliacionController;
 use App\Http\Controllers\DiplomadoController;
+use App\Http\Controllers\InformacionLaboralController;
 use App\Http\Controllers\ProfileController;
+use App\Models\InformacionLaboral;
 
 // Ruta principal de registro y acceso
 Route::get('/', function () {
@@ -99,6 +101,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::get('/afiliaciones', [AfiliacionController::class, 'index'])->name('afiliaciones.index');
 Route::get('/afiliaciones/create', [AfiliacionController::class, 'create'])->name('afiliaciones.create');
 Route::post('/afiliaciones', [AfiliacionController::class, 'store'])->name('afiliaciones.store');
+
+//Ruta de formulario de informacion laboral
+Route::get('/informaciones', [InformacionLaboralController::class, 'index'])->name('informaciones.index');
+Route::get('/informaciones/create', [InformacionLaboralController::class, 'create'])->name('informaciones.create');
+Route::post('/informaciones', [InformacionLaboralController::class, 'store'])->name('informaciones.store');
 
 
 });

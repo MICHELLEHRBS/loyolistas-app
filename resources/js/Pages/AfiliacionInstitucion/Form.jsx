@@ -135,7 +135,7 @@ export default function AfiliacionInstitucionForm({ auth, afiliacion }) {
                                         </div>
                                         </div>  
                                 <div className="mt-4">
-                                    <a href={route('premios.create')}>SIGUIENTE</a>
+                                    <a href={route('informaciones.create')}>SIGUIENTE</a>
                                 </div>
                             </form>
                         </div>
